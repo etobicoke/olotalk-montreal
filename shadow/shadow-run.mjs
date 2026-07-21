@@ -228,9 +228,9 @@ function renderHtml(card) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Montréal routing shadow-run — live scorecard</title><style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
+:root{--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;--mtl-red:#C8102E;
 --accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--amber:#d97706;--amber-bg:#fffbeb;--mono:"SF Mono",Menlo,Consolas,monospace}
-html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;border-top:3px solid var(--mtl-red)}
 .wrap{max-width:860px;margin:0 auto;padding:52px 24px 80px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 h1{font-size:27px;line-height:1.2;margin:10px 0 10px;letter-spacing:-.02em}
@@ -252,7 +252,7 @@ code{font-family:var(--mono);font-size:.86em;background:#f1f1f5;padding:1px 5px;
 h2{font-size:16px;margin:32px 0 10px}p{margin:10px 0;font-size:14.5px}ul{margin:8px 0 8px 20px;font-size:14px}li{margin:4px 0}
 .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)}
 @media(max-width:640px){.grid{grid-template-columns:1fr}}</style></head><body><div class="wrap">
-<div class="eyebrow">Live scorecard · Montréal routing resolver · Olotalk</div>
+<div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> Live scorecard · Montréal routing resolver · Olotalk</div>
 <h1>Routing shadow-run — a frozen policy, scored in the open</h1>
 <div class="meta">Scorecard generated <b>${card.asOf}</b> · policy frozen <b>${card.frozenAt}</b> on requests created before ${card.freezeCutoff} (2024 &amp; earlier) · every number below re-derivable from the live City API via <code>shadow-run.mjs</code></div>
 <div class="hero"><div class="herofig">${pct(back.accuracy)}</div>

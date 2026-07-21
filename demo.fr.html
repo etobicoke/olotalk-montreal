@@ -6,7 +6,7 @@
 <title>Démo en direct — identifier l'actif, acheminer avec une raison</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
+:root{--mtl-red:#C8102E;--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
 --accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
 --red:#dc2626;--red-bg:#fef2f2;--red-bd:#fecaca;--amber:#d97706;--amber-bg:#fffbeb;--amber-bd:#fde68a;
 --radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);--mono:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
@@ -66,14 +66,14 @@ body.js .pending{opacity:0;transform:translateY(8px);pointer-events:none}
 @media (prefers-reduced-motion:reduce){body.js .flow>*,body.js .reason,body.js .enclave{transition:none}}
 @media(max-width:760px){.pipe{flex-direction:column}.pipe .p{border-right:0;border-bottom:1px solid var(--soft)}
 .flow{grid-template-columns:1fr}.arr{transform:rotate(90deg);height:20px}}
-</style>
+body{border-top:3px solid var(--mtl-red)}</style>
 </head>
 <body>
 <div class="wrap">
 <a class="back" href="index.html">← Pôle de la soumission (Montréal)</a>
 <div class="langtoggle"><a href="demo.html">English</a> · <span class="cur">Français</span></div>
 <header class="doc">
-<div class="eyebrow">Démo en direct · le moteur d'acheminement déterministe, sur de vraies requêtes</div>
+<div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> Démo en direct · le moteur d'acheminement déterministe, sur de vraies requêtes</div>
 <h1>Identifier l'actif. Acheminer avec une raison. Rediriger quand ce n'est pas à nous.</h1>
 <div class="meta">Chaque lieu ci-dessous provient d'une <b>vraie requête des données ouvertes 311 de la Ville</b>, et l'acheminement montré est celui du moteur — qui correspond à la décision réelle de la Ville. L'étape photo/voix est l'entrée; cette page démontre ce qui rend l'acheminement fiable : <b>un moteur déterministe et justifiable qui ne devine jamais un service.</b></div>
 </header>

@@ -13,7 +13,7 @@
       --red: #dc2626; --red-bg: #fef2f2; --red-bd: #fecaca;
       --amber: #d97706; --amber-bg: #fffbeb; --amber-bd: #fde68a;
       --blue: #2563eb; --blue-bg: #eff6ff; --blue-bd: #bfdbfe;
-      --radius: 10px; --radius-sm: 6px;
+      --radius: 10px; --radius-sm: 6px; --mtl-red: #C8102E;
       --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
       --mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
     }
@@ -50,6 +50,11 @@
     .t-part { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-bd); }
     .t-gap  { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bd); }
     .t-new  { background: var(--accent-dim); color: var(--accent); border: 1px solid #ddd6fe; }
+    .chart { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); padding: 18px 20px; margin: 20px 0; }
+    .chart h4 { font-size: 15px; margin: 0 0 3px; letter-spacing: -.01em; color: var(--text); }
+    .chart .csub { font-size: 12.5px; color: var(--muted); margin: 0 0 14px; }
+    .chart figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+    .chart figcaption b { color: var(--text); }
     .foot { margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
     .hero { font-size: 18px; line-height: 1.5; font-weight: 600; letter-spacing: -.01em; margin: 6px 0; }
 
@@ -115,13 +120,13 @@
       .fangrid { grid-template-columns: 1fr; }
       .fanarrow { transform: rotate(90deg); }
     }
-  </style>
+  body{border-top:3px solid var(--mtl-red)}</style>
 </head>
 <body>
 <div class="wrap">
 
   <header class="doc">
-    <div class="eyebrow">Proposal · technical approach · ALL IN 2026 × Ville de Montréal</div>
+    <div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> Proposal · technical approach · ALL IN 2026 × Ville de Montréal</div>
     <h1>AI Challenge: Reinventing the Citizen Experience</h1>
     <div class="meta"><b>Draft 2026-07-15</b> · Submission deadline <b>2026-07-24</b> · Olotalk · Every figure below is computed from the City's own open data (Requêtes 311, CC-BY 4.0, 3,034,731 requests) — none is an estimate · Headline validated <b>out of sample</b> · Reproduction script accompanies this document</div>
   </header>
@@ -454,6 +459,13 @@
     <p>And the City's routing is not sloppy — it is <em>highly regular</em>. That we could reproduce <b>97.27% of it out of sample</b> with a containment test and a lookup table is itself the evidence: a process this reducible is one being run consistently and well by the people running it.</p>
     <p class="hero" style="margin-top:10px">So the opportunity is not that Montréal's agents make mistakes. It is that their accuracy currently costs a phone call every single time.</p>
   </div>
+
+  <figure class="chart">
+    <h4>82% of every 311 request still arrives by telephone</h4>
+    <div class="csub">Share of 3.07M requests by intake channel · City of Montréal 311 open data</div>
+    <svg viewBox="0 0 700 178" width="100%" role="img" aria-label="311 channel mix — 82% by telephone" style="max-width:100%"><rect x="140" y="6" width="470.0" height="20" rx="3" fill="var(--accent)"/><text x="132" y="16.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">By telephone</text><text x="617.0" y="16.5" dominant-baseline="middle" font-size="12" font-weight="700" fill="var(--accent)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">82.0%</text><rect x="140" y="40" width="32.7" height="20" rx="3" fill="#ccccd8"/><text x="132" y="50.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">In person</text><text x="179.7" y="50.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5.7%</text><rect x="140" y="74" width="30.4" height="20" rx="3" fill="#ccccd8"/><text x="132" y="84.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Mobile app</text><text x="177.4" y="84.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5.3%</text><rect x="140" y="108" width="21.2" height="20" rx="3" fill="#ccccd8"/><text x="132" y="118.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Email</text><text x="168.2" y="118.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3.7%</text><rect x="140" y="142" width="17.2" height="20" rx="3" fill="#ccccd8"/><text x="132" y="152.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Web form</text><text x="164.2" y="152.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3.0%</text></svg>
+    <figcaption>The City's routing is already accurate — that accuracy just <b>costs a phone call</b>, millions of times a year. Digital intake is a rounding error. Every report that arrives already resolved returns agent minutes to the callers who genuinely need a human.</figcaption>
+  </figure>
 
   <p>We reproduce that accuracy at zero marginal cost per request, and deliver a work order already resolved to an asset, already grouped with the other requests naming that same asset, already prioritised by how many separate citizens raised it, and already rejected-with-an-explanation when it belongs to the MTQ, a ville liée, Bell, Québecor, or a private owner.</p>
 
