@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live demo — resolve the asset, route with a reason</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
+--accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
+--red:#dc2626;--red-bg:#fef2f2;--red-bd:#fecaca;--amber:#d97706;--amber-bg:#fffbeb;--amber-bd:#fde68a;
+--radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);--mono:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
+html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto;padding:52px 26px 96px}
+.back{display:inline-block;margin-bottom:18px;font-size:13px;color:var(--accent);text-decoration:none}
+header.doc{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bottom:28px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:29px;line-height:1.18;margin:10px 0 12px;letter-spacing:-.022em}
+.meta{font-size:13px;color:var(--muted)}.meta b{color:var(--text)}
+p{margin:11px 0}a{color:var(--accent)}code{font-family:var(--mono);font-size:.85em;background:#f1f1f5;padding:1px 5px;border-radius:4px}
+.lead{font-size:16px;line-height:1.5}
+/* pipeline strip */
+.pipe{display:flex;align-items:stretch;gap:0;margin:22px 0 6px;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:var(--surface)}
+.pipe .p{flex:1;padding:12px 14px;border-right:1px solid var(--soft)}
+.pipe .p:last-child{border-right:0}
+.pipe .pn{font-family:var(--mono);font-size:10px;color:var(--accent);font-weight:700}
+.pipe .pt{font-size:13px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
+.pipe .pd{font-size:11.5px;color:var(--muted);margin-top:2px}
+.pipe .p.ai{background:var(--dim)}.pipe .p.det{background:var(--green-bg)}
+.legend{font-size:11.5px;color:var(--muted);margin:8px 0 0}.legend b.ai{color:var(--accent)}.legend b.det{color:var(--green)}
+/* scenario cards */
+.scn{border:1px solid var(--border);border-radius:12px;background:var(--surface);box-shadow:var(--shadow);margin:20px 0;overflow:hidden}
+.scn-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--soft);flex-wrap:wrap}
+.scn-tag{font-family:var(--mono);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.scn-title{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.scn-status{margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.st-ok{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.st-re{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
+.flow{display:grid;grid-template-columns:1fr 22px 1fr 22px 1fr 22px 1.15fr;align-items:stretch;gap:0;padding:18px}
+.stage{border:1px solid var(--border);border-radius:9px;padding:10px 12px;background:#fdfdff}
+.stage.ai{background:var(--dim);border-color:#ddd6fe}
+.stage.decide.ok{background:var(--green-bg);border-color:var(--green-bd)}
+.stage.decide.re{background:var(--amber-bg);border-color:var(--amber-bd)}
+.st-lbl{font-family:var(--mono);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px}
+.st-body{font-size:12.5px;line-height:1.4}.st-body .big{font-size:14px;font-weight:700;display:block;letter-spacing:-.01em}
+.coord{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.arr{display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:17px}
+.reason{border-top:1px solid var(--soft);padding:13px 18px;font-size:13.5px;background:#fbfbfd}
+.reason .lbl{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-right:6px}
+.verdict{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{font-size:12px;padding:3px 10px;border-radius:6px;border:1px solid var(--border);background:#fff}
+.chip.no{border-color:var(--red-bd);background:var(--red-bg);color:var(--red);text-decoration:line-through}
+.chip.yes{border-color:var(--green-bd);background:var(--green-bg);color:var(--green);font-weight:700}
+.chip.city{border-color:#c7d2fe;background:#eef2ff;color:#4338ca}
+/* enclave svg */
+.enclave{display:flex;gap:16px;align-items:center;padding:0 18px 16px;flex-wrap:wrap}
+.enclave svg{flex:0 0 auto}
+.enclave .cap{font-size:12.5px;color:var(--muted);max-width:420px}
+.foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)}
+/* interactive */
+.langtoggle{font-size:12.5px;color:var(--muted);margin:-6px 0 16px}
+.langtoggle a{color:var(--accent)}.langtoggle .cur{font-weight:700;color:var(--text)}
+.controls{display:flex;gap:8px;align-items:center;margin:16px 0 2px}
+.btn{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--accent);background:var(--accent);color:#fff;padding:6px 15px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--accent)}.btn:active{transform:translateY(1px)}
+.runbtn{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--accent);background:#fff;color:var(--accent);padding:3px 13px;border-radius:20px;cursor:pointer}
+body.js .flow>*,body.js .reason,body.js .enclave{transition:opacity .4s ease,transform .4s ease}
+body.js .pending{opacity:0;transform:translateY(8px);pointer-events:none}
+.stage.active{box-shadow:0 0 0 3px var(--dim)}
+@media (prefers-reduced-motion:reduce){body.js .flow>*,body.js .reason,body.js .enclave{transition:none}}
+@media(max-width:760px){.pipe{flex-direction:column}.pipe .p{border-right:0;border-bottom:1px solid var(--soft)}
+.flow{grid-template-columns:1fr}.arr{transform:rotate(90deg);height:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Montréal submission hub</a>
+<div class="langtoggle"><span class="cur">English</span> · <a href="demo.fr.html">Français</a></div>
+<header class="doc">
+<div class="eyebrow">Live demo · the deterministic resolver, on real requests</div>
+<h1>Resolve the asset. Route with a reason. Redirect when it isn't ours.</h1>
+<div class="meta">Every location below is a <b>real request from the City's 311 open data</b>, and the routing shown is the resolver's — which matches the City's own decision. The photo/voice step is the input; this page demonstrates the part that makes routing trustworthy: <b>a deterministic, citable resolver that never guesses a department.</b></div>
+</header>
+
+<p class="lead">A citizen sends a photo and a few words. Perception turns that into an <b>asset + defect</b>. Then a deterministic resolver decides <b>whose problem it is</b> — and can always say why, or say "not ours."</p>
+
+<div class="pipe">
+<div class="p ai"><div class="pn">01 · AI</div><div class="pt">Perceive</div><div class="pd">photo + voice → asset class + defect</div></div>
+<div class="p det"><div class="pn">02 · deterministic</div><div class="pt">Resolve</div><div class="pd">location → the specific asset &amp; its territory</div></div>
+<div class="p det"><div class="pn">03 · deterministic</div><div class="pt">Determine owner</div><div class="pd">borough · shared service · or a ville liée</div></div>
+<div class="p det"><div class="pn">04 · deterministic</div><div class="pt">Route or redirect</div><div class="pd">with a citable reason — never a hallucinated unit</div></div>
+</div>
+<p class="legend"><b class="ai">■ AI</b> does perception only. <b class="det">■ Deterministic</b> steps do the routing — so it is auditable and cannot invent a department.</p>
+
+<!-- SCENARIO 1 -->
+<div class="scn">
+<div class="scn-head"><span class="scn-tag">Scenario 1 · routed</span><span class="scn-title">Pothole on avenue des Pins</span><span class="scn-status st-ok">Routed</span></div>
+<div class="flow">
+<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 “big pothole here”<br>avenue des Pins<br><span class="coord">45.5085, −73.5800</span></div></div>
+<div class="arr">→</div>
+<div class="stage ai"><div class="st-lbl">2 · Perceive · AI</div><div class="st-body">asset = <b>road surface</b><br>defect = <b>pothole</b></div></div>
+<div class="arr">→</div>
+<div class="stage"><div class="st-lbl">3 · Resolve</div><div class="st-body">road segment in<br><span class="big">Le Plateau-Mont-Royal</span>a Montréal borough</div></div>
+<div class="arr">→</div>
+<div class="stage decide ok"><div class="st-lbl">4 · Route</div><div class="st-body"><span class="big">Plateau — Voirie</span>local road, borough-managed</div></div>
+</div>
+<div class="reason"><span class="lbl">Reason</span>Potholes are handled by geography: a local road sits in its borough's territory, and the borough maintains it. No special case applies.
+<div class="verdict"><span class="chip yes">Resolver → Le Plateau-Mont-Royal</span><span class="chip city">City's actual routing → Le Plateau-Mont-Royal ✓</span></div></div>
+</div>
+
+<!-- SCENARIO 2 -->
+<div class="scn">
+<div class="scn-head"><span class="scn-tag">Scenario 2 · routed · the catch</span><span class="scn-title">Broken traffic light on rue Sainte-Catherine (downtown)</span><span class="scn-status st-ok">Routed</span></div>
+<div class="flow">
+<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 “the light is out”<br>rue Sainte-Catherine, Ville-Marie<br><span class="coord">45.4926, −73.5800</span></div></div>
+<div class="arr">→</div>
+<div class="stage ai"><div class="st-lbl">2 · Perceive · AI</div><div class="st-body">asset = <b>traffic signal</b><br>defect = <b>outage</b></div></div>
+<div class="arr">→</div>
+<div class="stage"><div class="st-lbl">3 · Resolve</div><div class="st-body">signal in <span class="big">Ville-Marie</span>…but signals are a<br><b>shared service</b></div></div>
+<div class="arr">→</div>
+<div class="stage decide ok"><div class="st-lbl">4 · Route</div><div class="st-body"><span class="big">Rosemont–La Petite-Patrie</span>island-wide signal unit</div></div>
+</div>
+<div class="reason"><span class="lbl">Reason</span>The City runs traffic signals as a <b>shared service out of Rosemont–La Petite-Patrie</b> — <b>74.7%</b> of every signal report on the island, from 21 different territories. Naive geometry would send this downtown light to Ville-Marie and be wrong. The resolver knows it's a shared service.
+<div class="verdict"><span class="chip no">Naive geometry → Ville-Marie</span><span class="chip yes">Resolver → Rosemont–La Petite-Patrie</span><span class="chip city">City's actual routing → Rosemont ✓</span></div></div>
+</div>
+
+<!-- SCENARIO 3 -->
+<div class="scn">
+<div class="scn-head"><span class="scn-tag">Scenario 3 · not ours</span><span class="scn-title">Pothole on boulevard Graham, Mont-Royal</span><span class="scn-status st-re">Redirected</span></div>
+<div class="flow">
+<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 “pothole on my street”<br>boulevard Graham<br><span class="coord">45.5217, −73.6274</span></div></div>
+<div class="arr">→</div>
+<div class="stage ai"><div class="st-lbl">2 · Perceive · AI</div><div class="st-body">asset = <b>road surface</b><br>defect = <b>pothole</b></div></div>
+<div class="arr">→</div>
+<div class="stage"><div class="st-lbl">3 · Resolve</div><div class="st-body">location falls inside<br><span class="big">Ville de Mont-Royal</span><b>ville liée</b> — a separate city</div></div>
+<div class="arr">→</div>
+<div class="stage decide re"><div class="st-lbl">4 · Redirect</div><div class="st-body"><span class="big">Ville de Mont-Royal</span>not Montréal's to fix</div></div>
+</div>
+<div class="reason"><span class="lbl">Reason</span>The City's own administrative boundaries (Limites administratives, <code>TYPE = "Ville liée"</code>) mark this address as <b>Ville de Mont-Royal — one of 15 demerged municipalities</b>, not one of Montréal's 19 boroughs. Montréal 311 has no jurisdiction here. Montréal's own pothole page confirms it: ville-liée issues go to the ville liée. A classifier that just saw "pothole" would have booked a Montréal work order for another city's street.
+<div class="verdict"><span class="chip yes">Resolver → redirect to Ville de Mont-Royal</span><span class="chip city">In the City's data, interior Mont-Royal requests are never assigned to borough road work ✓</span></div></div>
+<div class="enclave">
+<svg width="260" height="170" viewBox="0 0 260 170" role="img" aria-label="Schematic: the Mont-Royal enclave inside the island of Montréal">
+<rect x="0" y="0" width="260" height="170" fill="#f5f5fa"/>
+<path d="M18 92 Q10 55 55 40 Q120 12 190 30 Q245 45 242 92 Q246 140 175 150 Q95 160 45 138 Q16 126 18 92 Z" fill="#eef0f7" stroke="#c9cdda" stroke-width="1.5"/>
+<text x="128" y="150" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="10" fill="#9aa0b4">Island of Montréal · 19 boroughs</text>
+<rect x="96" y="60" width="66" height="44" rx="7" fill="#fff7ed" stroke="#d97706" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="129" y="56" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="9.5" font-weight="700" fill="#b45309">Ville de Mont-Royal</text>
+<circle cx="129" cy="83" r="5.5" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+<text x="129" y="99" text-anchor="middle" font-family="var(--mono),monospace" font-size="8" fill="#b45309">the report</text>
+</svg>
+<div class="cap">Mont-Royal is an <b>enclave</b> — a separate municipality entirely surrounded by Montréal. The pin lands inside its boundary, so the answer is "not ours" no matter what the photo shows. Geometry alone gets this right <em>only</em> if it knows the enclave exists; a category classifier never does.</div>
+</div>
+</div>
+
+<div class="foot">
+<b>How real is this?</b> The three locations, streets and coordinates are genuine 311 requests (or, for Mont-Royal, a real Town-of-Mount-Royal street), pulled live from <code>donnees.montreal.ca</code> (CC-BY 4.0 · © Ville de Montréal). The routing shown is the resolver's frozen policy (hash <code>b1f81070…</code>), and it matches the City's own recorded decisions. The perception step (photo → asset + defect) is shown as the input — in the product it runs a self-hosted vision model; here we demonstrate the deterministic resolver, the part that makes routing auditable. Reproduce the routing: <code>node shadow/shadow-run.mjs</code>. See also the <a href="index.html">submission hub</a> and the <a href="shadow/scorecard.html">live scorecard</a>.
+</div>
+</div>
+<script>
+(function(){
+  var scns = Array.prototype.slice.call(document.querySelectorAll('.scn'));
+  if(!scns.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var fr = document.documentElement.lang === 'fr';
+  document.body.classList.add('js');
+
+  function targets(scn){
+    var flow = scn.querySelector('.flow');
+    var t = flow ? Array.prototype.slice.call(flow.children).slice(1) : []; // skip the Report stage
+    return t.concat(Array.prototype.slice.call(scn.querySelectorAll(':scope > .reason, :scope > .enclave')));
+  }
+  function collapse(scn){ targets(scn).forEach(function(el){ el.classList.add('pending'); el.classList.remove('active'); }); }
+  function run(scn){
+    return new Promise(function(resolve){
+      var t = targets(scn), step = reduce ? 0 : 430;
+      if(!t.length){ resolve(); return; }
+      t.forEach(function(el,i){
+        setTimeout(function(){
+          el.classList.remove('pending');
+          if(el.classList.contains('stage')){ el.classList.add('active'); setTimeout(function(){el.classList.remove('active');}, 520); }
+          if(i === t.length-1) setTimeout(resolve, reduce ? 0 : 320);
+        }, i*step);
+      });
+    });
+  }
+  // per-scenario replay button (page loads fully visible; Run resets then replays)
+  scns.forEach(function(scn){
+    var head = scn.querySelector('.scn-head'), status = scn.querySelector('.scn-status');
+    var b = document.createElement('button');
+    b.className='runbtn'; b.type='button'; b.textContent = '▶ ' + (fr ? 'Rejouer' : 'Replay');
+    b.style.marginLeft='auto';
+    if(status){ status.style.marginLeft='10px'; head.insertBefore(b, status); } else head.appendChild(b);
+    b.addEventListener('click', function(){ collapse(scn); run(scn); });
+  });
+  // top control bar
+  var bar = document.createElement('div'); bar.className='controls';
+  var runAll = document.createElement('button'); runAll.className='btn'; runAll.type='button';
+  runAll.textContent = '▶ ' + (fr ? 'Tout lancer' : 'Run all three');
+  var reset = document.createElement('button'); reset.className='btn ghost'; reset.type='button';
+  reset.textContent = '↻ ' + (fr ? 'Réinitialiser' : 'Reset');
+  bar.appendChild(runAll); bar.appendChild(reset);
+  scns[0].parentNode.insertBefore(bar, scns[0]);
+  reset.addEventListener('click', function(){ scns.forEach(collapse); });
+  runAll.addEventListener('click', function(){
+    scns.forEach(collapse);
+    var p = Promise.resolve();
+    scns.forEach(function(scn){ p = p.then(function(){ return run(scn); }).then(function(){ return new Promise(function(r){ setTimeout(r, reduce?0:350); }); }); });
+  });
+  if(location.hash === '#run'){ setTimeout(function(){ runAll.click(); }, 200); }
+})();
+</script>
+</body>
+</html>

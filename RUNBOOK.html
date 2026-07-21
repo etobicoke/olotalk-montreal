@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Submission-morning runbook — Montréal AI Challenge</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
+--accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
+--red:#dc2626;--red-bg:#fef2f2;--red-bd:#fecaca;--amber:#d97706;--amber-bg:#fffbeb;--amber-bd:#fde68a;
+--radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);--mono:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
+html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.wrap{max-width:820px;margin:0 auto;padding:50px 26px 90px}
+.back{display:inline-block;margin-bottom:16px;font-size:13px;color:var(--accent);text-decoration:none}
+header.doc{border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:8px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:27px;line-height:1.2;margin:9px 0 10px;letter-spacing:-.02em}
+.meta{font-size:13px;color:var(--muted)}.meta b{color:var(--text)}
+.bar{display:flex;gap:8px;align-items:center;margin:16px 0 4px}
+.btn{font:inherit;font-size:12.5px;font-weight:600;border:1px solid var(--border);background:#fff;color:var(--muted);padding:5px 12px;border-radius:8px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.prog{font-size:12.5px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.step{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);margin:16px 0;overflow:hidden}
+.step>h3{display:flex;align-items:center;gap:10px;font-size:15px;padding:13px 16px;border-bottom:1px solid var(--soft);letter-spacing:-.01em}
+.step>h3 .num{font-family:var(--mono);font-size:12px;font-weight:800;color:#fff;background:var(--accent);border-radius:6px;padding:2px 9px}
+.step>h3 .t{font-size:11px;color:var(--muted);font-weight:600;margin-left:auto}
+.step.pre>h3 .num{background:var(--amber)}
+.body{padding:6px 16px 12px}
+.check{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--soft)}
+.check:last-child{border-bottom:0}
+.check input[type=checkbox]{margin-top:2px;width:17px;height:17px;accent-color:var(--accent);flex:0 0 auto;cursor:pointer}
+.check label{font-size:14px;cursor:pointer}
+.check input[type=checkbox]:checked ~ label{color:var(--muted);text-decoration:line-through}
+.check label .sub{display:block;font-size:12px;color:var(--muted);text-decoration:none;margin-top:2px}
+.check label code{font-family:var(--mono);font-size:.84em;background:#f1f1f5;padding:1px 5px;border-radius:4px}
+.urlrow{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--soft)}
+.urlrow:last-child{border-bottom:0}
+.urlrow .k{font-size:13px;font-weight:600;flex:0 0 190px}
+.urlrow input[type=text]{flex:1;font:inherit;font-size:12.5px;font-family:var(--mono);border:1px solid var(--border);border-radius:6px;padding:5px 9px;background:#fdfdff}
+.urlrow input[type=text]:focus{outline:2px solid var(--dim);border-color:var(--accent)}
+.callout{border:1px solid var(--border);border-left-width:4px;border-radius:var(--radius-sm);padding:13px 16px;margin:16px 0;font-size:13.5px}
+.c-bad{border-left-color:var(--red);background:var(--red-bg)}.c-warn{border-left-color:var(--amber);background:var(--amber-bg)}
+.callout .lbl{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px}
+.c-bad .lbl{color:var(--red)}.c-warn .lbl{color:var(--amber)}
+.callout ul{margin:4px 0 0 18px}.callout li{margin:4px 0}
+code{font-family:var(--mono);font-size:.84em;background:#f1f1f5;padding:1px 5px;border-radius:4px}
+.foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)}
+@media print{.bar,.back{display:none}body{background:#fff}.step,.callout{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Montréal submission hub</a>
+<header class="doc">
+<div class="eyebrow">Submission-morning runbook · follow top to bottom</div>
+<h1>Ship it — the July 23 checklist</h1>
+<div class="meta">Deadline <b>2026-07-24</b>; submit <b>the 23rd</b>. Boxes and URL fields <b>save in this browser</b> as you go. The submission reaches the jury as <b>URLs inside text answers</b> + one <b>mandatory video upload</b>.</div>
+</header>
+
+<div class="bar">
+<button class="btn" id="reset" type="button">↻ Reset checklist</button>
+<button class="btn" id="print" type="button">⎙ Print</button>
+<span class="prog" id="prog">0 / 0 done</span>
+</div>
+
+<div class="callout c-bad"><span class="lbl">The gate people forget — public URLs</span>
+Everything the jury clicks <b>must be reachable without your login</b>. The scorecard is public once you run <code>PUBLISH.md</code>. The <b>demo + proposal + findings + hub live in the private monorepo and are NOT public yet</b> — publish the <code>montreal/</code> folder as its own GitHub Pages site; its <code>PUBLISH.md</code> + <code>extract.sh</code> do this and repoint the scorecard link for you. <b>Test every link in an incognito window</b> before you submit.</div>
+
+<!-- PRE-FLIGHT -->
+<div class="step pre">
+<h3><span class="num">A</span>Pre-flight — true before you start <span class="t">night before / early</span></h3>
+<div class="body">
+<div class="check"><input type="checkbox" id="p1"><label for="p1"><b>Entity name resolved</b> and applied to all five docs.<span class="sub">The <em>registered</em> legal entity (Corporations Canada), not a trade name. Consistent everywhere.</span></label></div>
+<div class="check"><input type="checkbox" id="p2"><label for="p2"><b>Shadow repo published, public.</b><span class="sub"><code>PUBLISH.md</code>: Pages live · Actions set to read-and-write · workflow run once · scorecard URL opens.</span></label></div>
+<div class="check"><input type="checkbox" id="p3"><label for="p3"><b>Demo + docs have public URLs.</b><span class="sub">Run <code>montreal/PUBLISH.md</code> (extract.sh repoints the scorecard link). Confirm demo.fr.html opens publicly.</span></label></div>
+<div class="check"><input type="checkbox" id="p4"><label for="p4"><b>Video recorded.</b><span class="sub">French narration + EN subtitles · encoded <b>under 10 MB</b> · it plays. This is an eligibility gate.</span></label></div>
+<div class="check"><input type="checkbox" id="p5"><label for="p5"><b>Find-and-replace applied</b> to all five docs.<span class="sub">Per <code>SUBMISSION_NUMBERS</code>: held-out rates, rounded counts, no banned language.</span></label></div>
+</div>
+</div>
+
+<!-- STEP 1 -->
+<div class="step">
+<h3><span class="num">1</span>Freeze the numbers <span class="t">~5 min</span></h3>
+<div class="body">
+<div class="check"><input type="checkbox" id="s1a"><label for="s1a">Run <code>node shadow/montreal-challenge-verify.mjs</code> → expect <b>0 FAIL</b>. DRIFT on counts is normal.</label></div>
+<div class="check"><input type="checkbox" id="s1b"><label for="s1b">Run <code>node shadow/shadow-run.mjs</code> → held-out ≈ <b>97.27%</b>.</label></div>
+<div class="check"><input type="checkbox" id="s1c"><label for="s1c"><b>If any RATE moved &gt; 0.5pp</b> from <code>SUBMISSION_NUMBERS</code> → <b>STOP</b> and investigate before quoting anything.</label></div>
+<div class="check"><input type="checkbox" id="s1d"><label for="s1d">Commit + push the shadow repo (today's ledger entry lands publicly).</label></div>
+</div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step">
+<h3><span class="num">2</span>Collect the URLs <span class="t">paste-ready · saved here</span></h3>
+<div class="body">
+<div class="urlrow"><span class="k">Scorecard (Pages)</span><input type="text" id="u1" placeholder="https://<you>.github.io/<repo>/"></div>
+<div class="urlrow"><span class="k">Demo — FR (primary)</span><input type="text" id="u2" placeholder="https://…/demo.fr.html"></div>
+<div class="urlrow"><span class="k">Demo — EN</span><input type="text" id="u3" placeholder="https://…/demo.html"></div>
+<div class="urlrow"><span class="k">Submission hub</span><input type="text" id="u4" placeholder="https://…/index.html"></div>
+<div class="urlrow"><span class="k">Reproduce script</span><input type="text" id="u5" placeholder="https://github.com/<you>/<repo>/blob/main/shadow-run.mjs"></div>
+<div class="urlrow"><span class="k">Ledger (commits)</span><input type="text" id="u6" placeholder="https://github.com/<you>/<repo>/commits/main"></div>
+</div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step">
+<h3><span class="num">3</span>Final read of the five docs <span class="t">~15 min</span></h3>
+<div class="body">
+<div class="check"><input type="checkbox" id="s3a"><label for="s3a">Numbers match <code>SUBMISSION_NUMBERS</code> — rates exact, counts rounded.</label></div>
+<div class="check"><input type="checkbox" id="s3b"><label for="s3b">No <em>"predict before the City decides"</em>; no <em>"PROPRIETAIRE_REF gives the owner."</em></label></div>
+<div class="check"><input type="checkbox" id="s3c"><label for="s3c">Denominator hygiene: never <em>"97% of 3 million."</em> (97% is of the ~585K held-out.)</label></div>
+<div class="check"><input type="checkbox" id="s3d"><label for="s3d">Entity name spelled identically in every doc.</label></div>
+</div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step">
+<h3><span class="num">4</span>Fill the Google Form <span class="t">English answers</span></h3>
+<div class="body">
+<div class="check"><input type="checkbox" id="s4a"><label for="s4a">Text answers pasted; the URLs above dropped in where referenced.</label></div>
+<div class="check"><input type="checkbox" id="s4b"><label for="s4b"><b>Sovereign security &amp; dual-use</b> criterion answered — lead with the self-hosted / in-perimeter posture.</label></div>
+<div class="check"><input type="checkbox" id="s4c"><label for="s4c"><b>Video uploaded</b> (&lt;10 MB) — confirm it actually attached. Do this <b>first</b>, not last.</label></div>
+<div class="check"><input type="checkbox" id="s4d"><label for="s4d">Contact block: rep name, <b>title</b>, <b>phone</b>, email, <b>logo file</b>.</label></div>
+</div>
+</div>
+
+<!-- STEP 5 -->
+<div class="step">
+<h3><span class="num">5</span>Before you hit submit <span class="t">the last look</span></h3>
+<div class="body">
+<div class="check"><input type="checkbox" id="s5a"><label for="s5a"><b>Open every URL in an incognito window</b> — proves they're public, not your-login-only.</label></div>
+<div class="check"><input type="checkbox" id="s5b"><label for="s5b">Video plays in the form's preview.</label></div>
+<div class="check"><input type="checkbox" id="s5c"><label for="s5c">Spelling: <em>Montréal</em>, borough names, French accents.</label></div>
+<div class="check"><input type="checkbox" id="s5d"><label for="s5d"><b>Submit.</b> Screenshot the confirmation. Save the confirmation email.</label></div>
+</div>
+</div>
+
+<div class="callout c-warn"><span class="lbl">Three things that lose the submission at the last minute</span>
+<ul>
+<li><b>A private URL.</b> If the jury can't open it, it's worse than no link — test in incognito.</li>
+<li><b>No video, or a video over 10 MB.</b> It's an eligibility gate. Upload it before anything else.</li>
+<li><b>A raw count that "looks wrong."</b> It isn't — counts drift up, rates hold. But quote the <em>rounded</em> forms so nothing reads as a mismatch when the jury re-runs.</li>
+</ul></div>
+
+<div class="foot">
+Companion to <a href="SUBMISSION_NUMBERS.html">SUBMISSION_NUMBERS</a> (the figures) and <a href="index.html">the hub</a> (the artifacts). Your ticks and URLs are stored only in this browser (localStorage) — clearing site data resets them.
+</div>
+</div>
+<script>
+(function(){
+  var KEY='mtl-runbook-v1';
+  var store={};
+  try{ store=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ store={}; }
+  var boxes=Array.prototype.slice.call(document.querySelectorAll('input[type=checkbox]'));
+  var fields=Array.prototype.slice.call(document.querySelectorAll('input[type=text]'));
+  var prog=document.getElementById('prog');
+  function save(){ localStorage.setItem(KEY, JSON.stringify(store)); }
+  function refresh(){ var n=boxes.filter(function(b){return b.checked;}).length; prog.textContent=n+' / '+boxes.length+' done'; }
+  boxes.forEach(function(b){
+    if(store[b.id]) b.checked=true;
+    b.addEventListener('change',function(){ store[b.id]=b.checked; save(); refresh(); });
+  });
+  fields.forEach(function(f){
+    if(store[f.id]) f.value=store[f.id];
+    f.addEventListener('input',function(){ store[f.id]=f.value; save(); });
+  });
+  document.getElementById('reset').addEventListener('click',function(){
+    if(!confirm('Clear all ticks and URLs?')) return;
+    store={}; save();
+    boxes.forEach(function(b){b.checked=false;}); fields.forEach(function(f){f.value='';}); refresh();
+  });
+  document.getElementById('print').addEventListener('click',function(){ window.print(); });
+  refresh();
+})();
+</script>
+</body>
+</html>

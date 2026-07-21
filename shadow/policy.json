@@ -1,0 +1,2663 @@
+{
+  "frozenAt": "2026-07-21",
+  "freezeCutoff": "2025-01-01",
+  "prospectiveEpoch": "2026-07-21",
+  "policyHash": "b1f8107035578539f3c3a9f81e2ec1d9365ec038ed409ab8fc1bf96ea915a1f1",
+  "trainRows": 961599,
+  "categoryCount": 841,
+  "fixedCount": 125,
+  "policy": {
+    "categories": {
+      "100 - Demande d'intervention et Assistance": {
+        "mode": "geo"
+      },
+      "1100 - Autres": {
+        "mode": "geo"
+      },
+      "200 - Sécurité des bâtiments": {
+        "mode": "geo"
+      },
+      "400 - Incivilités et infractions": {
+        "mode": "geo"
+      },
+      "510 - Routier / Circulation": {
+        "mode": "geo"
+      },
+      "520 - Stationnement": {
+        "mode": "geo"
+      },
+      "600 - Signalisation": {
+        "mode": "geo"
+      },
+      "700 - Propreté": {
+        "mode": "geo"
+      },
+      "800 - Bruits": {
+        "mode": "geo"
+      },
+      "820 - Animaux": {
+        "mode": "geo"
+      },
+      "900 - Réglementation municipale": {
+        "mode": "geo"
+      },
+      "Abattage d'arbre": {
+        "mode": "geo"
+      },
+      "*Abattage d'arbre privé": {
+        "mode": "geo"
+      },
+      "Abattage d'arbre privé": {
+        "mode": "geo"
+      },
+      "Abattage d'arbre public": {
+        "mode": "geo"
+      },
+      "*Abattage/Essouchement exécution": {
+        "mode": "geo"
+      },
+      "Abribus - Nettoyage": {
+        "mode": "geo"
+      },
+      "Abri temporaire": {
+        "mode": "geo"
+      },
+      "Accès à l'information": {
+        "mode": "geo"
+      },
+      "Acquisition de ruelle": {
+        "mode": "fixed",
+        "unit": "SERVICE DE LA GESTION ET DE LA PLANIFICATION DES IMMEUBLES"
+      },
+      "Acquisition de terrain": {
+        "mode": "fixed",
+        "unit": "SERVICE DE LA STRATÉGIE IMMOBILIÈRE ET DE L HABITATION"
+      },
+      "Adhésion": {
+        "mode": "geo"
+      },
+      "AEC (Parc canin)": {
+        "mode": "geo"
+      },
+      "Affaires - Café-terrasse": {
+        "mode": "geo"
+      },
+      "Affaires - Demandes courriel (Statistique)": {
+        "mode": "geo"
+      },
+      "Affaires - Demandes courriel (Suivi requis)": {
+        "mode": "geo"
+      },
+      "Affaires - Permis/Urbanisme - Divers": {
+        "mode": "geo"
+      },
+      "Affaires - Zonage": {
+        "mode": "geo"
+      },
+      "Affichage - Illégal": {
+        "mode": "geo"
+      },
+      "Affichage politique": {
+        "mode": "geo"
+      },
+      "Affichage sauvage": {
+        "mode": "geo"
+      },
+      "Affiche autoportante - Domaine privé": {
+        "mode": "geo"
+      },
+      "Affiche autoportante - Domaine public": {
+        "mode": "geo"
+      },
+      "Affiche fixée sur arbres ou arbustes": {
+        "mode": "geo"
+      },
+      "Affiche propreté": {
+        "mode": "geo"
+      },
+      "Agrile du frêne - Divers": {
+        "mode": "geo"
+      },
+      "Aide au relogement": {
+        "mode": "fixed",
+        "unit": "SERVICE DE LA STRATÉGIE IMMOBILIÈRE ET DE L HABITATION"
+      },
+      "Airbnb": {
+        "mode": "geo"
+      },
+      "Aménagement de parc": {
+        "mode": "geo"
+      },
+      "Aménagement de parc - Ajout d'équipements sportifs": {
+        "mode": "geo"
+      },
+      "Amuseurs publics": {
+        "mode": "geo"
+      },
+      "*Analyse de l'eau potable": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Anciennes carrières": {
+        "mode": "geo"
+      },
+      "Animal mort": {
+        "mode": "geo"
+      },
+      "Animaux perdus/trouvés": {
+        "mode": "geo"
+      },
+      "Animaux sauvages - Nuisance": {
+        "mode": "geo"
+      },
+      "Antenne satellite": {
+        "mode": "geo"
+      },
+      "*Apaisement de la circulation": {
+        "mode": "geo"
+      },
+      "Appel d'offre et soumission d'arrondissement": {
+        "mode": "geo"
+      },
+      "*Aquatique": {
+        "mode": "geo"
+      },
+      "Arbre - Abattage d'arbre privé": {
+        "mode": "geo"
+      },
+      "Arbre - Divers": {
+        "mode": "geo"
+      },
+      "*Arbre - Maladie - Pucerons": {
+        "mode": "geo"
+      },
+      "*Arbre privé dangereux": {
+        "mode": "geo"
+      },
+      "Arbres ruelles": {
+        "mode": "geo"
+      },
+      "Arbre - Suivi de plantation": {
+        "mode": "geo"
+      },
+      "Arbre tombé": {
+        "mode": "geo"
+      },
+      "*Arbre - Varia - Enlèvement de branches": {
+        "mode": "geo"
+      },
+      "Archives et règlements d'arrondissement": {
+        "mode": "geo"
+      },
+      "*Aréna Maurice-Richard": {
+        "mode": "fixed",
+        "unit": "SERVICE DE LA DIVERSITÉ ET DE L INCLUSION SOCIALE"
+      },
+      "*Arrêt obligatoire (Stop)": {
+        "mode": "geo"
+      },
+      "Article de jeux sur domaine public": {
+        "mode": "geo"
+      },
+      "Artistes - Artisans": {
+        "mode": "geo"
+      },
+      "Asphalte - Coupes d'aqueduc et autres": {
+        "mode": "geo"
+      },
+      "Asphalte travaux": {
+        "mode": "fixed",
+        "unit": "AHUNTSIC-CARTIERVILLE"
+      },
+      "Assermentation": {
+        "mode": "geo"
+      },
+      "AT - Piétonnisation de la Plaza Saint-Hubert": {
+        "mode": "geo"
+      },
+      "Auto abandonnée, roulotte, remorque, palette": {
+        "mode": "geo"
+      },
+      "Autorisation d'affichage sur propriété privée": {
+        "mode": "geo"
+      },
+      "Autre - Affichage": {
+        "mode": "geo"
+      },
+      "Autre - Bureau d'arrondissement - Service à la clientèle": {
+        "mode": "geo"
+      },
+      "Autre - Carte d'Accès arrondissement": {
+        "mode": "geo"
+      },
+      "Autre - Clôture et haie": {
+        "mode": "geo"
+      },
+      "Autre - Collecte de déchets": {
+        "mode": "geo"
+      },
+      "Autre - Collecte de MO": {
+        "mode": "geo"
+      },
+      "Autre - Collecte des encombrants": {
+        "mode": "geo"
+      },
+      "*Autre - Compteur d'eau - Résidentiel": {
+        "mode": "geo"
+      },
+      "Autre - Construction": {
+        "mode": "geo"
+      },
+      "Autre - Démolition": {
+        "mode": "geo"
+      },
+      "Autre - Environnement - Collecte de feuilles ou arbres de Noël": {
+        "mode": "geo"
+      },
+      "Autre - Maires et élus d'arrondissement": {
+        "mode": "geo"
+      },
+      "Autre - Marquage de la chaussée": {
+        "mode": "geo"
+      },
+      "Autre - Occupation temporaire du domaine public": {
+        "mode": "geo"
+      },
+      "Autre - Permis - Divers": {
+        "mode": "geo"
+      },
+      "Autre - Permis - Vente débarras": {
+        "mode": "geo"
+      },
+      "Autre - Pesticide": {
+        "mode": "geo"
+      },
+      "Autre - Résidus verts": {
+        "mode": "geo"
+      },
+      "Autre - Salubrité": {
+        "mode": "geo"
+      },
+      "Autre - Stationnement municipal": {
+        "mode": "geo"
+      },
+      "Autre - Urbanisme": {
+        "mode": "geo"
+      },
+      "Autre - Zonage": {
+        "mode": "geo"
+      },
+      "Avis-Alertes aux citoyens": {
+        "mode": "geo"
+      },
+      "Avis de courtoisie - Neige": {
+        "mode": "geo"
+      },
+      "Avis d'infraction - Neige": {
+        "mode": "geo"
+      },
+      "Avis Occupant / Consommation": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "*Bac brun": {
+        "mode": "geo"
+      },
+      "*Bac de déchets Endommagé, perdu, volé": {
+        "mode": "geo"
+      },
+      "Bac de déchets - Endommagé, perdu, volé": {
+        "mode": "geo"
+      },
+      "*Bac de déchets Livraison": {
+        "mode": "geo"
+      },
+      "Bac de déchets - Livraison": {
+        "mode": "geo"
+      },
+      "*Bac de déchets Modification de volume": {
+        "mode": "geo"
+      },
+      "Bac de déchets - Modification de volume": {
+        "mode": "geo"
+      },
+      "*Bac de MO Endommagé, perdu, volé": {
+        "mode": "fixed",
+        "unit": "ST-LAURENT"
+      },
+      "Bac de MO - Endommagé, perdu, volé": {
+        "mode": "geo"
+      },
+      "*Bac de MO Livraison": {
+        "mode": "geo"
+      },
+      "Bac de MO - Livraison": {
+        "mode": "geo"
+      },
+      "*Bac de MO Modification de volume": {
+        "mode": "geo"
+      },
+      "Bac de MO - Modification de volume": {
+        "mode": "geo"
+      },
+      "Bac de MO sorti en temps prohibé": {
+        "mode": "geo"
+      },
+      "*Bac de recyclage": {
+        "mode": "geo"
+      },
+      "*Bac de recyclage Endommagé, perdu, volé": {
+        "mode": "geo"
+      },
+      "Bac de recyclage -Endommagé, perdu, volé": {
+        "mode": "geo"
+      },
+      "*Bac de recyclage Livraison": {
+        "mode": "geo"
+      },
+      "Bac de recyclage -Livraison": {
+        "mode": "geo"
+      },
+      "*Bac de recyclage  Modification de volume": {
+        "mode": "geo"
+      },
+      "Bac de recyclage - Modification de volume": {
+        "mode": "geo"
+      },
+      "Bac montréalais (67 litres)": {
+        "mode": "geo"
+      },
+      "*Bac - Non ramassé": {
+        "mode": "geo"
+      },
+      "Bac-RÉPARATION": {
+        "mode": "geo"
+      },
+      "*Bac résidus alimentaire": {
+        "mode": "geo"
+      },
+      "Bac roulant": {
+        "mode": "geo"
+      },
+      "Bac roulant - Déchets": {
+        "mode": "geo"
+      },
+      "Bac roulant - Matières organiques": {
+        "mode": "geo"
+      },
+      "Bac roulant - Matières recyclables": {
+        "mode": "geo"
+      },
+      "Bac roulant - Ramassage du bac": {
+        "mode": "geo"
+      },
+      "Bac roulant - Résidus alimentaires": {
+        "mode": "geo"
+      },
+      "*Bac roulant vert (1 à 3 logements)": {
+        "mode": "geo"
+      },
+      "Balai mécanique": {
+        "mode": "geo"
+      },
+      "Balcon": {
+        "mode": "geo"
+      },
+      "Balcon malpropre": {
+        "mode": "geo"
+      },
+      "Banc": {
+        "mode": "fixed",
+        "unit": "AHUNTSIC-CARTIERVILLE"
+      },
+      "*Banc-Réparation/Entretien": {
+        "mode": "geo"
+      },
+      "Bâtiment vacant ou à barricader": {
+        "mode": "geo"
+      },
+      "*Bibliothèque BENNY": {
+        "mode": "geo"
+      },
+      "*Bibliothèque CDN": {
+        "mode": "geo"
+      },
+      "Bicyclette abandonnée": {
+        "mode": "geo"
+      },
+      "Billet de dépôt à neige": {
+        "mode": "geo"
+      },
+      "Boîte de service": {
+        "mode": "geo"
+      },
+      "Boite de service à mettre en ordre": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "*Boîte de service à mettre en ordre": {
+        "mode": "geo"
+      },
+      "Boite de service à niveler": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Boîte de service à niveler": {
+        "mode": "geo"
+      },
+      "*Boîte de service à vérifier": {
+        "mode": "geo"
+      },
+      "Borne d'incendie - Entretien": {
+        "mode": "geo"
+      },
+      "Borne d'incendie - Installation, déplacement, utilisation": {
+        "mode": "geo"
+      },
+      "*Borne électrique": {
+        "mode": "geo"
+      },
+      "*Borne-fontaine - Entretien - Voirie": {
+        "mode": "geo"
+      },
+      "Borne-fontaine - Moins de 8 semaines": {
+        "mode": "geo"
+      },
+      "Borne-fontaine - Plus de 8 semaines": {
+        "mode": "geo"
+      },
+      "Borne-fontaine - Projets spéciaux": {
+        "mode": "geo"
+      },
+      "Bornes de recharge publiques": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L URBANISME ET DE LA MOBILITÉ"
+      },
+      "*Branchement d'égout - Domaine privé": {
+        "mode": "geo"
+      },
+      "Branchement égout Brisé/Déformé": {
+        "mode": "geo"
+      },
+      "Branche tombée": {
+        "mode": "geo"
+      },
+      "Bruit": {
+        "mode": "geo"
+      },
+      "Bruit - Autre": {
+        "mode": "geo"
+      },
+      "Bruit - Commerce et industrie": {
+        "mode": "geo"
+      },
+      "Bruit - des Carrières - Ombudsman": {
+        "mode": "geo"
+      },
+      "Bruit sur chantier de construction": {
+        "mode": "geo"
+      },
+      "Bruit - Thermopompe et climatiseur": {
+        "mode": "geo"
+      },
+      "Budget d'arrondissement": {
+        "mode": "geo"
+      },
+      "Bureau d'arrondissement - Service à la clientèle": {
+        "mode": "geo"
+      },
+      "Bureau du maire": {
+        "mode": "geo"
+      },
+      "Café-terrasse": {
+        "mode": "geo"
+      },
+      "*CAFÉ-TERRASSE (DOMAINE PUBLIC)": {
+        "mode": "geo"
+      },
+      "*CAFÉ-TERRASSE (PERMIS)": {
+        "mode": "geo"
+      },
+      "*Camionnage": {
+        "mode": "geo"
+      },
+      "Camp de jour": {
+        "mode": "geo"
+      },
+      "Carte Accès Montréal": {
+        "mode": "fixed",
+        "unit": "DIRECTION IMAGE DE MARQUE ET STRATÉGIES NUMÉRIQUES"
+      },
+      "Carte d'Accès arrondissement": {
+        "mode": "geo"
+      },
+      "Carte Info-Neige": {
+        "mode": "geo"
+      },
+      "CCU": {
+        "mode": "geo"
+      },
+      "Centre de services 311": {
+        "mode": "fixed",
+        "unit": "DIRECTION DE L EXPÉRIENCE CITOYENNE ET DU CENTRE DE SERVICES"
+      },
+      "Centres de traitement des matières organiques": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Certificat d'occupation commerciale ou professionnelle": {
+        "mode": "geo"
+      },
+      "Chalet de parc": {
+        "mode": "geo"
+      },
+      "Changement d'adresse - Taxes eau et déchets": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Changement d'adresse - Taxes foncières": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Changement d'adresse - Taxes locatives": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Chat sans permis": {
+        "mode": "geo"
+      },
+      "Chaussée glissante": {
+        "mode": "geo"
+      },
+      "Chien agressif": {
+        "mode": "fixed",
+        "unit": "SER.CONCERTATION DES ARROND. ET EXPÉRIENCE CITOYENNE"
+      },
+      "Chien sans permis": {
+        "mode": "geo"
+      },
+      "*Circulation-Intersection dangereuse": {
+        "mode": "geo"
+      },
+      "*Circulation - Travaux majeurs": {
+        "mode": "geo"
+      },
+      "Climatiseur": {
+        "mode": "geo"
+      },
+      "Clôture et haie privée": {
+        "mode": "geo"
+      },
+      "*Clôture et haies (local)": {
+        "mode": "geo"
+      },
+      "Clôture privée": {
+        "mode": "geo"
+      },
+      "Clôture publique": {
+        "mode": "geo"
+      },
+      "Collecte d'arbres de Noël": {
+        "mode": "geo"
+      },
+      "Collecte de branches d'arbre - Agrile du frêne": {
+        "mode": "geo"
+      },
+      "Collecte d'écran (ordinateur et téléviseur)": {
+        "mode": "geo"
+      },
+      "Collecte de déchets": {
+        "mode": "geo"
+      },
+      "Collecte de résidus alimentaires": {
+        "mode": "geo"
+      },
+      "Collecte de résidus verts": {
+        "mode": "geo"
+      },
+      "Collecte des encombrants": {
+        "mode": "geo"
+      },
+      "Collecte des matières organiques": {
+        "mode": "geo"
+      },
+      "Collecte des matières recyclables": {
+        "mode": "geo"
+      },
+      "*collecte des résidus alimentaires - Bac endommagés": {
+        "mode": "geo"
+      },
+      "*collecte des résidus alimentaires - Bac non ramassés": {
+        "mode": "geo"
+      },
+      "*collecte des résidus alimentaires - Demande de bac": {
+        "mode": "geo"
+      },
+      "Communications - Arrondissement": {
+        "mode": "geo"
+      },
+      "Communications corporatives": {
+        "mode": "fixed",
+        "unit": "SERVICE DES COMMUNICATIONS ET DES AFFAIRES PUBLIQUES"
+      },
+      "Complexe environnemental de Saint-Michel": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Compost": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "*Compteur bruyant": {
+        "mode": "geo"
+      },
+      "*Compteur coule": {
+        "mode": "geo"
+      },
+      "*Compteur d'eau ICI (Industries - Commerces - Institutions)": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Compteur ICI Entretien": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Compteur ICI Pose/Enlèvement": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Compteur ICI Vérification de lecture": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Compteur Résid. Entretien": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Concours horticole": {
+        "mode": "geo"
+      },
+      "Conseil d'arrondissement": {
+        "mode": "geo"
+      },
+      "Constat d'infraction - Neige": {
+        "mode": "geo"
+      },
+      "Construction réseau local": {
+        "mode": "geo"
+      },
+      "*Construction ruelle": {
+        "mode": "geo"
+      },
+      "Contrôle animalier": {
+        "mode": "geo"
+      },
+      "*Contrôle animalier - domaine public": {
+        "mode": "geo"
+      },
+      "Corde à linge": {
+        "mode": "geo"
+      },
+      "Couleur, odeur ou goût anormal de l'eau": {
+        "mode": "geo"
+      },
+      "Coupe d'arbre privé sans permis": {
+        "mode": "geo"
+      },
+      "Cour municipale": {
+        "mode": "fixed",
+        "unit": "SERVICE DES AFFAIRES JURIDIQUES"
+      },
+      "*Couvercle de puisard absent ou déplacé": {
+        "mode": "fixed",
+        "unit": "AHUNTSIC-CARTIERVILLE"
+      },
+      "*Couvercle de puisard - brisé": {
+        "mode": "geo"
+      },
+      "*Couvercle de puisard bruyant": {
+        "mode": "geo"
+      },
+      "Crue des eaux - Nettoyage - Collectes": {
+        "mode": "geo"
+      },
+      "Crue des eaux - Réintégration": {
+        "mode": "fixed",
+        "unit": "SERVICE DE LA STRATÉGIE IMMOBILIÈRE ET DE L HABITATION"
+      },
+      "Culture - Activités": {
+        "mode": "geo"
+      },
+      "Culture - Installations - Bibliothèques": {
+        "mode": "geo"
+      },
+      "CVP - Entrée charretière": {
+        "mode": "geo"
+      },
+      "CVP - Raccordement aqueduc/égout": {
+        "mode": "geo"
+      },
+      "Danger potentiel - Arbre": {
+        "mode": "geo"
+      },
+      "*Débarcadère - Autobus": {
+        "mode": "geo"
+      },
+      "*Débarcadère - École": {
+        "mode": "geo"
+      },
+      "*Débarcadère école, garderie, institution": {
+        "mode": "geo"
+      },
+      "*Débarcadère - Garderie": {
+        "mode": "geo"
+      },
+      "*Débarcadère - Handicapé": {
+        "mode": "geo"
+      },
+      "Débarcadère - Personne à mobilité réduite": {
+        "mode": "geo"
+      },
+      "Déblaiement/Chargement": {
+        "mode": "fixed",
+        "unit": "ST-LAURENT"
+      },
+      "Débris sur chantier et rues": {
+        "mode": "geo"
+      },
+      "Débris sur la voie publique": {
+        "mode": "geo"
+      },
+      "*Déchets": {
+        "mode": "geo"
+      },
+      "Déchets - Avis de courtoisie": {
+        "mode": "geo"
+      },
+      "*Déchets - Demande de bac": {
+        "mode": "geo"
+      },
+      "*Déchets hors des heures": {
+        "mode": "geo"
+      },
+      "Déchets - Illégal - Conteneurs - VM": {
+        "mode": "geo"
+      },
+      "Déchets - Illégal - Recyclage - VM": {
+        "mode": "fixed",
+        "unit": "VILLE-MARIE"
+      },
+      "*Déchets mal disposés": {
+        "mode": "geo"
+      },
+      "*Déchets - Non ramassés": {
+        "mode": "geo"
+      },
+      "Déchets - Non ramassés": {
+        "mode": "fixed",
+        "unit": "ST-LAURENT"
+      },
+      "*Déchets - Objet vol. à ramasser - Réfrigérateur, climatiseurs - Voirie": {
+        "mode": "geo"
+      },
+      "Déchets sortis en temps prohibé": {
+        "mode": "geo"
+      },
+      "DÉ - Commerce en chantier": {
+        "mode": "geo"
+      },
+      "DÉ - Demande de subvention": {
+        "mode": "geo"
+      },
+      "*Défense de jeter des déchets": {
+        "mode": "geo"
+      },
+      "Défonçage de la chaussée": {
+        "mode": "fixed",
+        "unit": "AHUNTSIC-CARTIERVILLE"
+      },
+      "Demande de permis d'occupation temporaire": {
+        "mode": "geo"
+      },
+      "*Demande de renseignement - signalisation permanente": {
+        "mode": "geo"
+      },
+      "Demande d'information d'arbre privé": {
+        "mode": "geo"
+      },
+      "*Demande d'informations": {
+        "mode": "geo"
+      },
+      "Demande d'information sur l'agrile du frêne - Arbre privé": {
+        "mode": "geo"
+      },
+      "Demande d'une nouvelle signalisation": {
+        "mode": "geo"
+      },
+      "*Demande d'un nouveau compteur": {
+        "mode": "geo"
+      },
+      "Demande Info.Technique": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Démolition de bâtiment résidentiel": {
+        "mode": "geo"
+      },
+      "*Déneigement - Débarcadère": {
+        "mode": "geo"
+      },
+      "Déneigement - Débarcadère": {
+        "mode": "fixed",
+        "unit": "SER.CONCERTATION DES ARROND. ET EXPÉRIENCE CITOYENNE"
+      },
+      "Déneigement - Rayon": {
+        "mode": "geo"
+      },
+      "Déneigeur privé - Enseigne": {
+        "mode": "geo"
+      },
+      "Déneigeur privé - Poteau": {
+        "mode": "geo"
+      },
+      "Dépôt illégal déchet - ruelle": {
+        "mode": "geo"
+      },
+      "Dépôt illégal - Déchets": {
+        "mode": "geo"
+      },
+      "Dépôt Illégal - Neige": {
+        "mode": "geo"
+      },
+      "Dépôt illégal-Ramassage": {
+        "mode": "geo"
+      },
+      "Dépôt neige-ruelle": {
+        "mode": "geo"
+      },
+      "Dépôt sauvage - Domaine public": {
+        "mode": "geo"
+      },
+      "Dépôt sauvage - Terrain privé": {
+        "mode": "geo"
+      },
+      "Dérogation mineure": {
+        "mode": "geo"
+      },
+      "Développement communautaire": {
+        "mode": "geo"
+      },
+      "Développement culturel - Central": {
+        "mode": "fixed",
+        "unit": "SERVICE DE LA CULTURE, DES SPORTS ET DES LOISIRS"
+      },
+      "Développement social": {
+        "mode": "geo"
+      },
+      "Direction Culture Sports Loisirs Dév. Soc.": {
+        "mode": "geo"
+      },
+      "Direction d'arrondissement": {
+        "mode": "geo"
+      },
+      "Direction Développement du territoire": {
+        "mode": "geo"
+      },
+      "Direction - Évaluation": {
+        "mode": "fixed",
+        "unit": "BUREAU DE LA LANGUE FRANÇAISE"
+      },
+      "Direction - Finances": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Direction Performance, Greffe et Services adm.": {
+        "mode": "geo"
+      },
+      "Direction Travaux Publics": {
+        "mode": "geo"
+      },
+      "Distribution au comptoir du bac montréalais (67 litres)": {
+        "mode": "geo"
+      },
+      "Distribution de circulaire": {
+        "mode": "geo"
+      },
+      "Distribution de compost": {
+        "mode": "geo"
+      },
+      "Distribution de sac pour matelas": {
+        "mode": "geo"
+      },
+      "Distribution de sacs": {
+        "mode": "fixed",
+        "unit": "ST-LAURENT"
+      },
+      "Distribution des publications arrondissement": {
+        "mode": "geo"
+      },
+      "Distribution de végétaux": {
+        "mode": "geo"
+      },
+      "Dommage - Racines d'arbres": {
+        "mode": "geo"
+      },
+      "*Dos d'âne": {
+        "mode": "geo"
+      },
+      "Dos d'âne": {
+        "mode": "geo"
+      },
+      "*Dos d'âne - Rue": {
+        "mode": "geo"
+      },
+      "Dos d'âne - ruelle": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "*Dos d'âne - Ruelle": {
+        "mode": "geo"
+      },
+      "Dos d'âne - Ruelle": {
+        "mode": "geo"
+      },
+      "Dos d'âne RUELLE": {
+        "mode": "fixed",
+        "unit": "VILLERAY - ST-MICHEL - PARC-EXTENSION"
+      },
+      "*Dos d'ane Rues et Ruelles-Entretien": {
+        "mode": "geo"
+      },
+      "*Dos d'ânes - ruelle": {
+        "mode": "geo"
+      },
+      "Drapeau": {
+        "mode": "geo"
+      },
+      "Droits acquis": {
+        "mode": "geo"
+      },
+      "*Eau - Borne fontaine - Réparation": {
+        "mode": "geo"
+      },
+      "Eau Colorée - Autre": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Eau colorée - jaune, orange, brune, rouge/Particules": {
+        "mode": "geo"
+      },
+      "Eau - Divers": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "*Eau Divers - Disjonction de branchement d'eau": {
+        "mode": "geo"
+      },
+      "*Eau - Mettre boîte de service en ordre": {
+        "mode": "geo"
+      },
+      "*Eau - Projet spécial": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Éclairage - Études": {
+        "mode": "geo"
+      },
+      "Éclairage existant - Entretien": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "*Éclairage - Extérieur - Parc": {
+        "mode": "geo"
+      },
+      "Éclairage nuisible.": {
+        "mode": "geo"
+      },
+      "Éclairage planification - Service central": {
+        "mode": "fixed",
+        "unit": "RÉALISATION DES PROJETS D INFRASTRUCTURES URBAINES"
+      },
+      "Écocentre": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Écoquartier": {
+        "mode": "geo"
+      },
+      "Égout - Crue des eaux": {
+        "mode": "geo"
+      },
+      "Égout - Crue des eaux - Évacuation": {
+        "mode": "geo"
+      },
+      "Égout - Crue des eaux - Évacuation - Villes liées": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "*Égout Divers - Egout-Murage de branchement d'égoût": {
+        "mode": "geo"
+      },
+      "*Égout Divers - Puisard réparation": {
+        "mode": "geo"
+      },
+      "*Égout Divers - Regard réparation": {
+        "mode": "geo"
+      },
+      "Égouts - Infiltration": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Élagage": {
+        "mode": "geo"
+      },
+      "*Élagage exécution": {
+        "mode": "geo"
+      },
+      "Élection et référendum": {
+        "mode": "geo"
+      },
+      "Électricité - Édifices - Municipaux": {
+        "mode": "geo"
+      },
+      "Électricité-évènement": {
+        "mode": "geo"
+      },
+      "*Électricité - Parc - Chalet": {
+        "mode": "geo"
+      },
+      "*ÉLU - Direction d'arrondissement": {
+        "mode": "geo"
+      },
+      "Encaissement et remboursement": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Encaissement - Oasis": {
+        "mode": "geo"
+      },
+      "Encaissement - Stop +": {
+        "mode": "geo"
+      },
+      "Encaissement - Urbanisme et Permis": {
+        "mode": "geo"
+      },
+      "Encombrants - Avis de courtoisie": {
+        "mode": "geo"
+      },
+      "Encombrants non ramassés": {
+        "mode": "geo"
+      },
+      "Encombrants sortis en temps prohibé": {
+        "mode": "geo"
+      },
+      "Enseigne commerciale": {
+        "mode": "geo"
+      },
+      "Enseigne temporaire - Domaine privé": {
+        "mode": "geo"
+      },
+      "*Entrave - Piste cyclable": {
+        "mode": "geo"
+      },
+      "*Entrave sans permis": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "Entrée charretière": {
+        "mode": "geo"
+      },
+      "Entrée d'eau en plomb-Autre demande": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Entrée d'eau en plomb-Demande de filtre": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Entreposage non autorisé -Terrain privé": {
+        "mode": "geo"
+      },
+      "Entretien d'édifices municipaux": {
+        "mode": "geo"
+      },
+      "*Entretien d'édifices municipaux - Demande culture CSLDS": {
+        "mode": "geo"
+      },
+      "*Entretien d'édifices municipaux - Plomberie": {
+        "mode": "geo"
+      },
+      "*Entretien des branchements d'égouts ou drains": {
+        "mode": "fixed",
+        "unit": "COTE-DES-NEIGES - NOTRE-DAME-DE-GRÂCE"
+      },
+      "Entretien des patinoires": {
+        "mode": "geo"
+      },
+      "Entretien - Dos d'âne de ruelle": {
+        "mode": "geo"
+      },
+      "Entretien général": {
+        "mode": "geo"
+      },
+      "*Environnement - animaux": {
+        "mode": "geo"
+      },
+      "*Environnement - arrosage": {
+        "mode": "geo"
+      },
+      "*Environnement - autres": {
+        "mode": "geo"
+      },
+      "*Environnement - bruit": {
+        "mode": "geo"
+      },
+      "*Environnement - Collecte des résidus alimentaires - Bac livraison": {
+        "mode": "geo"
+      },
+      "Environnement - débris voie publique": {
+        "mode": "geo"
+      },
+      "Environnement - Divers": {
+        "mode": "geo"
+      },
+      "*Environnement - eau stagnante": {
+        "mode": "geo"
+      },
+      "Environnement - haie hauteur": {
+        "mode": "geo"
+      },
+      "Environnement - herbe longue": {
+        "mode": "geo"
+      },
+      "Environnement - insalubrité logement": {
+        "mode": "geo"
+      },
+      "Environnement - neige": {
+        "mode": "geo"
+      },
+      "*Environnement - Recyclage - Bac 240 lt - Endommagé, perdu, volé": {
+        "mode": "geo"
+      },
+      "*Environnement - Recyclage - Bac 240 lt - Livraison": {
+        "mode": "geo"
+      },
+      "*Environnement - Recyclage - Bac 240 lt - Non ramassé": {
+        "mode": "geo"
+      },
+      "*Environnement - Recyclage - Bac 360 lt - Endommagé, perdu, volé": {
+        "mode": "geo"
+      },
+      "*Environnement - Recyclage - Bac 360 lt - Livraison": {
+        "mode": "geo"
+      },
+      "*Environnement - Recyclage - Bac 360 lt - Non ramassé": {
+        "mode": "geo"
+      },
+      "Épandage interdit - Pesticide": {
+        "mode": "geo"
+      },
+      "Espace pour la vie": {
+        "mode": "fixed",
+        "unit": "SERVICE ESPACE POUR LA VIE, GRANDS PARCS ET DU MONT-ROYAL"
+      },
+      "Essouchement": {
+        "mode": "geo"
+      },
+      "E.T. Aménagement nouveau parc VM": {
+        "mode": "geo"
+      },
+      "Evénement": {
+        "mode": "geo"
+      },
+      "Événement local": {
+        "mode": "geo"
+      },
+      "Événement métropolitain": {
+        "mode": "fixed",
+        "unit": "SERVICE DE LA CULTURE, DES SPORTS ET DES LOISIRS"
+      },
+      "Événements privés - SU": {
+        "mode": "geo"
+      },
+      "*Événements publics": {
+        "mode": "geo"
+      },
+      "Événements publics - Loisirs": {
+        "mode": "geo"
+      },
+      "Éviction": {
+        "mode": "geo"
+      },
+      "Excès de vitesse - Surveillance SPVM": {
+        "mode": "geo"
+      },
+      "Extermination à l'extérieur - Insectes": {
+        "mode": "geo"
+      },
+      "*Extermination à l'extérieur - Nid de guêpes": {
+        "mode": "geo"
+      },
+      "Extermination à l'extérieur - Rats": {
+        "mode": "geo"
+      },
+      "Extermination à l'intérieur - immeuble ville": {
+        "mode": "geo"
+      },
+      "*Extermination - Guêpes": {
+        "mode": "geo"
+      },
+      "*Favorable - Implantation": {
+        "mode": "geo"
+      },
+      "*Favorable - Modification": {
+        "mode": "geo"
+      },
+      "Fermeture d'entrée d'eau": {
+        "mode": "geo"
+      },
+      "Fermeture d'une conduite d'eau - Urgence": {
+        "mode": "geo"
+      },
+      "Feuilles mortes dans la rue.": {
+        "mode": "geo"
+      },
+      "*Feux de circulation": {
+        "mode": "geo"
+      },
+      "Feux de circulation - Entretien": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "Feux de circulation - Nouvelle installation": {
+        "mode": "geo"
+      },
+      "*Feux de circulation - Programmation": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "feux-mod. délais et autres changements": {
+        "mode": "fixed",
+        "unit": "VILLE-MARIE"
+      },
+      "*Feux piétons": {
+        "mode": "geo"
+      },
+      "Finances - Divers": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Fuite conduite secondaire": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Fuite d'eau": {
+        "mode": "geo"
+      },
+      "Fuite service conduite": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "*Gazon Endommagé-Opération déneigement": {
+        "mode": "geo"
+      },
+      "*Gazon Endommagé-Travaux par la Ville": {
+        "mode": "geo"
+      },
+      "Gazon ou herbes hautes - Domaine privé": {
+        "mode": "geo"
+      },
+      "Gazon ou mauvaises herbes - Domaine public": {
+        "mode": "geo"
+      },
+      "Gazon - Réparation": {
+        "mode": "geo"
+      },
+      "Gel Entrée d'eau": {
+        "mode": "geo"
+      },
+      "Géomatique": {
+        "mode": "fixed",
+        "unit": "RÉALISATION DES PROJETS D INFRASTRUCTURES URBAINES"
+      },
+      "GMR -  Nouvelle implantation": {
+        "mode": "geo"
+      },
+      "Gout, odeur - Analyse": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Graffitis - Domaine privé": {
+        "mode": "geo"
+      },
+      "*Graffitis - Domaine privé - Inspection": {
+        "mode": "geo"
+      },
+      "Graffitis - Domaine public": {
+        "mode": "geo"
+      },
+      "Graffitis haineux": {
+        "mode": "geo"
+      },
+      "Graffitis sur bâtiment public": {
+        "mode": "geo"
+      },
+      "Graffitis sur signalisation": {
+        "mode": "geo"
+      },
+      "Grand parc": {
+        "mode": "fixed",
+        "unit": "DIRECTION GESTION DE GRANDS PARCS ET MILIEUX NATURELS"
+      },
+      "Grand parc - Agrile du frêne": {
+        "mode": "fixed",
+        "unit": "DIRECTION GESTION DE GRANDS PARCS ET MILIEUX NATURELS"
+      },
+      "Greffe - Arrondissement": {
+        "mode": "geo"
+      },
+      "Greffe - CA - Registre des questions": {
+        "mode": "geo"
+      },
+      "Habitation - Divers - Service central": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L URBANISME ET DE LA MOBILITÉ"
+      },
+      "Haie privée": {
+        "mode": "geo"
+      },
+      "Herbe à poux": {
+        "mode": "geo"
+      },
+      "Horticulture - Divers": {
+        "mode": "geo"
+      },
+      "Horticulture - Entretien": {
+        "mode": "geo"
+      },
+      "*Horticulture et entretien - Divers - Bacs à fleurs": {
+        "mode": "geo"
+      },
+      "*Horticulture - Varia - Pesticide - Vérification infestation": {
+        "mode": "geo"
+      },
+      "Immeuble - Malpropreté générale": {
+        "mode": "geo"
+      },
+      "Immeuble - Réparation": {
+        "mode": "geo"
+      },
+      "Immeuble - Serrure porte d'entrée": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Abeilles, guêpes, bourdons à l'intérieur": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Affichage": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Alarme": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Chauffage à eau chaude": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Chauffage électrique": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Clôture": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Drapeau et pavoisement": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Éclairage": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Entretien électrique": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Entretien général": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Entretien ménager": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Maçonnerie": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Menuiserie": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Mobilier réparation et fabrication": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Panne électrique": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Peinture": {
+        "mode": "geo"
+      },
+      "Immeubles municipaux - Plomberie": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Soudure": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Téléphonie, réseau et caméra": {
+        "mode": "geo"
+      },
+      "*Immeubles municipaux - Ventilation, climatisation": {
+        "mode": "geo"
+      },
+      "Immeuble - Ventilation": {
+        "mode": "geo"
+      },
+      "Infiltration dans bâtiment eau": {
+        "mode": "geo"
+      },
+      "Info - Collecte de déchets": {
+        "mode": "geo"
+      },
+      "Info - Collecte de MO": {
+        "mode": "geo"
+      },
+      "Info-Remorquage": {
+        "mode": "geo"
+      },
+      "Info-travaux - Arrondissement": {
+        "mode": "geo"
+      },
+      "Info-travaux - Escouade": {
+        "mode": "fixed",
+        "unit": "SER.CONCERTATION DES ARROND. ET EXPÉRIENCE CITOYENNE"
+      },
+      "Info-travaux - Service central": {
+        "mode": "fixed",
+        "unit": "RÉALISATION DES PROJETS D INFRASTRUCTURES URBAINES"
+      },
+      "Ingénierie - Égout, puisard": {
+        "mode": "geo"
+      },
+      "Ingénierie - Pavage": {
+        "mode": "geo"
+      },
+      "Ingénierie - Trottoir, bordure": {
+        "mode": "geo"
+      },
+      "Inscription": {
+        "mode": "geo"
+      },
+      "Inscription - École-Écolo.": {
+        "mode": "geo"
+      },
+      "*Inspection de borne fontaine": {
+        "mode": "geo"
+      },
+      "Inspection de logement": {
+        "mode": "geo"
+      },
+      "Inspection des aliments": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "*Inspections en Arrondissement": {
+        "mode": "fixed",
+        "unit": "SUD-OUEST"
+      },
+      "Inspection vignette": {
+        "mode": "geo"
+      },
+      "Installations culturelles - Entretien": {
+        "mode": "geo"
+      },
+      "Installations sportives extérieures - Entretien": {
+        "mode": "geo"
+      },
+      "Installations sportives intérieures - Entretien": {
+        "mode": "geo"
+      },
+      "Installations sportives - Service central": {
+        "mode": "fixed",
+        "unit": "DIRECTION DES SPORTS"
+      },
+      "Internet - Portail central": {
+        "mode": "fixed",
+        "unit": "SERVICE DES RESSOURCES HUMAINES"
+      },
+      "Intervention de stationnement - Enquête": {
+        "mode": "fixed",
+        "unit": "SERVICE DE POLICE DE LA VILLE DE MONTREAL"
+      },
+      "Intervention stationnement": {
+        "mode": "geo"
+      },
+      "IRP - Demande onde radio": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "IRP - Espace clos": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "IRP - Fermeture de rue": {
+        "mode": "geo"
+      },
+      "IRP - Mesure d'urgence": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "IRP - Périmètre de sécurité": {
+        "mode": "geo"
+      },
+      "IRP - Police": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "IRP - Poste d'essence": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "IRP - Station de pompage": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "IRP - Utilité publique": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "IRP - Villes non reliées au GDC": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "Itinérance et cohabitation sociale": {
+        "mode": "geo"
+      },
+      "*Jardins communautaires - Divers": {
+        "mode": "geo"
+      },
+      "*Jardins - Renouvellement": {
+        "mode": "geo"
+      },
+      "Jeux d'eau": {
+        "mode": "geo"
+      },
+      "*Limites de vitesse": {
+        "mode": "geo"
+      },
+      "Liste d'attente - Stationnements municipaux": {
+        "mode": "geo"
+      },
+      "Localisation / Entretien Entrée d'eau": {
+        "mode": "geo"
+      },
+      "Logement - Chauffage": {
+        "mode": "geo"
+      },
+      "Logement en sous-sol": {
+        "mode": "geo"
+      },
+      "Logement - Insalubrité": {
+        "mode": "geo"
+      },
+      "Logement - Inspection": {
+        "mode": "geo"
+      },
+      "*Logement Montréal-Nord": {
+        "mode": "geo"
+      },
+      "Logement - Réparation": {
+        "mode": "geo"
+      },
+      "Logement social et communautaire": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L URBANISME ET DE LA MOBILITÉ"
+      },
+      "Logement - Ventilation": {
+        "mode": "geo"
+      },
+      "Logement - Vermine ou rongeurs": {
+        "mode": "geo"
+      },
+      "Loisirs - Entretien Léger": {
+        "mode": "geo"
+      },
+      "Maires et élus d'arrondissement": {
+        "mode": "geo"
+      },
+      "Maisons fleuries": {
+        "mode": "geo"
+      },
+      "Maladie ou insectes - Arbre": {
+        "mode": "geo"
+      },
+      "Manque d'eau": {
+        "mode": "geo"
+      },
+      "Marches - Courses - Calèches - Tournages - SU": {
+        "mode": "geo"
+      },
+      "*Marquage": {
+        "mode": "geo"
+      },
+      "Marquage - Contrat pour la circulation": {
+        "mode": "geo"
+      },
+      "Marquage de la chaussée - Existant": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "Marquage de la chaussée - Nouveau": {
+        "mode": "geo"
+      },
+      "*Marquage de la chaussée - Travaux majeurs": {
+        "mode": "geo"
+      },
+      "Menuiserie parc": {
+        "mode": "geo"
+      },
+      "*Mesure d'apaisement": {
+        "mode": "geo"
+      },
+      "Mesure d'apaisement - Circulation": {
+        "mode": "geo"
+      },
+      "Mesures d'apaisement": {
+        "mode": "geo"
+      },
+      "Mesures d'urgence - Gestion en arrondissement": {
+        "mode": "geo"
+      },
+      "Micropuçage": {
+        "mode": "geo"
+      },
+      "MO - Avis de courtoisie": {
+        "mode": "geo"
+      },
+      "Mobilier de parc": {
+        "mode": "geo"
+      },
+      "Mobilier urbain": {
+        "mode": "geo"
+      },
+      "*Mobilier urbain - Installation": {
+        "mode": "geo"
+      },
+      "Mobilier urbain - Installation": {
+        "mode": "geo"
+      },
+      "*Modification secteur existant": {
+        "mode": "geo"
+      },
+      "*Modifications parcours de balai": {
+        "mode": "geo"
+      },
+      "Modules de jeux": {
+        "mode": "geo"
+      },
+      "MO - Non ramassées": {
+        "mode": "geo"
+      },
+      "MTLWiFi - Demande d'installation": {
+        "mode": "geo"
+      },
+      "MTLWiFi - Support technique": {
+        "mode": "fixed",
+        "unit": "SERVICE DES TECHNOLOGIES DE L INFORMATION"
+      },
+      "Neige - Remorquage": {
+        "mode": "geo"
+      },
+      "*Ne plus utiliser Bac roulant noir (déchets)": {
+        "mode": "geo"
+      },
+      "Nettoyage d'égout": {
+        "mode": "geo"
+      },
+      "*Nettoyage d'égouts": {
+        "mode": "geo"
+      },
+      "Nettoyage de puisards - rue": {
+        "mode": "geo"
+      },
+      "Nettoyage de puisards - ruelle": {
+        "mode": "geo"
+      },
+      "*Nettoyage de puisards - ruelles": {
+        "mode": "geo"
+      },
+      "*Nettoyage de puisards - rues": {
+        "mode": "fixed",
+        "unit": "AHUNTSIC-CARTIERVILLE"
+      },
+      "Nettoyage du domaine public": {
+        "mode": "geo"
+      },
+      "Nid de guêpes": {
+        "mode": "geo"
+      },
+      "Nid-de-poule": {
+        "mode": "geo"
+      },
+      "Nouvelle construction - Installation pour déchets": {
+        "mode": "geo"
+      },
+      "Nuisance animaux domestiques": {
+        "mode": "geo"
+      },
+      "*Nuisance chantier - Poussière": {
+        "mode": "geo"
+      },
+      "Numéro municipal": {
+        "mode": "geo"
+      },
+      "Occupation bâtiment": {
+        "mode": "geo"
+      },
+      "*Occupation - Divers": {
+        "mode": "geo"
+      },
+      "Occupation du domaine public": {
+        "mode": "geo"
+      },
+      "Occupation non-autorisée": {
+        "mode": "fixed",
+        "unit": "ST-LAURENT"
+      },
+      "Occupation périodique du domaine public": {
+        "mode": "geo"
+      },
+      "Occupation permanente du domaine public": {
+        "mode": "geo"
+      },
+      "*Occupation sans permis": {
+        "mode": "geo"
+      },
+      "*Odeurs lacs.": {
+        "mode": "geo"
+      },
+      "Opération cadastrale": {
+        "mode": "geo"
+      },
+      "Opération déneigement": {
+        "mode": "geo"
+      },
+      "Oriflamme": {
+        "mode": "geo"
+      },
+      "Ouverture d'entrée d'eau": {
+        "mode": "geo"
+      },
+      "Panier de parc à vider": {
+        "mode": "geo"
+      },
+      "Panier de rue à vider": {
+        "mode": "geo"
+      },
+      "Panier de rue - Installation": {
+        "mode": "geo"
+      },
+      "*Panier de rue-Réparation/Entretien": {
+        "mode": "geo"
+      },
+      "Panneau de signalisation entretien prioritaire": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "Panneaux électroniques": {
+        "mode": "geo"
+      },
+      "*Parc Angrignon - Demande d'information": {
+        "mode": "geo"
+      },
+      "*Parc - Chalet - Electricité": {
+        "mode": "geo"
+      },
+      "*Parc - Chalet - Entretien et réparation": {
+        "mode": "geo"
+      },
+      "Parc demande interne divers": {
+        "mode": "geo"
+      },
+      "Parc - Divers": {
+        "mode": "geo"
+      },
+      "*Parc - Entretien - Clôture": {
+        "mode": "geo"
+      },
+      "*Parc - Gazon - Terrain vacant": {
+        "mode": "geo"
+      },
+      "*Parc - Jeux d'eau": {
+        "mode": "geo"
+      },
+      "Parc mobilier - Ajout - VM": {
+        "mode": "geo"
+      },
+      "*Parc - Mobilier - Buvette - Fontaine décorative": {
+        "mode": "geo"
+      },
+      "*Parc - Mobilier - Jeux - Vandalisme": {
+        "mode": "geo"
+      },
+      "Parcomètre": {
+        "mode": "fixed",
+        "unit": "STATIONNEMENT MTL - SERVICE AUXILIAIRES"
+      },
+      "Parc - Propreté": {
+        "mode": "geo"
+      },
+      "*Parc - Propreté - Entretien aire de jeux": {
+        "mode": "geo"
+      },
+      "*Parc - Terrains - sportifs - Soccer": {
+        "mode": "geo"
+      },
+      "Pavage - Réparation": {
+        "mode": "geo"
+      },
+      "Pavé uni": {
+        "mode": "geo"
+      },
+      "Pavé uni - Réparation": {
+        "mode": "geo"
+      },
+      "Permis animalier": {
+        "mode": "geo"
+      },
+      "*Permis - Bruit - Commerce": {
+        "mode": "geo"
+      },
+      "*Permis - Bruit - Résidence": {
+        "mode": "geo"
+      },
+      "*Permis - Bruit - Travaux": {
+        "mode": "geo"
+      },
+      "*Permis - Construction - Éléments dangereux": {
+        "mode": "geo"
+      },
+      "*Permis - Construction - Nuisances": {
+        "mode": "geo"
+      },
+      "*Permis - Construction - Zonage": {
+        "mode": "geo"
+      },
+      "Permis conteneur à déchets": {
+        "mode": "geo"
+      },
+      "Permis - Conversion en copropriété divise": {
+        "mode": "geo"
+      },
+      "Permis CSRM": {
+        "mode": "geo"
+      },
+      "permis de construction et transformation": {
+        "mode": "geo"
+      },
+      "Permis de construction - rénovation": {
+        "mode": "geo"
+      },
+      "Permis de démolition": {
+        "mode": "geo"
+      },
+      "Permis - Divers": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Accumulation balcon": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Accumulation odeurs": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Défectuosité extérieure": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Défectuosité intérieure": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Fuite d'eau privée": {
+        "mode": "geo"
+      },
+      "Permis - Logement - Insalubrité (logement ou bâtiment)": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Moisissures": {
+        "mode": "geo"
+      },
+      "Permis - Logement - Non conforme": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Nuisances animales": {
+        "mode": "geo"
+      },
+      "*Permis - Logement - Vermines -rongeurs": {
+        "mode": "geo"
+      },
+      "Permis - Neige - Domaine public": {
+        "mode": "geo"
+      },
+      "Permis - Pesticide": {
+        "mode": "geo"
+      },
+      "*Permis - Réfection de coupe": {
+        "mode": "geo"
+      },
+      "Personnel - Arrondissement": {
+        "mode": "geo"
+      },
+      "Pesticide": {
+        "mode": "geo"
+      },
+      "*Pesticide - Service central": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "PIIA": {
+        "mode": "geo"
+      },
+      "*Piscine - Électricité": {
+        "mode": "geo"
+      },
+      "Piscine non clôturée": {
+        "mode": "geo"
+      },
+      "Piscine ou spa privés": {
+        "mode": "geo"
+      },
+      "Piscine - Propreté.": {
+        "mode": "geo"
+      },
+      "Piste cyclable déneigement": {
+        "mode": "geo"
+      },
+      "Plainte contre un agent de stationnement": {
+        "mode": "geo"
+      },
+      "Plainte fonctionnement": {
+        "mode": "geo"
+      },
+      "Plainte patrouilleur canin et fournisseur service animalier": {
+        "mode": "fixed",
+        "unit": "SER.CONCERTATION DES ARROND. ET EXPÉRIENCE CITOYENNE"
+      },
+      "Planification des travaux - Études immeubles municipaux": {
+        "mode": "geo"
+      },
+      "Planification des travaux - Études parcs": {
+        "mode": "geo"
+      },
+      "Planification des travaux - Études rues et trottoirs": {
+        "mode": "fixed",
+        "unit": "ST-LAURENT"
+      },
+      "Plantation d'arbre": {
+        "mode": "geo"
+      },
+      "*Plantation exécution": {
+        "mode": "geo"
+      },
+      "Plaque déplacée": {
+        "mode": "geo"
+      },
+      "Plastiques à usage unique": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Plomberie.": {
+        "mode": "geo"
+      },
+      "Plomberie - Bâtiments": {
+        "mode": "geo"
+      },
+      "*Plomberie - Chalet": {
+        "mode": "geo"
+      },
+      "Plomberie - Pataugeoire": {
+        "mode": "geo"
+      },
+      "Plomberie - Piscine": {
+        "mode": "geo"
+      },
+      "Poêle et foyer au bois": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Pollution de l'air et de l'eau": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Pont et tunnel": {
+        "mode": "fixed",
+        "unit": "RÉALISATION DES PROJETS D INFRASTRUCTURES URBAINES"
+      },
+      "Poubelle": {
+        "mode": "fixed",
+        "unit": "AHUNTSIC-CARTIERVILLE"
+      },
+      "*Pression basse": {
+        "mode": "geo"
+      },
+      "Pression Faible/Forte": {
+        "mode": "geo"
+      },
+      "Prise de rendez-vous": {
+        "mode": "geo"
+      },
+      "Programmation des feux": {
+        "mode": "fixed",
+        "unit": "ST-LAURENT"
+      },
+      "Programme de chats errants": {
+        "mode": "geo"
+      },
+      "PRR-Travaux": {
+        "mode": "geo"
+      },
+      "*Puceron du tilleul": {
+        "mode": "geo"
+      },
+      "Puisard/TH-Clé ou objet": {
+        "mode": "geo"
+      },
+      "*Puisard/TH-Couvercle Abs./Brisé/Déplacé/Affaissement": {
+        "mode": "geo"
+      },
+      "Puisard/TH-Couvercle Abs./Déplacé": {
+        "mode": "geo"
+      },
+      "Puisard/TH-Couvercle Brisé": {
+        "mode": "geo"
+      },
+      "Puisard/TH-Couvercle bruyant": {
+        "mode": "geo"
+      },
+      "Puisard/TH-Couvercle Structure": {
+        "mode": "geo"
+      },
+      "Puisard/TH-Première intervention": {
+        "mode": "geo"
+      },
+      "Puisard/TH-Refoulement/Débordement/Blocage": {
+        "mode": "geo"
+      },
+      "*Puisard/TH-Refoulement/Débordement/Blocage/Clés": {
+        "mode": "geo"
+      },
+      "Punaises de lit": {
+        "mode": "geo"
+      },
+      "Ralenti inutile - Terrain privé autre que chantier.": {
+        "mode": "geo"
+      },
+      "Rampe de mise à l'eau": {
+        "mode": "geo"
+      },
+      "Rapport annuel/Technique Eaux usées": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Réception de chèque post-daté": {
+        "mode": "geo"
+      },
+      "Recettes diverses": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Recherche d'encaissement": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "*Réclamation": {
+        "mode": "geo"
+      },
+      "Recyclage - Autre": {
+        "mode": "geo"
+      },
+      "Recyclage - Avis de courtoisie": {
+        "mode": "geo"
+      },
+      "Recyclage - Non ramassé": {
+        "mode": "geo"
+      },
+      "Recyclage sorti en temps prohibé": {
+        "mode": "geo"
+      },
+      "Refoulement égout / Inondation Propriété privée": {
+        "mode": "geo"
+      },
+      "Réfrigérateur ou congélateur": {
+        "mode": "geo"
+      },
+      "*Refuge - Propreté": {
+        "mode": "geo"
+      },
+      "Regards d'égout - Réparation": {
+        "mode": "geo"
+      },
+      "Relevé CPTE": {
+        "mode": "geo"
+      },
+      "Renouvellement": {
+        "mode": "geo"
+      },
+      "Réparation de gazon - Contrat": {
+        "mode": "geo"
+      },
+      "*Réparation d'entrée charretière existante": {
+        "mode": "geo"
+      },
+      "Réparation de puisard - rue": {
+        "mode": "geo"
+      },
+      "*Réparation de puisard - ruelle": {
+        "mode": "geo"
+      },
+      "*Réparation de puisards - rue": {
+        "mode": "geo"
+      },
+      "Réparation de puisards - ruelle": {
+        "mode": "geo"
+      },
+      "*Réparation de puisards - trottoir": {
+        "mode": "geo"
+      },
+      "Réparation de puisard - trottoir": {
+        "mode": "geo"
+      },
+      "*Réparation - regards d'égout": {
+        "mode": "geo"
+      },
+      "Résidus domestiques dangereux": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Résidus verts - Avis de courtoisie": {
+        "mode": "geo"
+      },
+      "Résidus verts - Non ramassé.": {
+        "mode": "geo"
+      },
+      "*Responsable soutien aux élus": {
+        "mode": "geo"
+      },
+      "Retour DDS": {
+        "mode": "geo"
+      },
+      "Retour de chèque permis animalier": {
+        "mode": "geo"
+      },
+      "*Retour de DDS - en attente": {
+        "mode": "geo"
+      },
+      "Retrait de chèque": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "*Retrait ou récupération de vélo": {
+        "mode": "geo"
+      },
+      "Révision du stationnement": {
+        "mode": "geo"
+      },
+      "Ruelle verte": {
+        "mode": "geo"
+      },
+      "Sacs d'emplettes": {
+        "mode": "geo"
+      },
+      "Santé": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L ENVIRONNEMENT ET DE LA TRANSITION ÉCOLOGIQUE"
+      },
+      "Sécurité incendie - Inspection - Prévention": {
+        "mode": "fixed",
+        "unit": "SERVICE DE SÉCURITÉ INCENDIE DE MONTRÉAL"
+      },
+      "Sécurité incendie - Pompier - Camion - Caserne": {
+        "mode": "fixed",
+        "unit": "SERVICE DE SÉCURITÉ INCENDIE DE MONTRÉAL"
+      },
+      "Sécurité incendie - Thèmes administratifs": {
+        "mode": "fixed",
+        "unit": "SERVICE DE SÉCURITÉ INCENDIE DE MONTRÉAL"
+      },
+      "Service de l'Eau - Demande interne": {
+        "mode": "geo"
+      },
+      "*Services administratifs-Sud-Ouest": {
+        "mode": "geo"
+      },
+      "Services Techniques - Varia": {
+        "mode": "geo"
+      },
+      "Signalisation cachée par des végétaux": {
+        "mode": "geo"
+      },
+      "Signalisation cachée par des végétaux - Avis": {
+        "mode": "geo"
+      },
+      "Signalisation - Circulation - Études": {
+        "mode": "geo"
+      },
+      "Signalisation écrite -  Entretien": {
+        "mode": "geo"
+      },
+      "Signalisation endommagée Vm": {
+        "mode": "fixed",
+        "unit": "VILLE-MARIE"
+      },
+      "*Signalisation - Études - Personnes handicapées": {
+        "mode": "geo"
+      },
+      "*Signalisation - Ligne de rue": {
+        "mode": "geo"
+      },
+      "*Signalisation manquante ou endommagée": {
+        "mode": "geo"
+      },
+      "Signalisation manquante VM": {
+        "mode": "geo"
+      },
+      "Signalisation - Neige": {
+        "mode": "geo"
+      },
+      "Signalisation non autorisée - Analyse": {
+        "mode": "geo"
+      },
+      "Signalisation non autorisée - Ramassage": {
+        "mode": "geo"
+      },
+      "*Signalisation - Règlement": {
+        "mode": "geo"
+      },
+      "*Sites de dépôt volontaire - Résidus alimentaires": {
+        "mode": "geo"
+      },
+      "Solarium": {
+        "mode": "geo"
+      },
+      "Soutien aux opérations - Réseau secondaire": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L EAU"
+      },
+      "Soutien Carte Info-Neige": {
+        "mode": "fixed",
+        "unit": "SER.CONCERTATION DES ARROND. ET EXPÉRIENCE CITOYENNE"
+      },
+      "Sports et loisirs - Activités": {
+        "mode": "geo"
+      },
+      "*Sports et loisirs - Activités - Activités dans les parcs": {
+        "mode": "geo"
+      },
+      "Sports et loisirs - Inscription": {
+        "mode": "fixed",
+        "unit": "VERDUN"
+      },
+      "Sports et loisirs - Installation - Auditorium": {
+        "mode": "geo"
+      },
+      "Sports et loisirs - Installations - Centres communautaires": {
+        "mode": "geo"
+      },
+      "Sports et loisirs - Installations - Jardins communautaires": {
+        "mode": "geo"
+      },
+      "Sports et loisirs - Installations - Piscines et plage": {
+        "mode": "geo"
+      },
+      "Sports et loisirs - Installations - Terrains sportifs extérieurs": {
+        "mode": "fixed",
+        "unit": "VERDUN"
+      },
+      "*Sports et loisirs - Terrains extérieurs": {
+        "mode": "geo"
+      },
+      "SRRR": {
+        "mode": "geo"
+      },
+      "*SRRR - Ajout ou retrait d'espaces": {
+        "mode": "geo"
+      },
+      "*SRRR - Autre": {
+        "mode": "geo"
+      },
+      "*SRRR - Nouveau secteur": {
+        "mode": "geo"
+      },
+      "*Stationnement": {
+        "mode": "geo"
+      },
+      "*Stationnement courte durée": {
+        "mode": "geo"
+      },
+      "*Stationnement-Études": {
+        "mode": "geo"
+      },
+      "Stationnement - Études": {
+        "mode": "geo"
+      },
+      "**Stationnement - Handicapé": {
+        "mode": "geo"
+      },
+      "Stationnement municipal": {
+        "mode": "fixed",
+        "unit": "STATIONNEMENT MTL - SERVICE AUXILIAIRES"
+      },
+      "*Stationnement ou débarcadère pour handicapés": {
+        "mode": "geo"
+      },
+      "*Stationnement ou débarcadère pour personne à mobilité réduite": {
+        "mode": "geo"
+      },
+      "Stationnement pour personnes handicapées": {
+        "mode": "geo"
+      },
+      "Statues, sculptures et plaques - Entretien": {
+        "mode": "fixed",
+        "unit": "COTE-DES-NEIGES - NOTRE-DAME-DE-GRÂCE"
+      },
+      "Subvention - Habitation - Service central": {
+        "mode": "fixed",
+        "unit": "SERVICE DE L URBANISME ET DE LA MOBILITÉ"
+      },
+      "Subvention locale - Arrondissement": {
+        "mode": "geo"
+      },
+      "Support 311": {
+        "mode": "fixed",
+        "unit": "DIRECTION GÉNÉRALE"
+      },
+      "Support à vélo": {
+        "mode": "geo"
+      },
+      "*Support à vélo-Réparation/Entretien": {
+        "mode": "geo"
+      },
+      "Support à vélos": {
+        "mode": "geo"
+      },
+      "Surveillance des travaux - Chantier parcs": {
+        "mode": "geo"
+      },
+      "Surveillance des travaux - Chantier rues et trottoirs": {
+        "mode": "geo"
+      },
+      "Surveillance des travaux - Problèmes à la suite de travaux": {
+        "mode": "geo"
+      },
+      "Surveillance et sécurité publique": {
+        "mode": "geo"
+      },
+      "Surveillance particulière - SPVM / AMD": {
+        "mode": "geo"
+      },
+      "Taxe d'eau": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Taxes foncières": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Taxes locatives": {
+        "mode": "fixed",
+        "unit": "SERVICE DES FINANCES ET DE L ÉVALUATION FONCIÈRE"
+      },
+      "Technique - Pavé uni - Réparation": {
+        "mode": "geo"
+      },
+      "Technique - Trottoir ou bordure - Réparation": {
+        "mode": "geo"
+      },
+      "*Tennis": {
+        "mode": "geo"
+      },
+      "Terrain insalubre - Domaine privé": {
+        "mode": "geo"
+      },
+      "*Terrains extérieurs": {
+        "mode": "geo"
+      },
+      "*TEST-ANALYSE-SO": {
+        "mode": "geo"
+      },
+      "*Test d'écoulement d'eau": {
+        "mode": "geo"
+      },
+      "Thermopompe et climatiseur": {
+        "mode": "geo"
+      },
+      "Tolérance de stationnement": {
+        "mode": "geo"
+      },
+      "Toponymie": {
+        "mode": "fixed",
+        "unit": "ART PUBLIC, PATRIMOINE ET TOPONYMIE"
+      },
+      "Transport et Livraison": {
+        "mode": "geo"
+      },
+      "Travaux Abattage": {
+        "mode": "geo"
+      },
+      "Travaux Élagage": {
+        "mode": "fixed",
+        "unit": "RIVIÈRE-DES-PRAIRIES - POINTE-AUX-TREMBLES"
+      },
+      "Travaux (info) - Panneaux divers": {
+        "mode": "geo"
+      },
+      "Travaux -Maladie-Insectes": {
+        "mode": "geo"
+      },
+      "Travaux-Plantation d'arbre": {
+        "mode": "geo"
+      },
+      "*Travaux publics - Plainte de tout genre": {
+        "mode": "geo"
+      },
+      "*Travaux Publics - RDD": {
+        "mode": "geo"
+      },
+      "*Travaux Publics - Recyclage": {
+        "mode": "geo"
+      },
+      "Travaux sans permis": {
+        "mode": "geo"
+      },
+      "Trottoir glissant": {
+        "mode": "geo"
+      },
+      "Trottoir ou bordure - Réfection": {
+        "mode": "geo"
+      },
+      "Trottoir ou bordure - Réparation": {
+        "mode": "geo"
+      },
+      "Trottoir ou bordure - Réparation  RMT": {
+        "mode": "geo"
+      },
+      "Une naissance / un arbre": {
+        "mode": "geo"
+      },
+      "Urbanisme": {
+        "mode": "geo"
+      },
+      "Utilisation d'une BF non-autorisée": {
+        "mode": "geo"
+      },
+      "*Utilisation d'un souffleur à feuilles": {
+        "mode": "fixed",
+        "unit": "COTE-DES-NEIGES - NOTRE-DAME-DE-GRÂCE"
+      },
+      "Utilisation illégale de l'eau": {
+        "mode": "geo"
+      },
+      "Utilité publique - Excavation": {
+        "mode": "geo"
+      },
+      "Vandalisme ou accident - Arbre": {
+        "mode": "geo"
+      },
+      "*Véhicules non état fonctionnement": {
+        "mode": "geo"
+      },
+      "Vente de bacs à compostage": {
+        "mode": "geo"
+      },
+      "Vente-débarras": {
+        "mode": "geo"
+      },
+      "Vente de mangeoire à oiseaux": {
+        "mode": "geo"
+      },
+      "Vignette - Stationnements municipaux": {
+        "mode": "geo"
+      },
+      "*Vision vélo": {
+        "mode": "geo"
+      },
+      "*Vision vélo (Utilisation)": {
+        "mode": "geo"
+      },
+      "*Vitesse": {
+        "mode": "geo"
+      },
+      "*Vitesse excessive": {
+        "mode": "geo"
+      },
+      "Voie cyclable - Études": {
+        "mode": "geo"
+      },
+      "Voie cyclable - Marquage et signalisation écrite": {
+        "mode": "fixed",
+        "unit": "ROSEMONT - LA PETITE-PATRIE"
+      },
+      "Voie cyclable - Planification - Service central": {
+        "mode": "fixed",
+        "unit": "DIVISION DU TRANSPORT ACTIF ET COLLECTIFS"
+      },
+      "*Voirie - Accident ou déversement": {
+        "mode": "geo"
+      },
+      "*Voirie - Accumulation d'eau": {
+        "mode": "geo"
+      },
+      "Voirie - Banc": {
+        "mode": "geo"
+      },
+      "*Voirie - Camion citerne": {
+        "mode": "geo"
+      },
+      "*Voirie -Dégagement de fossé": {
+        "mode": "geo"
+      },
+      "Voirie - Divers": {
+        "mode": "geo"
+      },
+      "*Voirie - Divers - Gestion Retour DDS": {
+        "mode": "geo"
+      },
+      "Voirie - Divers - Transport": {
+        "mode": "geo"
+      },
+      "*Voirie - Mauvaise herbe bordure": {
+        "mode": "geo"
+      },
+      "*Voirie - Mobilier urbain - Clôture en bois": {
+        "mode": "geo"
+      },
+      "*Voirie - Mobilier urbain - Clôture en fer forgé": {
+        "mode": "geo"
+      },
+      "*Voirie - Mobilier urbain - Clôture en mailles (frost)": {
+        "mode": "geo"
+      },
+      "*Voirie - Mobilier urbain - Entretien et déplacement": {
+        "mode": "geo"
+      },
+      "*Voirie - Nettoyage de mail central": {
+        "mode": "geo"
+      },
+      "*Voirie - Nettoyage des fossés": {
+        "mode": "geo"
+      },
+      "*Voirie - Nettoyage du domaine public - Panier de rue": {
+        "mode": "geo"
+      },
+      "*Voirie - Nettoyage sites récupération": {
+        "mode": "geo"
+      },
+      "*Voirie - Pavage - Entretien": {
+        "mode": "geo"
+      },
+      "*Voirie - Pavage - Réparation - Près d'un puisard ou trou d'homme": {
+        "mode": "geo"
+      },
+      "Voirie - Poubelle": {
+        "mode": "geo"
+      },
+      "*Voirie - Trottoir - Compilation": {
+        "mode": "geo"
+      },
+      "*Voirie - Trottoir - Réalisation": {
+        "mode": "geo"
+      },
+      "Voirie - Vibrations": {
+        "mode": "geo"
+      },
+      "*WOONERF": {
+        "mode": "geo"
+      },
+      "Y-Eau - Divers": {
+        "mode": "geo"
+      },
+      "*Y-Égout - Divers": {
+        "mode": "geo"
+      },
+      "*Z-Borne-fontaine - Installation, retrait ou déplacement": {
+        "mode": "geo"
+      },
+      "*Z-Compteur d'eau résidentiel": {
+        "mode": "geo"
+      },
+      "*Z-Demande de renseignement - signalisation temporaire": {
+        "mode": "geo"
+      },
+      "*Z-Inspection d'égout privé": {
+        "mode": "geo"
+      },
+      "Z-Nouveau secteur": {
+        "mode": "geo"
+      },
+      "Zonage": {
+        "mode": "geo"
+      },
+      "*Zone de livraison": {
+        "mode": "geo"
+      },
+      "*Zone livraison": {
+        "mode": "geo"
+      },
+      "*Z-PRR-Circulation": {
+        "mode": "geo"
+      },
+      "*Z-Puisard": {
+        "mode": "geo"
+      },
+      "*Z-Signalisation écrite - nouveau": {
+        "mode": "geo"
+      },
+      "*Z-Test de pression d'eau": {
+        "mode": "geo"
+      },
+      "*Z-Trou d'homme": {
+        "mode": "geo"
+      }
+    },
+    "fixedCount": 125,
+    "categoryCount": 841
+  }
+}
