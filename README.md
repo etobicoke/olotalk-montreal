@@ -18,7 +18,6 @@ de la Ville** et est reproductible de façon indépendante.
 - **Démo en direct** (interactive, FR + EN) : [demo.fr.html](demo.fr.html) · [demo.html](demo.html)
 - **Mémoire technique** : [proposal.html](proposal.html)
 - **Notes de terrain & impasses** : [findings.html](findings.html)
-- **Chiffres de référence** : [SUBMISSION_NUMBERS.html](SUBMISSION_NUMBERS.html)
 
 Le **tableau de bord en direct** (l'acheminement noté chaque jour contre les décisions
 réelles de la Ville) et les **scripts reproductibles** vivent dans le dossier `shadow/`.
@@ -41,7 +40,6 @@ is independently reproducible.
 - **Live demo** (interactive, FR + EN): [demo.fr.html](demo.fr.html) · [demo.html](demo.html)
 - **Technical memo**: [proposal.html](proposal.html)
 - **Field notes & dead ends**: [findings.html](findings.html)
-- **Canonical figures**: [SUBMISSION_NUMBERS.html](SUBMISSION_NUMBERS.html)
 
 The **live routing scorecard** and the **reproducible scripts** (`shadow-run.mjs`,
 `montreal-challenge-verify.mjs`) live in the `shadow/` folder — its public commit history

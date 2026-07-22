@@ -474,7 +474,7 @@
 
   <div class="foot">
     <b>Sources.</b> Requêtes 311 (CC-BY 4.0) · Base de données des actifs de voirie · Géobase · Réseau artériel administratif (RAAV) · Limites administratives de l'agglomération · MTQ Réseau routier — RTSS (CC-BY 4.0) · Hydro-Québec Parcs de poteaux (CC-BY-NC) · montreal.ca<br>
-    <b>Reproduction.</b> <code>node shadow/montreal-challenge-verify.mjs</code> re-derives every figure above from the live CKAN API and reports PASS/DRIFT/FAIL against the values measured 2026-07-15. It completes in <b>~23 seconds</b> and is dependency-free: the aggregation runs <em>server-side in the City's own datastore</em> (a <code>GROUP BY</code> collapses the 1,529,458 evaluated requests into 11,833 counted cells — lossless for this question), so nothing here depends on our copy of the data. Anyone, including the City, can check our arithmetic against the source of record. Markdown source: <code>proposal.md</code>; field notes and dead ends: <code>findings.html</code>; canonical drift-proof figures: <code>SUBMISSION_NUMBERS.md</code>.
+    <b>Reproduction.</b> <code>node scripts/research/montreal-challenge-verify.mjs</code> re-derives every figure above from the live CKAN API and reports PASS/DRIFT/FAIL against the values measured 2026-07-15. It completes in <b>~23 seconds</b> and is dependency-free: the aggregation runs <em>server-side in the City's own datastore</em> (a <code>GROUP BY</code> collapses the 1,529,458 evaluated requests into 11,833 counted cells — lossless for this question), so nothing here depends on our copy of the data. Anyone, including the City, can check our arithmetic against the source of record. Markdown source: <code>proposal.md</code>; field notes and dead ends: <code>findings.html</code>.
   </div>
 
 </div>

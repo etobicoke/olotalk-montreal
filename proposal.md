@@ -24,7 +24,7 @@ dependency-free: the aggregation runs *server-side in the City's own datastore* 
 `GROUP BY` collapses the 1,529,458 evaluated requests into 11,833 counted cells —
 lossless for this question), so nothing here depends on our copy of the data.
 Anyone, including the City, can check our arithmetic against the source of record.
-Field notes and dead ends: `findings.md`. Canonical, drift-proof figures: `SUBMISSION_NUMBERS.md`.
+Field notes and dead ends: `findings.md`.
 
 ### Fact 1 — the classification system is large *and it moves*
 
