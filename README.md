@@ -2,7 +2,7 @@
 
 **⚜ Réinventer l'expérience citoyenne · Reinventing the Citizen Experience — ALL IN 2026**
 
-🇫🇷 [Français](#français) · 🇬🇧 [English](#english)
+[Français](#français) · [English](#english)
 
 ---
 
