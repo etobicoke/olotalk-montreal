@@ -6,8 +6,8 @@
 <title>Montréal open data — field notes, dead ends & traps</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--mtl-red:#C8102E;--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
---accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
+:root{--mtl-red:#C8102E;--bg:#fbfbf8;--surface:#fff;--border:#e3e1d9;--soft:#eeece4;--text:#1a1a2e;--muted:#6b6b80;
+--accent:#0d3b66;--dim:#eaf0f6;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
 --red:#dc2626;--red-bg:#fef2f2;--red-bd:#fecaca;--amber:#d97706;--amber-bg:#fffbeb;--amber-bd:#fde68a;
 --radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);--mono:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
 html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.62}
@@ -19,7 +19,7 @@ h1{font-size:29px;line-height:1.2;margin:10px 0 12px;letter-spacing:-.02em}
 .back{display:inline-block;margin-bottom:18px;font-size:13px;color:var(--accent);text-decoration:none}
 h2{font-size:20px;margin:46px 0 14px;letter-spacing:-.01em}h2 .n{font-family:var(--mono);font-size:14px;color:var(--accent);margin-right:8px}
 h3{font-size:15px;margin:24px 0 8px}p{margin:12px 0}
-code{font-family:var(--mono);font-size:.86em;background:#f1f1f5;padding:1px 5px;border-radius:4px}
+code{font-family:var(--mono);font-size:.86em;background:#f2f1ea;padding:1px 5px;border-radius:4px}
 pre{background:#1a1a2e;color:#e6e6f0;padding:16px 18px;border-radius:var(--radius);overflow-x:auto;font-family:var(--mono);font-size:12.5px;line-height:1.55;margin:14px 0}
 ul,ol{margin:10px 0 10px 22px}li{margin:6px 0}a{color:var(--accent)}
 blockquote{border-left:3px solid var(--border);padding-left:16px;margin:14px 0;color:var(--muted);font-style:italic}
@@ -34,7 +34,12 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--soft);verti
 th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--border)}
 .foot{margin-top:52px;padding-top:20px;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
 @media(max-width:640px){table{font-size:12.5px}th,td{padding:7px 8px}}
-body{border-top:3px solid var(--mtl-red)}</style>
+body{border-top:3px solid var(--mtl-red)}
+/* civic-editorial: serif display + warm paper */
+:root{--serif:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif}
+body{background:#fbfbf8}
+h1,h2{font-family:var(--serif);font-weight:600}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -68,22 +73,22 @@ The proposal necessarily leads with what works; this is the complete record — 
 <h2><span class="n">2</span>Dead ends we walked into</h2>
 
 <h3>The 51% that wasn't</h3>
-<p>Comparing <code>ARRONDISSEMENT</code> to <code>ARRONDISSEMENT_GEO</code> with naive string equality reports a <b>50.9% mismatch</b>. It is almost entirely formatting: <code>Mercier - Hochelaga-Maisonneuve</code> vs <code>Mercier-Hochelaga-Maisonneuve</code>. Normalised, the true divergence is <b>0.69%</b> — and even that is not an error rate, because the two fields mean different things (who fixes it vs where it is).</p>
-<div class="callout c-warn"><span class="lbl">Lesson</span>A shocking number from a string comparison is a string bug until proven otherwise.</div>
+<p>Comparing <code>ARRONDISSEMENT</code> to <code>ARRONDISSEMENT_GEO</code> with naive string equality reports a <b>50.9% mismatch</b>. It is almost entirely formatting: <code>Mercier - Hochelaga-Maisonneuve</code> vs <code>Mercier-Hochelaga-Maisonneuve</code>. Normalised, the true divergence is <b>0.69%</b>, and even that is not an error rate, because the two fields mean different things (who fixes it vs where it is).</p>
+<div class="callout c-warn"><span class="lbl">Lesson</span>When a string comparison produces a shocking number, treat it as a formatting bug until you have proven it is not.</div>
 
 <h3>The circular zero</h3>
 <p>Filtering pothole requests to villes liées on <code>ARRONDISSEMENT</code> returns <b>0</b> — which looks like a finding ("citizens never misreport across the boundary") and is actually a restatement of the column's definition. The right column, <code>ARRONDISSEMENT_GEO</code>, returns <b>311</b>: Mont-Royal 169, Westmount 91, and more. Westmount's most common 311 category is <code>Nid-de-poule</code>.</p>
-<div class="callout c-warn"><span class="lbl">Lesson</span>The correct number supported the argument <em>better</em> than the wrong one. Convenient findings deserve more scrutiny, not less.</div>
+<div class="callout c-warn"><span class="lbl">Lesson</span>The correct number supported the argument <em>better</em> than the wrong one had. When a result is that convenient, scrutinise it harder.</div>
 
 <h3>The owner column that isn't</h3>
-<p>We found <code>PROPRIETAIRE_REF</code>, read its <b>value dictionary</b> — which lists exactly the third parties we hoped for — and concluded "the jurisdiction join is a column." We never checked whether the values were <b>populated</b>. They are not.</p>
-<div class="callout c-warn"><span class="lbl">Lesson</span>A column's existence and its permitted-value list are not evidence about its contents. Check the distribution, never the schema.</div>
+<p>We found <code>PROPRIETAIRE_REF</code>, read its value dictionary, which lists exactly the third parties we hoped for, and concluded "the jurisdiction join is a column." We never checked whether the values were actually populated. They are not.</p>
+<div class="callout c-warn"><span class="lbl">Lesson</span>A column's existence and its list of permitted values tell you nothing about what is actually in it. Pull the distribution before you trust either.</div>
 
-<h2><span class="n">3</span>The best find: the obfuscation rule</h2>
-<p><b>Not in the CKAN metadata</b> — it is rendered on the dataset page only, section "Production des données":</p>
+<h2><span class="n">3</span>The obfuscation rule</h2>
+<p>This rule is not in the CKAN metadata. It is rendered on the dataset page only, in the section "Production des données":</p>
 <blockquote>« Pour respecter la confidentialité des requérants, cette position géographique est ensuite obfusquée: les requêtes associées à des adresses ou installations particulières sont <b>relocalisées au milieu du tronçon le plus près ayant une longueur de plus de 45 mètres</b>. »</blockquote>
-<div class="callout c-find"><span class="lbl">Why it matters twice</span>
-<b>Architecturally:</b> the City's privacy team independently chose the <b>tronçon</b> as the atomic safe unit of location — the same unit jurisdiction attaches to. Privacy and routing want the same primitive. <b>Forensically:</b> it explains every coordinate anomaly — and we mis-diagnosed all of them before finding it.</div>
+<div class="callout c-find"><span class="lbl">Two implications</span>
+<b>Architecturally:</b> the City's privacy team independently chose the tronçon as the atomic safe unit of location, the same unit jurisdiction attaches to. Privacy and routing want the same primitive. <b>Forensically:</b> it explains every coordinate anomaly — and we mis-diagnosed all of them before finding it.</div>
 <table>
 <thead><tr><th>Observation</th><th>Our wrong read</th><th>The truth</th></tr></thead>
 <tbody>
@@ -92,13 +97,13 @@ The proposal necessarily leads with what works; this is the complete record — 
 <tr><td>Two hot points ~2 m apart</td><td>duplicate geocodes</td><td>the <b>same segment's midpoint recomputed</b> after a géobase version bump — which is why <code>geobase-gestion-troncon</code> exists</td></tr>
 </tbody>
 </table>
-<p><b>Consequence for any eval:</b> the published coordinates are segment midpoints. You <b>cannot</b> validate metre-precision asset resolution against 311 history. You <b>can</b> validate segment- and territory-level routing — which is the granularity jurisdiction lives at anyway. The 45 m threshold also skips short segments, so any accuracy measured through it is a <b>floor</b>.</p>
+<p>Consequence for any eval: the published coordinates are segment midpoints. You cannot validate metre-precision asset resolution against 311 history. You can validate segment- and territory-level routing, which is the granularity jurisdiction lives at anyway. The 45 m threshold also skips short segments, so any accuracy measured through it is a floor.</p>
 
 <h2><span class="n">4</span>Confounds we could not eliminate</h2>
 <ul>
-<li><b>Internal work orders are indistinguishable from citizen requests.</b> The City: <em>« Certains arrondissements utilisent également la plateforme pour assigner des tâches internes… Le système ne permet pas de distinguer »</em>. These are created <em>by</em> the unit that performs them, which <b>inflates the geometry rule in our favour</b>. Unsizable.</li>
-<li><b>Possible tautology.</b> If <code>UNITE_RESP_PARENT</code> is auto-assigned from the coordinate, "geometry predicts the unit" partly restates that rule. The shared-service exceptions prove it is not <em>purely</em> geometric, but we could not rule this out.</li>
-<li><b>Ground truth is the endpoint only.</b> Reroutes are invisible; we reproduce where a request ended, not the decisions along the way.</li>
+<li>Internal work orders are indistinguishable from citizen requests. The City: <em>« Certains arrondissements utilisent également la plateforme pour assigner des tâches internes… Le système ne permet pas de distinguer »</em>. These are created <em>by</em> the unit that performs them, which inflates the geometry rule in our favour. Unsizable.</li>
+<li>Possible tautology. If <code>UNITE_RESP_PARENT</code> is auto-assigned from the coordinate, "geometry predicts the unit" partly restates that rule. The shared-service exceptions prove it is not <em>purely</em> geometric, but we could not rule this out.</li>
+<li>Ground truth is the endpoint only. Reroutes are invisible; we reproduce where a request ended, not the decisions along the way.</li>
 </ul>
 
 <h2><span class="n">5</span>API cookbook</h2>
@@ -113,36 +118,36 @@ Fields: GET /datastore_search?resource_id=&lt;id&gt;&amp;limit=1   ← the real 
 <tr><td>Voirie — liste de valeurs (dictionary)</td><td><code>d277acf9-2c0c-4eaf-9e02-8c03eef690ce</code></td></tr>
 </tbody>
 </table>
-<p><b>Gotchas, all hit for real:</b></p>
+<p>Gotchas, all hit for real:</p>
 <ul>
-<li><code>/download/</code> paths 302 to Google Storage; in a sandboxed shell the cross-host redirect returns <code>RBAC: access denied</code> (19 bytes). The <b>API</b> works fine; only bulk file downloads are affected.</li>
-<li>The dataset <em>page</em> is not curl-able (times out). The methodology text needs a rendering fetch — it is not in the API.</li>
+<li><code>/download/</code> paths 302 to Google Storage; in a sandboxed shell the cross-host redirect returns <code>RBAC: access denied</code> (19 bytes). The API itself works fine; only bulk file downloads are affected.</li>
+<li>The dataset <em>page</em> is not curl-able (times out). The methodology text needs a rendering fetch; it is not in the API.</li>
 <li><code>COUNT(*) FILTER (WHERE …)</code> silently returns nothing on some datastore queries. Use <code>SUM(CASE WHEN … THEN 1 ELSE 0 END)</code> or separate queries.</li>
 <li>The column is <code>PROPRIETAIRE_REF</code>, not <code>PROPRIETAIRE</code>. Dictionary attribute-group names are the literal column names.</li>
-<li>Paginate grouped queries — the datastore caps rows per response.</li>
+<li>Paginate grouped queries: the datastore caps rows per response.</li>
 </ul>
 
 <h2><span class="n">6</span>What is still unverified</h2>
 <p>Do not present any of these as fact without checking first.</p>
 <ul>
-<li><b>Règlement 02-003</b> full text — only the City's paraphrase in the RAAV metadata. → Service du greffe.</li>
-<li><b>Banque d'information 311</b> — now VPN-restricted (403). Our taxonomy reconstruction is a proxy. → request access as a participant.</li>
-<li><b>RAAV's 33 <code>ARTERE=1</code> segments inside villes liées</b> — found via the GPKG, not re-downloadable to confirm. Agrees with an independent 311 finding, so probably right.</li>
-<li><b>PJCCI / CA25 / SSL as RTSS operators</b> — one pass found them; a later sample returned only MTQ. Not disproven, not sampled.</li>
-<li><b>The <code>AREQ</code> zone</b> in Hydro-Québec's pole KMZ — blank manager, no legend. Possibly the CSEM buried network. <b>Unconfirmed.</b></li>
-<li><b>Québecor's bus-shelter contract status in 2026</b> — sources are the 2012–13 announcements (runs to 2032).</li>
-<li><b>HQ open data is CC-BY-NC</b> — a real constraint if commercialised.</li>
+<li>Règlement 02-003 full text: we have only the City's paraphrase in the RAAV metadata. → Service du greffe.</li>
+<li>Banque d'information 311 — now VPN-restricted (403). Our taxonomy reconstruction is a proxy. → request access as a participant.</li>
+<li>RAAV's 33 <code>ARTERE=1</code> segments inside villes liées — found via the GPKG, not re-downloadable to confirm. Agrees with an independent 311 finding, so probably right.</li>
+<li>PJCCI / CA25 / SSL as RTSS operators: one pass found them, a later sample returned only MTQ. Not disproven, not sampled.</li>
+<li>The <code>AREQ</code> zone in Hydro-Québec's pole KMZ: blank manager, no legend. Possibly the CSEM buried network. Unconfirmed.</li>
+<li>Québecor's bus-shelter contract status in 2026: sources are the 2012–13 announcements (runs to 2032).</li>
+<li>HQ open data is CC-BY-NC — a real constraint if commercialised.</li>
 </ul>
 
 <h2><span class="n">7</span>The process lesson</h2>
-<p>Three of our four worst errors share one shape: <b>we trusted a schema, a convenient number, or a plausible column name instead of looking at the distribution.</b></p>
+<p>Three of our four worst errors share one shape: we trusted a schema, a convenient number, or a plausible column name instead of looking at the distribution.</p>
 <ul>
 <li>The dictionary permitted MTQ → we assumed MTQ was in the data.</li>
 <li>A column named <code>ARRONDISSEMENT</code> → we assumed it meant "where it is."</li>
 <li>A value <code>1</code> in <code>PROVENANCE_TELEPHONE</code> → we assumed a boolean.</li>
 </ul>
-<p>The fourth was the mirror image: we <b>disbelieved a correct finding</b> (the obfuscation rule) because our own reasoning about the coordinates looked sound. It was sound and wrong.</p>
-<div class="callout c-find"><span class="lbl">The one rule</span>Look at the values. Always. The schema is a claim, not evidence.</div>
+<p>The fourth was the mirror image: our own reasoning about the coordinates looked sound, so we disbelieved a correct finding (the obfuscation rule). The reasoning was sound; the conclusion it produced was wrong.</p>
+<div class="callout c-find"><span class="lbl">Working rule</span>Look at the actual values before you trust a field. What the schema permits is not what the data contains.</div>
 
 <div class="foot">Companion to <a href="proposal.html">proposal.html</a> · reproduce via <code>shadow/montreal-challenge-verify.mjs</code>. Source: Requêtes 311 (donnees.montreal.ca, CC-BY 4.0 · © Ville de Montréal).</div>
 </div>

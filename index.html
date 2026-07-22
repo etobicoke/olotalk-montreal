@@ -3,109 +3,159 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Olochat AI Inc. × Ville de Montréal — Défi IA : pôle de soumission</title>
+<title>Pôle de soumission — Réinventer l'acheminement · Montréal</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
---accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
---red:#dc2626;--red-bg:#fef2f2;--red-bd:#fecaca;--amber:#d97706;--amber-bg:#fffbeb;--amber-bd:#fde68a;
---radius:10px;--radius-sm:6px;--mtl-red:#C8102E;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);--mono:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
-html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;border-top:3px solid var(--mtl-red)}
-.wrap{max-width:980px;margin:0 auto;padding:52px 28px 96px}
-.langtoggle{font-size:12.5px;color:var(--muted);margin-bottom:18px}.langtoggle a{color:var(--accent)}.langtoggle .cur{font-weight:700;color:var(--text)}
-header.doc{border-bottom:1px solid var(--border);padding-bottom:26px;margin-bottom:32px}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
-h1{font-size:31px;line-height:1.18;margin:10px 0 12px;letter-spacing:-.022em}
-.meta{font-size:13px;color:var(--muted)}.meta b{color:var(--text)}
-h2{font-size:15px;margin:40px 0 12px;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);font-weight:700}
-p{margin:12px 0}a{color:var(--accent)}code{font-family:var(--mono);font-size:.85em;background:#f1f1f5;padding:1px 5px;border-radius:4px}
-.hero{font-size:18px;line-height:1.5;font-weight:600;letter-spacing:-.01em}
-.callout{border:1px solid var(--border);border-left-width:4px;border-left-color:var(--accent);background:var(--dim);border-radius:var(--radius-sm);padding:15px 18px;margin:18px 0;font-size:14.5px}
-.callout .lbl{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);display:block;margin-bottom:5px}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0 4px}
-.kpi{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:14px 15px;box-shadow:var(--shadow)}
-.kpi .kv{font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1.05;color:var(--accent)}
-.kpi .kl{font-size:11.5px;color:var(--muted);margin-top:5px;line-height:1.35}
-.kpi.g .kv{color:var(--green)}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
-a.card{display:block;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:16px 18px;box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:border-color .12s,transform .12s}
-a.card:hover{border-color:var(--accent);transform:translateY(-1px)}
-.card .ct{display:flex;align-items:center;gap:9px;margin-bottom:6px}
-.card .ci{font-size:17px}.card .cn{font-size:15px;font-weight:700;letter-spacing:-.01em}
-.card .cd{font-size:12.5px;color:var(--muted);line-height:1.45}
-.card .cp{font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-top:8px;word-break:break-all}
-.badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:4px;margin-left:auto}
-.b-live{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
-.b-doc{background:var(--dim);color:var(--accent);border:1px solid #ddd6fe}
-.b-ref{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
-.en{font-size:9px;font-weight:800;color:var(--muted);border:1px solid var(--border);border-radius:3px;padding:0 4px;margin-left:6px;vertical-align:middle}
-.foot{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)}
-.chart{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);padding:18px 20px;margin:22px 0}
-.chart h3{font-size:15px;margin:0 0 3px;letter-spacing:-.01em;color:var(--text);font-weight:700}
+:root{
+  --paper:#fbfbf8; --surface:#ffffff; --rule:#e3e1d9; --rule-soft:#eeece4;
+  --ink:#191917; --muted:#5f5d57; --faint:#8a887f;
+  --navy:#0d3b66; --navy-dim:#eaf0f6; --navy-bd:#c8d8e8;
+  --mtl-red:#C8102E;
+  --green:#1a7f43; --green-bg:#eef7f0; --green-bd:#c3e2cd;
+  --amber:#9a6a00; --amber-bg:#fbf5e7; --amber-bd:#ecdcb0;
+  --radius:7px; --radius-sm:4px;
+  --serif:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+  --mono:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+}
+html{font-size:16px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.62;border-top:3px solid var(--mtl-red)}
+.wrap{max-width:900px;margin:0 auto;padding:44px 30px 96px}
+.langtoggle{font-size:12.5px;color:var(--muted);margin-bottom:26px;font-variant:all-small-caps;letter-spacing:.04em}
+.langtoggle a{color:var(--navy);text-decoration:none}.langtoggle .cur{font-weight:700;color:var(--ink)}
+a{color:var(--navy)}
+code{font-family:var(--mono);font-size:.84em;background:#f2f1ea;padding:1px 5px;border-radius:3px}
+
+/* masthead — editorial */
+.masthead{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:26px}
+.kicker{font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--mtl-red);margin-bottom:12px}
+h1{font-family:var(--serif);font-weight:600;font-size:40px;line-height:1.08;letter-spacing:-.01em;color:var(--ink)}
+.h1sub{font-family:var(--serif);font-style:italic;font-weight:400;font-size:20px;color:var(--muted);margin-top:8px;line-height:1.35}
+.dateline{font-size:12.5px;color:var(--faint);margin-top:16px;font-variant:all-small-caps;letter-spacing:.03em}
+.dateline b{color:var(--muted);font-variant:normal;letter-spacing:0}
+
+/* founder's note — the human element */
+.note{border-left:3px solid var(--mtl-red);background:linear-gradient(180deg,#fdfcf9,#faf8f2);padding:20px 24px;margin:28px 0;border-radius:0 var(--radius) var(--radius) 0}
+.note .nh{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:8px}
+.note p{font-size:15px;line-height:1.6;color:#33322d;margin:9px 0}
+.note .sig{font-size:13.5px;color:var(--muted);margin-top:12px}
+.note .sig b{color:var(--ink);font-weight:600}
+
+/* lead */
+.lead{font-family:var(--serif);font-size:19px;line-height:1.55;color:#2a2925;margin:22px 0}
+.lead b{font-weight:600;color:var(--ink)}
+
+/* section headers */
+h2{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);margin:46px 0 16px;padding-bottom:7px;border-bottom:1px solid var(--rule)}
+
+/* KPI row — flat, editorial figures */
+.figs{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:20px 0 6px;border:1px solid var(--rule);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.fig{padding:16px 16px;border-right:1px solid var(--rule-soft)}
+.fig:last-child{border-right:0}
+.fig .v{font-family:var(--serif);font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1;color:var(--navy)}
+.fig.red .v{color:var(--mtl-red)}
+.fig .l{font-size:11.5px;color:var(--muted);margin-top:7px;line-height:1.38}
+.driftnote{font-size:11.5px;color:var(--faint);margin-top:9px;font-style:italic}
+
+/* verify-first — the anti-vaporware block */
+.verify{border:1px solid var(--navy-bd);background:var(--navy-dim);border-radius:var(--radius);padding:20px 22px;margin:22px 0}
+.verify .vh{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.verify p{font-size:14px;color:#2f3e4d;margin:6px 0 12px}
+.verify .cmd{font-family:var(--mono);font-size:12.5px;background:#0d2438;color:#dbe7f2;border-radius:var(--radius-sm);padding:9px 13px;margin:6px 0;overflow-x:auto;white-space:nowrap}
+.verify .cmd .c{color:#7fb2df}
+.verify .live{display:inline-flex;align-items:center;gap:7px;margin-top:8px;font-size:13.5px;font-weight:600;color:var(--navy);text-decoration:none}
+.verify .live .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px var(--green-bg)}
+.verify .live:hover{text-decoration:underline}
+
+/* fan-out chart */
+.chart{border:1px solid var(--rule);border-radius:var(--radius);background:var(--surface);padding:18px 22px;margin:22px 0}
+.chart h3{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 3px;color:var(--ink)}
 .chart .csub{font-size:12.5px;color:var(--muted);margin:0 0 14px}
-.chart figcaption{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.45}
-.chart figcaption b{color:var(--text)}
-@media(max-width:720px){.kpis{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}}
+.chart figcaption{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.5}
+.chart figcaption b{color:var(--ink)}
+
+/* artifacts — editorial list, not SaaS cards */
+.arts{border-top:1px solid var(--rule);margin:8px 0}
+a.art{display:grid;grid-template-columns:26px 1fr auto;gap:14px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--rule);text-decoration:none;color:inherit;transition:background .12s}
+a.art:hover{background:#faf9f4}
+.art .ico{font-size:17px;line-height:1}
+.art .an{display:block;font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink)}
+.art .ad{display:block;font-size:13px;color:var(--muted);line-height:1.5;margin-top:4px}
+.art .tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px;white-space:nowrap;align-self:center}
+.tag.live{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
+.tag.read{background:var(--navy-dim);color:var(--navy);border:1px solid var(--navy-bd)}
+
+.foot{margin-top:48px;padding-top:18px;border-top:2px solid var(--ink);font-size:12.5px;color:var(--faint);line-height:1.55}
+@media(max-width:720px){h1{font-size:31px}.figs{grid-template-columns:1fr 1fr}.fig{border-bottom:1px solid var(--rule-soft)}a.art{grid-template-columns:22px 1fr}.art .tag{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="langtoggle"><a href="index.en.html">English</a> · <span class="cur">Français</span></div>
-<header class="doc">
-<div class="eyebrow"><span style="color:var(--mtl-red)">⚜</span> Défi IA · Réinventer l'expérience citoyenne · ALL IN 2026 × Ville de Montréal</div>
-<h1>Pôle de soumission — Montréal</h1>
-<div class="meta">Volet municipal d'Olotalk · échéance <b>2026-07-24</b> (soumission le 23) · cinq finalistes annoncés fin août · présentations en direct <b>16–17 sept.</b> Chaque chiffre est calculé à partir des données ouvertes de la Ville et est reproductible de façon indépendante.</div>
-</header>
+<div class="langtoggle"><span class="cur">Français</span> · <a href="index.en.html">English</a></div>
 
-<div class="callout"><span class="lbl">La thèse en un paragraphe</span>
-<p class="hero" style="margin:2px 0">Le défi demande une IA qui lit une photo et achemine la requête. Nous avons d'abord mesuré quatre ans d'acheminement de Montréal — et l'acheminement <b>n'est pas</b> le problème d'IA. Il est reproductible à 97 % avec un test d'appartenance et une table de correspondance. D'où la conception : <b>l'IA fait la perception</b> (photo/voix → actif + défaut); un <b>moteur déterministe et justifiable fait l'acheminement</b>, et s'abstient au profit d'un humain quand les sources se contredisent. Le modèle ne nomme jamais un service — il ne peut donc pas mal acheminer par hallucination.</p></div>
-
-<div class="kpis">
-<div class="kpi"><div class="kv">~97 %</div><div class="kl">de l'acheminement reproduit <b>sans apprentissage automatique</b> (hors échantillon)</div></div>
-<div class="kpi g"><div class="kv">~90 %</div><div class="kl">par la géographie seule — sans photo, sans texte, sans modèle</div></div>
-<div class="kpi"><div class="kv">3 M+</div><div class="kl">requêtes analysées en entier — aucun échantillonnage</div></div>
-<div class="kpi"><div class="kv">~82 %</div><div class="kl">du volume arrive encore par téléphone — le vrai gain</div></div>
+<div class="masthead">
+<div class="kicker">⚜ Défi IA · Réinventer l'expérience citoyenne · ALL IN 2026 × Ville de Montréal</div>
+<h1>Réinventer l'acheminement</h1>
+<div class="h1sub">Résoudre l'actif, pas classer la photo — et le prouver, chiffre par chiffre.</div>
+<div class="dateline">Volet municipal d'Olotalk · dépôt <b>2026-07-24</b> · présentations en direct <b>16–17 sept.</b> · Olochat&nbsp;AI&nbsp;Inc.</div>
 </div>
-<p style="font-size:12px;color:var(--muted);margin-top:8px">Formes à l'épreuve de la dérive : les taux sont stables; les comptes augmentent chaque jour.</p>
 
+<div class="note">
+<div class="nh">Un mot de notre part.</div>
+<p>Nous n'avons pas commencé par une démo. Nous avons passé des jours à l'intérieur des données ouvertes 311 de Montréal, et la leçon la plus utile a été que l'approche évidente est la mauvaise : acheminer un signalement, ce n'est pas reconnaître un nid-de-poule sur une photo — c'est savoir <b>à qui revient le problème</b>. La Ville y répond déjà, environ 97 % du temps, avec des règles qu'on peut recalculer. Nous avons donc construit la version qu'un juré peut vérifier lui-même.</p>
+<p>Tout ce que vous verrez ici sort de vraies données, et chaque chiffre se régénère depuis l'API de la Ville. Nous préférons que vous nous vérifiiez plutôt que vous nous croyiez sur parole.</p>
+<div class="sig">— <b>L'équipe Olochat&nbsp;AI</b> · Montréal</div>
+</div>
+
+<p class="lead">Le défi demande une IA qui lit une photo et achemine la requête. Nous avons d'abord mesuré quatre ans d'acheminement montréalais — et l'acheminement <b>n'est pas</b> la partie difficile. L'IA fait la perception; un moteur déterministe et justifiable fait l'acheminement, s'abstient au profit d'un humain quand les sources se contredisent, et ne nomme jamais un service — il ne peut donc pas mal acheminer par hallucination.</p>
+
+<div class="figs">
+<div class="fig"><div class="v">~97 %</div><div class="l">de l'acheminement reproduit <b>sans apprentissage automatique</b> (hors échantillon)</div></div>
+<div class="fig red"><div class="v">~90 %</div><div class="l">par la géographie seule — sans photo, sans texte, sans modèle</div></div>
+<div class="fig"><div class="v">3&nbsp;M+</div><div class="l">signalements analysés en entier — aucun échantillonnage</div></div>
+<div class="fig"><div class="v">~82 %</div><div class="l">du volume arrive encore par téléphone — le vrai gain</div></div>
+</div>
+<div class="driftnote">Formes à l'épreuve de la dérive : les taux sont stables; les comptes augmentent chaque jour.</div>
+
+<div class="verify">
+<div class="vh">Ne nous croyez pas — vérifiez.</div>
+<p>Deux scripts sans dépendance rejouent chaque chiffre contre l'API en direct de la Ville. Le tableau de bord se re-note <b>tout seul, chaque jour</b>, et l'historique public des commits en est la preuve d'antériorité.</p>
+<div class="cmd"><span class="c">node</span> shadow/montreal-challenge-verify.mjs&nbsp;&nbsp;<span style="color:#6b8299"># chaque chiffre → RÉUSSITE / DÉRIVE / ÉCHEC</span></div>
+<div class="cmd"><span class="c">node</span> shadow/shadow-run.mjs&nbsp;&nbsp;<span style="color:#6b8299"># régénère le tableau de bord en direct</span></div>
+<a class="live" href="shadow/scorecard.html"><span class="dot"></span>Voir le tableau de bord en direct →</a>
+</div>
+
+<h2>Une catégorie, dix-neuf unités</h2>
 <figure class="chart">
-<h3>Une seule catégorie — « Nid-de-poule » — s'achemine vers dix-neuf unités différentes</h3>
-<div class="csub">Où sont réellement allés 56 541 signalements de nids-de-poule, par unité responsable · données ouvertes 311 de la Ville de Montréal</div>
-<svg viewBox="0 0 720 346" width="100%" role="img" aria-label="Signalements de nids-de-poule par unité responsable — répartis sur 19 unités" style="max-width:100%"><line x1="196" y1="4" x2="196" y2="344" stroke="var(--border)" stroke-width="1"/><rect x="196" y="6" width="458.0" height="16" rx="3" fill="var(--accent)"/><text x="188" y="14.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Ville-Marie</text><text x="660.0" y="14.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">7 727</text><rect x="196" y="34" width="397.1" height="16" rx="3" fill="var(--accent)"/><text x="188" y="42.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Mercier–H.-M.</text><text x="599.1" y="42.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">6 700</text><rect x="196" y="62" width="345.1" height="16" rx="3" fill="var(--accent)"/><text x="188" y="70.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Ahuntsic-Cartierville</text><text x="547.1" y="70.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5 822</text><rect x="196" y="90" width="315.3" height="16" rx="3" fill="var(--accent)"/><text x="188" y="98.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Rosemont–P.-P.</text><text x="517.3" y="98.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5 320</text><rect x="196" y="118" width="285.0" height="16" rx="3" fill="var(--accent)"/><text x="188" y="126.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Villeray–St-Michel</text><text x="487.0" y="126.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">4 808</text><rect x="196" y="146" width="220.3" height="16" rx="3" fill="var(--accent)"/><text x="188" y="154.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Sud-Ouest</text><text x="422.3" y="154.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3 716</text><rect x="196" y="174" width="219.4" height="16" rx="3" fill="var(--accent)"/><text x="188" y="182.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">CDN–NDG</text><text x="421.4" y="182.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3 702</text><rect x="196" y="202" width="203.7" height="16" rx="3" fill="var(--accent)"/><text x="188" y="210.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Plateau–M.-R.</text><text x="405.7" y="210.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3 436</text><rect x="196" y="230" width="183.6" height="16" rx="3" fill="var(--accent)"/><text x="188" y="238.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">RDP–P.-a.-T.</text><text x="385.6" y="238.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3 098</text><rect x="196" y="258" width="130.1" height="16" rx="3" fill="var(--accent)"/><text x="188" y="266.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Saint-Laurent</text><text x="332.1" y="266.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">2 195</text><rect x="196" y="286" width="108.1" height="16" rx="3" fill="var(--accent)"/><text x="188" y="294.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Lachine</text><text x="310.1" y="294.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">1 823</text><rect x="196" y="314" width="95.3" height="16" rx="3" fill="var(--accent)"/><text x="188" y="322.5" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="-apple-system,sans-serif">Montréal-Nord</text><text x="297.3" y="322.5" dominant-baseline="middle" font-size="10.5" fill="var(--text)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">1 607</text><text x="202" y="344" font-size="10.5" fill="var(--muted)" font-family="-apple-system,sans-serif">+ 7 autres · 19 unités au total · 56 541 signalements</text></svg>
-<figcaption>Aucune unité ne domine — l'unité qui traite un nid-de-poule est déterminée par <b>où il se trouve</b>, non par le fait que c'est un nid-de-poule. La catégorie ne prédit donc presque pas l'acheminement : la géométrie seule le trouve <b>90 %</b> du temps; la catégorie, à elle seule, presque jamais. C'est pourquoi le moteur achemine par actif, non par classe.</figcaption>
+<h3>« Nid-de-poule » s'achemine vers dix-neuf unités différentes</h3>
+<div class="csub">Où sont réellement allés 56 541 signalements de nids-de-poule, par unité responsable · données ouvertes 311</div>
+<svg viewBox="0 0 720 300" width="100%" role="img" aria-label="Signalements de nids-de-poule répartis sur 19 unités" style="max-width:100%">
+<line x1="196" y1="4" x2="196" y2="286" stroke="var(--rule)" stroke-width="1"/>
+<rect x="196" y="6" width="430" height="15" rx="2" fill="var(--navy)"/><text x="188" y="14" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Ville-Marie</text><text x="632" y="14" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">7 727</text>
+<rect x="196" y="34" width="373" height="15" rx="2" fill="var(--navy)"/><text x="188" y="42" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Mercier–H.-M.</text><text x="575" y="42" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">6 700</text>
+<rect x="196" y="62" width="324" height="15" rx="2" fill="var(--navy)"/><text x="188" y="70" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Ahuntsic-Cartierville</text><text x="526" y="70" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">5 822</text>
+<rect x="196" y="90" width="296" height="15" rx="2" fill="var(--navy)"/><text x="188" y="98" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Rosemont–P.-P.</text><text x="498" y="98" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">5 320</text>
+<rect x="196" y="118" width="268" height="15" rx="2" fill="var(--navy)"/><text x="188" y="126" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Villeray–St-Michel</text><text x="470" y="126" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">4 808</text>
+<rect x="196" y="146" width="207" height="15" rx="2" fill="var(--navy)" opacity=".82"/><text x="188" y="154" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Sud-Ouest</text><text x="409" y="154" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">3 716</text>
+<rect x="196" y="174" width="206" height="15" rx="2" fill="var(--navy)" opacity=".82"/><text x="188" y="182" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">CDN–NDG</text><text x="408" y="182" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">3 702</text>
+<rect x="196" y="202" width="172" height="15" rx="2" fill="var(--navy)" opacity=".68"/><text x="188" y="210" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Plateau–M.-R.</text><text x="374" y="210" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">3 436</text>
+<rect x="196" y="230" width="123" height="15" rx="2" fill="var(--navy)" opacity=".55"/><text x="188" y="238" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Saint-Laurent</text><text x="325" y="238" dominant-baseline="middle" font-size="10.5" fill="var(--ink)" font-family="monospace">2 195</text>
+<rect x="196" y="258" width="90" height="15" rx="2" fill="var(--navy)" opacity=".45"/><text x="188" y="266" text-anchor="end" dominant-baseline="middle" font-size="11" fill="var(--muted)" font-family="sans-serif">Montréal-Nord</text><text x="292" y="266" dominant-baseline="middle" font-size="10.5" fill="var(--faint)" font-family="monospace">1 607</text>
+<text x="196" y="292" font-size="10.5" fill="var(--faint)" font-family="sans-serif">+ 9 autres · 19 unités au total · 56 541 signalements</text>
+</svg>
+<figcaption>Aucune unité ne domine. L'unité qui traite un nid-de-poule dépend d'<b>où il se trouve</b>, pas du fait que c'est un nid-de-poule. La catégorie ne prédit donc presque pas l'acheminement; la géométrie seule le trouve <b>90 %</b> du temps. C'est pourquoi le moteur achemine par actif, non par classe.</figcaption>
 </figure>
 
 <h2>Les livrables</h2>
-<div class="cards">
-<a class="card" href="demo.fr.html">
-<div class="ct"><span class="ci">🎬</span><span class="cn">Démo en direct — 3 scénarios réels</span><span class="badge b-live">démo</span></div>
-<div class="cd">Acheminé (nid-de-poule → arrondissement), la subtilité du <b>service partagé</b> (feu au centre-ville → Rosemont, où la géographie échoue), et redirigé (nid-de-poule à Mont-Royal → pas à nous). Chaque cas est une vraie requête 311; l'acheminement correspond à la décision de la Ville. Interactif (Lancer / Rejouer), bilingue — la source de la vidéo.</div>
-<div class="cp">demo.fr.html</div></a>
-
-<a class="card" href="proposal.fr.html">
-<div class="ct"><span class="ci">📄</span><span class="cn">Mémoire technique</span><span class="badge b-doc">lire</span></div>
-<div class="cd">L'approche complète — résoudre l'actif, en déduire le propriétaire; la garantie d'ancrage; la jointure de compétence qui n'existe pas; le modèle de confidentialité à deux niveaux. 9 sections.</div>
-<div class="cp">proposal.fr.html</div></a>
-
-<a class="card" href="findings.fr.html">
-<div class="ct"><span class="ci">🔬</span><span class="cn">Notes de terrain &amp; impasses</span><span class="badge b-doc">lire</span></div>
-<div class="cd">Ce que la présentation omet : des champs qui ne veulent pas dire ce que leur nom indique, les impasses rencontrées, la règle d'obfuscation, et le carnet d'API. Le reçu de crédibilité.</div>
-<div class="cp">findings.fr.html</div></a>
-
-<a class="card" href="shadow/scorecard.html">
-<div class="ct"><span class="ci">📊</span><span class="cn">Tableau de bord en direct</span><span class="badge b-live">en direct</span></div>
-<div class="cd">Le shadow-run à politique figée : 97,27 % hors échantillon, noté chaque jour contre les décisions de la Ville, avec une politique à empreinte figée que quiconque peut recalculer.</div>
-<div class="cp">shadow/scorecard.html</div></a>
+<div class="arts">
+<a class="art" href="demo.fr.html"><span class="ico">🎬</span><span><span class="an">Démo en direct — 3 scénarios réels</span><span class="ad">Acheminé, le piège du service partagé (feu au centre-ville → Rosemont), et redirigé (Mont-Royal → pas à nous). Chaque cas est une vraie requête 311. Bilingue — la source de la vidéo.</span></span><span class="tag live">démo</span></a>
+<a class="art" href="proposal.fr.html"><span class="ico">📄</span><span><span class="an">Mémoire technique</span><span class="ad">Résoudre l'actif, en déduire le propriétaire; la garantie d'ancrage; la jointure de compétence qui n'existe pas; le modèle de confidentialité à deux niveaux.</span></span><span class="tag read">lire</span></a>
+<a class="art" href="findings.fr.html"><span class="ico">🔬</span><span><span class="an">Notes de terrain &amp; impasses</span><span class="ad">Les champs qui mentent sur leur nom, les murs où nous avons foncé, le carnet d'API. Le reçu de crédibilité — la preuve qu'un humain a fait le travail.</span></span><span class="tag read">lire</span></a>
+<a class="art" href="shadow/scorecard.html"><span class="ico">📊</span><span><span class="an">Tableau de bord en direct</span><span class="ad">La politique figée, notée chaque jour contre les décisions de la Ville : 97,27 % hors échantillon, empreinte recalculable par quiconque.</span></span><span class="tag live">en direct</span></a>
 </div>
 
-<h2>Reproduire chaque chiffre</h2>
-<div class="callout"><span class="lbl">Deux scripts sans dépendance (Node ≥ 18)</span>
-<p style="margin:4px 0"><code>node shadow/montreal-challenge-verify.mjs</code> — redérive chaque chiffre du mémoire à partir de l'API en direct de la Ville et rapporte RÉUSSITE / DÉRIVE / ÉCHEC. ~23 s, l'agrégation s'exécute côté serveur dans l'entrepôt de la Ville.</p>
-<p style="margin:4px 0"><code>node shadow/shadow-run.mjs</code> — régénère le tableau de bord en direct sur les données du jour.</p>
-<p style="margin:8px 0 2px;font-size:13px;color:var(--muted)">Le but des deux : votre équipe vérifie notre arithmétique contre la source officielle, sans nous croire sur parole.</p></div>
-
 <div class="foot">
-Données sources : Requêtes 311 et les jeux de données voirie / géobase / RAAV / RTSS (<code>donnees.montreal.ca</code>, CC-BY 4.0 · © Ville de Montréal). Le mémoire et les notes sont des instantanés datés (2026-07-15); le tableau de bord en direct porte les chiffres courants.
+Données : Requêtes 311 &amp; les jeux voirie / géobase / RAAV / RTSS (<code>donnees.montreal.ca</code>, CC-BY 4.0 · © Ville de Montréal). Le mémoire et les notes sont des instantanés datés (2026-07-15); le tableau de bord en direct porte les chiffres courants. Code : MIT.
 </div>
 </div>
 </body>

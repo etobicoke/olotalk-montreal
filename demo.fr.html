@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Démo en direct — identifier l'actif, acheminer avec une raison</title>
+<title>Démo en direct · le moteur déterministe sur de vraies requêtes</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--mtl-red:#C8102E;--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;
---accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
+:root{--mtl-red:#C8102E;--bg:#fbfbf8;--surface:#fff;--border:#e3e1d9;--soft:#eeece4;--text:#1a1a2e;--muted:#6b6b80;
+--accent:#0d3b66;--dim:#eaf0f6;--green:#16a34a;--green-bg:#f0fdf4;--green-bd:#bbf7d0;
 --red:#dc2626;--red-bg:#fef2f2;--red-bd:#fecaca;--amber:#d97706;--amber-bg:#fffbeb;--amber-bd:#fde68a;
 --radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);--mono:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
 html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
@@ -17,7 +17,7 @@ header.doc{border-bottom:1px solid var(--border);padding-bottom:24px;margin-bott
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
 h1{font-size:29px;line-height:1.18;margin:10px 0 12px;letter-spacing:-.022em}
 .meta{font-size:13px;color:var(--muted)}.meta b{color:var(--text)}
-p{margin:11px 0}a{color:var(--accent)}code{font-family:var(--mono);font-size:.85em;background:#f1f1f5;padding:1px 5px;border-radius:4px}
+p{margin:11px 0}a{color:var(--accent)}code{font-family:var(--mono);font-size:.85em;background:#f2f1ea;padding:1px 5px;border-radius:4px}
 .lead{font-size:16px;line-height:1.5}
 .pipe{display:flex;align-items:stretch;gap:0;margin:22px 0 6px;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:var(--surface)}
 .pipe .p{flex:1;padding:12px 14px;border-right:1px solid var(--soft)}
@@ -36,7 +36,7 @@ p{margin:11px 0}a{color:var(--accent)}code{font-family:var(--mono);font-size:.85
 .st-re{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
 .flow{display:grid;grid-template-columns:1fr 22px 1fr 22px 1fr 22px 1.15fr;align-items:stretch;gap:0;padding:18px}
 .stage{border:1px solid var(--border);border-radius:9px;padding:10px 12px;background:#fdfdff}
-.stage.ai{background:var(--dim);border-color:#ddd6fe}
+.stage.ai{background:var(--dim);border-color:#c8d8e8}
 .stage.decide.ok{background:var(--green-bg);border-color:var(--green-bd)}
 .stage.decide.re{background:var(--amber-bg);border-color:var(--amber-bd)}
 .st-lbl{font-family:var(--mono);font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px}
@@ -66,7 +66,12 @@ body.js .pending{opacity:0;transform:translateY(8px);pointer-events:none}
 @media (prefers-reduced-motion:reduce){body.js .flow>*,body.js .reason,body.js .enclave{transition:none}}
 @media(max-width:760px){.pipe{flex-direction:column}.pipe .p{border-right:0;border-bottom:1px solid var(--soft)}
 .flow{grid-template-columns:1fr}.arr{transform:rotate(90deg);height:20px}}
-body{border-top:3px solid var(--mtl-red)}</style>
+body{border-top:3px solid var(--mtl-red)}
+/* civic-editorial: serif display + warm paper */
+:root{--serif:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif}
+body{background:#fbfbf8}
+h1,h2{font-family:var(--serif);font-weight:600}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -74,19 +79,19 @@ body{border-top:3px solid var(--mtl-red)}</style>
 <div class="langtoggle"><a href="demo.html">English</a> · <span class="cur">Français</span></div>
 <header class="doc">
 <div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> Démo en direct · le moteur d'acheminement déterministe, sur de vraies requêtes</div>
-<h1>Identifier l'actif. Acheminer avec une raison. Rediriger quand ce n'est pas à nous.</h1>
-<div class="meta">Chaque lieu ci-dessous provient d'une <b>vraie requête des données ouvertes 311 de la Ville</b>, et l'acheminement montré est celui du moteur — qui correspond à la décision réelle de la Ville. L'étape photo/voix est l'entrée; cette page démontre ce qui rend l'acheminement fiable : <b>un moteur déterministe et justifiable qui ne devine jamais un service.</b></div>
+<h1>Comment le moteur identifie l'actif, l'achemine avec une raison vérifiable, puis redirige ce qui ne relève pas de Montréal.</h1>
+<div class="meta">Chaque lieu ci-dessous provient d'une vraie requête des données ouvertes 311 de la Ville, et l'acheminement montré est celui du moteur, qui correspond à la décision réelle de la Ville. L'étape photo/voix est l'entrée; cette page démontre ce qui rend l'acheminement fiable : un moteur déterministe et justifiable qui ne devine jamais un service.</div>
 </header>
 
-<p class="lead">Un citoyen envoie une photo et quelques mots. La perception en tire un <b>actif + un défaut</b>. Puis un moteur déterministe décide <b>à qui revient le problème</b> — et peut toujours dire pourquoi, ou dire « ce n'est pas à nous ».</p>
+<p class="lead">Un citoyen envoie une photo et quelques mots. La perception en tire un <b>actif + un défaut</b>. Puis un moteur déterministe décide à qui revient le problème, et il peut toujours dire pourquoi, ou dire « ce n'est pas à nous ».</p>
 
 <div class="pipe">
 <div class="p ai"><div class="pn">01 · IA</div><div class="pt">Percevoir</div><div class="pd">photo + voix → catégorie d'actif + défaut</div></div>
 <div class="p det"><div class="pn">02 · déterministe</div><div class="pt">Résoudre</div><div class="pd">lieu → l'actif précis et son territoire</div></div>
 <div class="p det"><div class="pn">03 · déterministe</div><div class="pt">Déterminer le propriétaire</div><div class="pd">arrondissement · service partagé · ou ville liée</div></div>
-<div class="p det"><div class="pn">04 · déterministe</div><div class="pt">Acheminer ou rediriger</div><div class="pd">avec une raison vérifiable — jamais un service inventé</div></div>
+<div class="p det"><div class="pn">04 · déterministe</div><div class="pt">Acheminer ou rediriger</div><div class="pd">avec une raison vérifiable, jamais un service inventé</div></div>
 </div>
-<p class="legend"><b class="ai">■ IA</b> : uniquement la perception. <b class="det">■ Déterministe</b> : l'acheminement — donc vérifiable et incapable d'inventer un service.</p>
+<p class="legend"><b class="ai">■ IA</b> : uniquement la perception. <b class="det">■ Déterministe</b> : l'acheminement, donc vérifiable et incapable d'inventer un service.</p>
 
 <!-- SCÉNARIO 1 -->
 <div class="scn">
@@ -116,7 +121,7 @@ body{border-top:3px solid var(--mtl-red)}</style>
 <div class="arr">→</div>
 <div class="stage decide ok"><div class="st-lbl">4 · Acheminement</div><div class="st-body"><span class="big">Rosemont–La Petite-Patrie</span>unité des feux, à l'échelle de l'île</div></div>
 </div>
-<div class="reason"><span class="lbl">Raison</span>La Ville exploite les feux de circulation comme un <b>service partagé depuis Rosemont–La Petite-Patrie</b> — <b>74,7 %</b> de tous les signalements de feux de l'île, provenant de 21 territoires différents. La géographie naïve enverrait ce feu du centre-ville à Ville-Marie, à tort. Le moteur sait que c'est un service partagé.
+<div class="reason"><span class="lbl">Raison</span>La Ville exploite les feux de circulation comme un service partagé depuis Rosemont–La Petite-Patrie, qui traite <b>74,7 %</b> de tous les signalements de feux de l'île, provenant de 21 territoires différents. La géographie naïve enverrait ce feu du centre-ville à Ville-Marie, à tort. Le moteur sait que c'est un service partagé.
 <div class="verdict"><span class="chip no">Géographie naïve → Ville-Marie</span><span class="chip yes">Moteur → Rosemont–La Petite-Patrie</span><span class="chip city">Acheminement réel de la Ville → Rosemont ✓</span></div></div>
 </div>
 
@@ -128,11 +133,11 @@ body{border-top:3px solid var(--mtl-red)}</style>
 <div class="arr">→</div>
 <div class="stage ai"><div class="st-lbl">2 · Perception · IA</div><div class="st-body">actif = <b>chaussée</b><br>défaut = <b>nid-de-poule</b></div></div>
 <div class="arr">→</div>
-<div class="stage"><div class="st-lbl">3 · Résolution</div><div class="st-body">le lieu se trouve dans<br><span class="big">Ville de Mont-Royal</span><b>ville liée</b> — une ville distincte</div></div>
+<div class="stage"><div class="st-lbl">3 · Résolution</div><div class="st-body">le lieu se trouve dans<br><span class="big">Ville de Mont-Royal</span><b>ville liée</b>, une ville distincte</div></div>
 <div class="arr">→</div>
 <div class="stage decide re"><div class="st-lbl">4 · Redirection</div><div class="st-body"><span class="big">Ville de Mont-Royal</span>ce n'est pas à Montréal de le réparer</div></div>
 </div>
-<div class="reason"><span class="lbl">Raison</span>Les limites administratives de la Ville elle-même (Limites administratives, <code>TYPE = « Ville liée »</code>) situent cette adresse dans <b>Ville de Mont-Royal — l'une des 15 municipalités reconstituées</b>, et non l'un des 19 arrondissements de Montréal. Le 311 de Montréal n'a aucune compétence ici. La page sur les nids-de-poule de Montréal le confirme : les problèmes en ville liée vont à la ville liée. Un classificateur qui n'aurait vu que « nid-de-poule » aurait ouvert un bon de travail montréalais pour la rue d'une autre ville.
+<div class="reason"><span class="lbl">Raison</span>Les limites administratives de la Ville elle-même (Limites administratives, <code>TYPE = « Ville liée »</code>) situent cette adresse dans Ville de Mont-Royal, l'une des 15 municipalités reconstituées plutôt que l'un des 19 arrondissements de Montréal. Le 311 de Montréal n'a aucune compétence ici. La page sur les nids-de-poule de Montréal le confirme : les problèmes en ville liée vont à la ville liée. Un classificateur qui n'aurait vu que « nid-de-poule » aurait ouvert un bon de travail montréalais pour la rue d'une autre ville.
 <div class="verdict"><span class="chip yes">Moteur → redirection vers Ville de Mont-Royal</span><span class="chip city">Dans les données de la Ville, les requêtes de l'intérieur de Mont-Royal ne sont jamais assignées à la voirie d'un arrondissement ✓</span></div></div>
 <div class="enclave">
 <svg width="260" height="170" viewBox="0 0 260 170" role="img" aria-label="Schéma : l'enclave de Mont-Royal à l'intérieur de l'île de Montréal">
@@ -144,12 +149,12 @@ body{border-top:3px solid var(--mtl-red)}</style>
 <circle cx="129" cy="83" r="5.5" fill="#dc2626" stroke="#fff" stroke-width="2"/>
 <text x="129" y="99" text-anchor="middle" font-family="monospace" font-size="8" fill="#b45309">le signalement</text>
 </svg>
-<div class="cap">Mont-Royal est une <b>enclave</b> — une municipalité distincte entièrement entourée de Montréal. L'épingle tombe à l'intérieur de sa limite, donc la réponse est « pas à nous » peu importe ce que montre la photo. La géographie seule ne réussit ceci que si elle connaît l'existence de l'enclave; un classificateur de catégories, jamais.</div>
+<div class="cap">Mont-Royal est une <b>enclave</b>, une municipalité distincte entièrement entourée de Montréal. L'épingle tombe à l'intérieur de sa limite, donc la réponse est « pas à nous » peu importe ce que montre la photo. La géographie seule ne réussit ceci que si elle connaît l'existence de l'enclave; un classificateur de catégories, jamais.</div>
 </div>
 </div>
 
 <div class="foot">
-<b>À quel point est-ce réel ?</b> Les trois lieux et rues sont de vraies requêtes 311 (ou, pour Mont-Royal, une vraie rue de Ville de Mont-Royal), extraits en direct de <code>donnees.montreal.ca</code> (CC-BY 4.0 · © Ville de Montréal); les coordonnées affichées sont approximatives. L'acheminement montré est celui de la politique figée du moteur (empreinte <code>b1f81070…</code>), et il correspond aux décisions réelles enregistrées par la Ville. L'étape de perception (photo → actif + défaut) est montrée comme l'entrée — dans le produit, elle utilise un modèle de vision auto-hébergé; ici, nous démontrons le moteur déterministe, la partie qui rend l'acheminement vérifiable. Reproduire l'acheminement : <code>node shadow/shadow-run.mjs</code>. Voir aussi le <a href="index.html">pôle de la soumission</a> et le <a href="shadow/scorecard.html">tableau de bord en direct</a>.
+<b>À quel point est-ce réel ?</b> Les trois lieux et rues sont de vraies requêtes 311 (ou, pour Mont-Royal, une vraie rue de Ville de Mont-Royal), extraits en direct de <code>donnees.montreal.ca</code> (CC-BY 4.0 · © Ville de Montréal); les coordonnées affichées sont approximatives. L'acheminement montré est celui de la politique figée du moteur (empreinte <code>b1f81070…</code>), et il correspond aux décisions réelles enregistrées par la Ville. L'étape de perception (photo → actif + défaut) est montrée comme l'entrée. Dans le produit, elle utilise un modèle de vision auto-hébergé; ici, nous démontrons le moteur déterministe, la partie qui rend l'acheminement vérifiable. Reproduire l'acheminement : <code>node shadow/shadow-run.mjs</code>. Voir aussi le <a href="index.html">pôle de la soumission</a> et le <a href="shadow/scorecard.html">tableau de bord en direct</a>.
 </div>
 </div>
 <script>

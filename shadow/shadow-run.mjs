@@ -233,8 +233,8 @@ function renderHtml(card, lang) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>${fr ? "Montréal — tableau de bord de l'acheminement" : "Montréal routing shadow-run — live scorecard"}</title><style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f8f8fa;--surface:#fff;--border:#e4e4e8;--soft:#ededf1;--text:#1a1a2e;--muted:#6b6b80;--mtl-red:#C8102E;
---accent:#4D20F5;--dim:#ede9ff;--green:#16a34a;--green-bg:#f0fdf4;--amber:#d97706;--amber-bg:#fffbeb;--mono:"SF Mono",Menlo,Consolas,monospace}
+:root{--bg:#fbfbf8;--surface:#fff;--border:#e3e1d9;--soft:#eeece4;--text:#1a1a2e;--muted:#6b6b80;--mtl-red:#C8102E;
+--accent:#0d3b66;--dim:#eaf0f6;--green:#16a34a;--green-bg:#f0fdf4;--amber:#d97706;--amber-bg:#fffbeb;--mono:"SF Mono",Menlo,Consolas,monospace}
 html{font-size:16px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;border-top:3px solid var(--mtl-red)}
 .wrap{max-width:860px;margin:0 auto;padding:52px 24px 80px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
@@ -253,10 +253,14 @@ h1{font-size:27px;line-height:1.2;margin:10px 0 10px;letter-spacing:-.02em}
 .callout{border:1px solid var(--border);border-left-width:4px;border-left-color:var(--accent);background:var(--dim);border-radius:6px;padding:13px 16px;margin:16px 0;font-size:14px}
 .callout .lbl{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);display:block;margin-bottom:4px}
 .callout.warn{border-left-color:var(--amber);background:var(--amber-bg)}.callout.warn .lbl{color:var(--amber)}
-code{font-family:var(--mono);font-size:.86em;background:#f1f1f5;padding:1px 5px;border-radius:4px}
+code{font-family:var(--mono);font-size:.86em;background:#f2f1ea;padding:1px 5px;border-radius:4px}
 h2{font-size:16px;margin:32px 0 10px}p{margin:10px 0;font-size:14.5px}ul{margin:8px 0 8px 20px;font-size:14px}li{margin:4px 0}
 .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted)}
-@media(max-width:640px){.grid{grid-template-columns:1fr}}</style></head><body><div class="wrap">
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+:root{--serif:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif}
+body{background:#fbfbf8}
+h1,h2{font-family:var(--serif);font-weight:600}
+</style></head><body><div class="wrap">
 <div style="font-size:12.5px;color:var(--muted);margin-bottom:16px">${toggle}</div>
 <div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> ${fr ? "Tableau de bord en direct · moteur d'acheminement de Montréal · Olotalk" : "Live scorecard · Montréal routing resolver · Olotalk"}</div>
 <h1>${fr ? "Shadow-run de l'acheminement — une politique figée, notée à découvert" : "Routing shadow-run — a frozen policy, scored in the open"}</h1>
