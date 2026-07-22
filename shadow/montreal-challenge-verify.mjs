@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Montréal AI Challenge (ALL IN 2026) — reproduction & verification harness.
+// Montréal AI Challenge (ALL IN 2026), reproduction & verification harness.
 //
 // Re-derives EVERY quantitative claim in:
 //   proposal.md  (+ proposal.html)
@@ -10,7 +10,7 @@
 // WHY THIS EXISTS
 // The proposal's entire differentiator is "we measured this." A number in a PDF
 // is an assertion; a number a judge can re-derive in 60 seconds is evidence.
-// Anyone — including a City of Montréal official — can run this against the
+// Anyone, including a City of Montréal official, can run this against the
 // live portal and check our arithmetic.
 //
 // DRIFT IS EXPECTED, NOT A BUG. The 311 resource is "2022 à ce jour": it grows
@@ -30,9 +30,9 @@
 const API = "https://donnees.montreal.ca/api/3/action";
 
 // Resource IDs (CKAN). Stable identifiers, not derived from the portal UI.
-const R311 = "2cfa0e06-9be4-49a6-b7f1-ee9f2363a872"; // Requêtes 311, 2022 → present
-const R_VOIRIE_CHAUSSEE = "b1519f66-b48d-4ab6-a79b-1830c6307775"; // Voirie C22 — chaussée agrégée
-const R_VOIRIE_DICT = "d277acf9-2c0c-4eaf-9e02-8c03eef690ce"; // Voirie — liste de valeurs
+const R311 = "2cfa0e06-9be4-49a6-b7f1-ee9f2363a872"; // Requêtes 311,2022 → present
+const R_VOIRIE_CHAUSSEE = "b1519f66-b48d-4ab6-a79b-1830c6307775"; // Voirie C22, chaussée agrégée
+const R_VOIRIE_DICT = "d277acf9-2c0c-4eaf-9e02-8c03eef690ce"; // Voirie, liste de valeurs
 
 const QUICK = process.argv.includes("--quick");
 const JSON_OUT = process.argv.includes("--json");
@@ -44,9 +44,9 @@ const log = (...a) => { if (!JSON_OUT) console.log(...a); };
 async function sql(query) {
   const url = `${API}/datastore_search_sql?sql=${encodeURIComponent(query)}`;
   const res = await fetch(url, { headers: { accept: "application/json" } });
-  if (!res.ok) throw new Error(`CKAN HTTP ${res.status} for: ${query.slice(0, 120)}…`);
+  if (!res.ok) throw new Error(`CKAN HTTP ${res.status} for: ${query.slice(0,120)}…`);
   const body = await res.json();
-  if (!body.success) throw new Error(`CKAN error: ${JSON.stringify(body.error).slice(0, 200)}`);
+  if (!body.success) throw new Error(`CKAN error: ${JSON.stringify(body.error).slice(0,200)}`);
   return body.result.records;
 }
 
@@ -69,7 +69,7 @@ const pct = (x) => `${(x * 100).toFixed(2)}%`;
  *
  * ARRONDISSEMENT_GEO says "Mercier-Hochelaga-Maisonneuve"; UNITE_RESP_PARENT
  * says "MERCIER - HOCHELAGA-MAISONNEUVE". Same place, different string. Naive
- * string equality reports a ~51% mismatch that is pure formatting — see
+ * string equality reports a ~51% mismatch that is pure formatting, see
  * FINDINGS.md §"The 51% that wasn't".
  *
  * Verified collision-free: exactly 19 units map 1:1 onto the 19 boroughs, and
@@ -90,14 +90,14 @@ function record(status, label, actual, documented, note = "") {
   if (JSON_OUT) return;
   const badge = { PASS: "\x1b[32mPASS\x1b[0m", FAIL: "\x1b[31mFAIL\x1b[0m", DRIFT: "\x1b[33mDRIFT\x1b[0m", INFO: "\x1b[36mINFO\x1b[0m" }[status];
   const doc = documented === null ? "" : `  (documented ${documented})`;
-  console.log(`  ${badge}  ${label}: \x1b[1m${actual}\x1b[0m${doc}${note ? `  — ${note}` : ""}`);
+  console.log(`  ${badge}  ${label}: \x1b[1m${actual}\x1b[0m${doc}${note ? `, ${note}` : ""}`);
 }
 
 /** Counts may only grow (the dataset is append-only): equal → PASS, greater → DRIFT, less → FAIL. */
 function expectCount(label, actual, documented) {
   if (actual === documented) return record("PASS", label, actual, documented);
-  if (actual > documented) return record("DRIFT", label, actual, documented, "dataset grew — expected over time");
-  return record("FAIL", label, actual, documented, "count went DOWN — data was withdrawn or the query changed");
+  if (actual > documented) return record("DRIFT", label, actual, documented, "dataset grew, expected over time");
+  return record("FAIL", label, actual, documented, "count went DOWN, data was withdrawn or the query changed");
 }
 
 /** Rates are the load-bearing claims: checked with a tolerance. */
@@ -119,7 +119,7 @@ async function volumeAndNature() {
   expectCount("NATURE='Requete' (service requests)", byNature.Requete, 1588391);
   expectCount("NATURE='Information' (not georeferenced by design)", byNature.Information, 1391644);
 
-  // Information rows carry no location by design — this is why 1.39M coords are null.
+  // Information rows carry no location by design, this is why 1.39M coords are null.
   const [nullLieu] = await sql(
     `SELECT COUNT(*) AS n FROM "${R311}" WHERE "NATURE" <> 'Information' AND "TYPE_LIEU_INTERV" IS NULL`
   );
@@ -144,14 +144,14 @@ async function taxonomy() {
   const [units] = await sql(`SELECT COUNT(DISTINCT "UNITE_RESP_PARENT") AS n FROM "${R311}"`);
   expectCount("distinct UNITE_RESP_PARENT", n(units.n), 52);
 
-  // Fact 2 — the category does not name the owner. Measured on the REQUEST
+  // Fact 2, the category does not name the owner. Measured on the REQUEST
   // population (not all NATURE) so it matches the population Rule A/B uses.
   const fan = await sql(
     `SELECT "ACTI_NOM", COUNT(DISTINCT "UNITE_RESP_PARENT") AS u, COUNT(*) AS n FROM "${R311}"
-     WHERE "NATURE"='Requete' AND "ACTI_NOM" IN ('Nid-de-poule','Collecte de déchets','Feux de circulation - Entretien','Occupation du domaine public')
+     WHERE "NATURE"='Requete' AND "ACTI_NOM" IN ('Nid-de-poule', 'Collecte de déchets', 'Feux de circulation - Entretien', 'Occupation du domaine public')
      GROUP BY 1`
   );
-  for (const r of fan) record("INFO", `"${r.ACTI_NOM}" — responsible units`, `${r.u} units over ${n(r.n).toLocaleString()} requests`, null);
+  for (const r of fan) record("INFO", `"${r.ACTI_NOM}", responsible units`, `${r.u} units over ${n(r.n).toLocaleString()} requests`, null);
 }
 
 async function channelMix() {
@@ -163,7 +163,7 @@ async function channelMix() {
   record("INFO", "telephone requests", phone.toLocaleString(), "2,489,180");
 
   // PROVENANCE_TELEPHONE is a COUNT of distinct requesters, not a flag.
-  // The City already merges duplicates and keeps the vote — see FINDINGS.md.
+  // The City already merges duplicates and keeps the vote, see FINDINGS.md.
   const [multi] = await sql(
     `SELECT COUNT(*) AS n FROM "${R311}" WHERE "NATURE"='Requete' AND ("PROVENANCE_TELEPHONE")::int > 1`
   );
@@ -172,7 +172,7 @@ async function channelMix() {
 
   const [bam] = await sql(`SELECT COUNT(*) AS n FROM "${R311}" WHERE "LOC_ERREUR_GDT"='1'`);
   record("INFO", "requests pinned to a borough office (LOC_ERREUR_GDT=1)", n(bam.n).toLocaleString(), "62,008",
-    "NOT an error flag — 1 = 'localisation au BAM de l'arrondissement'");
+    "NOT an error flag, 1 = 'localisation au BAM de l'arrondissement'");
 }
 
 async function theFailedJoin() {
@@ -181,7 +181,7 @@ async function theFailedJoin() {
   const [ver] = await sql(`SELECT MAX("DATE_VERSION") AS v, COUNT(*) AS n FROM "${R_VOIRIE_CHAUSSEE}"`);
   record("INFO", "voirie chaussée rows", n(ver.n).toLocaleString(), "16,750");
   record(String(ver.v).startsWith("2020") ? "PASS" : "DRIFT", "voirie DATE_VERSION", ver.v, "20200530000000",
-    "a 2020 snapshot — not a living registry");
+    "a 2020 snapshot, not a living registry");
 
   // The dictionary PERMITS these owner values...
   const dict = await sql(
@@ -204,7 +204,7 @@ async function theFailedJoin() {
   // The proof: provincial highways are attributed to boroughs.
   const autoroutes = await sql(
     `SELECT "PROPRIETAIRE_REF" AS o, COUNT(*) AS n FROM "${R_VOIRIE_CHAUSSEE}"
-     WHERE "CATEGORIECHAUSSEE_REF" IN ('Autoroute','Bretelle') GROUP BY 1 ORDER BY n DESC LIMIT 3`
+     WHERE "CATEGORIECHAUSSEE_REF" IN ('Autoroute', 'Bretelle') GROUP BY 1 ORDER BY n DESC LIMIT 3`
   );
   for (const r of autoroutes) {
     record("INFO", `Autoroute/Bretelle segments attributed to "${r.o}"`, n(r.n), null,
@@ -219,27 +219,27 @@ async function villesLiees() {
     "Kirkland", "Baie-D'Urfé", "Sainte-Anne-de-Bellevue", "L'Île-Dorval"];
   const list = VL.map((v) => `'${v.replace(/'/g, "''")}'`).join(",");
 
-  // ARRONDISSEMENT is "the unit assigned to fix it" — it can NEVER say Westmount,
+  // ARRONDISSEMENT is "the unit assigned to fix it", it can NEVER say Westmount,
   // so filtering on it returns a circular zero. The geographic column is the
   // right one for "where did this originate". See FINDINGS.md §"The circular zero".
   const [declared] = await sql(
     `SELECT COUNT(*) AS n FROM "${R311}" WHERE "ACTI_NOM"='Nid-de-poule' AND "ARRONDISSEMENT" IN (${list})`
   );
-  record("INFO", "potholes in a ville liée — by ARRONDISSEMENT (WRONG column)", n(declared.n), 0,
+  record("INFO", "potholes in a ville liée, by ARRONDISSEMENT (WRONG column)", n(declared.n), 0,
     "circular: this column names who FIXES it, never a ville liée");
 
   const [geo] = await sql(
     `SELECT COUNT(*) AS n FROM "${R311}" WHERE "ACTI_NOM"='Nid-de-poule' AND "ARRONDISSEMENT_GEO" IN (${list})`
   );
-  expectCount("potholes ORIGINATING in a ville liée — by ARRONDISSEMENT_GEO", n(geo.n), 311);
+  expectCount("potholes ORIGINATING in a ville liée, by ARRONDISSEMENT_GEO", n(geo.n), 311);
 
   const [org] = await sql(`SELECT COUNT(*) AS n FROM "${R311}" WHERE "ACTI_NOM"='Organisme divers'`);
-  record("INFO", "'Organisme divers' — today's \"belongs to someone else\" bucket", n(org.n).toLocaleString(), "47,578",
+  record("INFO", "'Organisme divers', today's \"belongs to someone else\" bucket", n(org.n).toLocaleString(), "47,578",
     "our baseline to beat");
 }
 
 async function routingRules() {
-  log("\n\x1b[1m§6  THE HEADLINE — routing without machine learning\x1b[0m");
+  log("\n\x1b[1m§6  THE HEADLINE, routing without machine learning\x1b[0m");
   log("  pulling the grouped evaluation set (this is the slow one)…");
 
   const rows = await sqlPaged(
@@ -266,16 +266,16 @@ async function routingRules() {
     d.units.set(r.u, (d.units.get(r.u) ?? 0) + c);
     if (norm(r.g) === norm(r.u)) { d.geo += c; geoHits += c; }
   }
-  expectRate("Rule A — geometry alone, in-sample", geoHits / total, 0.9033);
+  expectRate("Rule A, geometry alone, in-sample", geoHits / total, 0.9033);
 
   let comboHits = 0, fixedCats = 0;
   for (const d of agg.values()) {
     const modal = Math.max(...d.units.values());
     if (modal > d.geo) { comboHits += modal; fixedCats++; } else comboHits += d.geo;
   }
-  expectRate("Rule B — geometry + per-category switch, in-sample", comboHits / total, 0.9755);
+  expectRate("Rule B, geometry + per-category switch, in-sample", comboHits / total, 0.9755);
   record("INFO", "categories where a FIXED unit beats geometry", fixedCats, 142,
-    "the shared services — Rosemont runs signals/lighting island-wide");
+    "the shared services, Rosemont runs signals/lighting island-wide");
 
   if (QUICK) return log("  --quick: skipping the held-out split");
 
@@ -305,15 +305,15 @@ async function routingRules() {
     if (p.mode === "geo" ? geoRight : r.u === p.unit) tB += c;
   }
   log(`  \x1b[2mheld-out split: ${(total - tTot).toLocaleString()} train (2022–24) → ${tTot.toLocaleString()} test (2025–26)\x1b[0m`);
-  expectRate("Rule A — geometry alone, HELD OUT", tA / tTot, 0.9095);
-  expectRate("Rule B — fitted on train, HELD OUT", tB / tTot, 0.9727);
+  expectRate("Rule A, geometry alone, HELD OUT", tA / tTot, 0.9095);
+  expectRate("Rule B, fitted on train, HELD OUT", tB / tTot, 0.9727);
 }
 
 async function sharedServices() {
   log("\n\x1b[1m§7  The trap: shared services are not geographic\x1b[0m");
   for (const [cat, docShare, docTerr] of [
-    ["Feux de circulation - Entretien", 0.747, 21],
-    ["Éclairage existant - Entretien", 0.669, 23],
+    ["Feux de circulation - Entretien", 0.747,21],
+    ["Éclairage existant - Entretien", 0.669,23],
   ]) {
     const rows = await sql(
       `SELECT "UNITE_RESP_PARENT" AS u, "ARRONDISSEMENT_GEO" AS g, COUNT(*) AS n FROM "${R311}"
@@ -335,9 +335,9 @@ async function sharedServices() {
 // ─────────────────────────────────────────────────────────────────────────────
 
 (async () => {
-  log("\x1b[1m\x1b[35mMontréal AI Challenge — reproduction harness\x1b[0m");
+  log("\x1b[1m\x1b[35mMontréal AI Challenge, reproduction harness\x1b[0m");
   log("\x1b[2mVerifying proposal.md against the live City of Montréal open-data API.");
-  log("Documented values were measured 2026-07-15. DRIFT on counts is expected — the dataset grows daily.\x1b[0m");
+  log("Documented values were measured 2026-07-15. DRIFT on counts is expected, the dataset grows daily.\x1b[0m");
 
   try {
     await volumeAndNature();
@@ -365,7 +365,7 @@ async function sharedServices() {
         `${results.filter((r) => r.status === "INFO").length} informational`);
     if (drift.length) log(`  \x1b[2mDrift is expected on counts: the 311 resource is "2022 à ce jour" and grows daily.\x1b[0m`);
     if (failed.length) {
-      log(`\n  \x1b[31mFAILED CHECKS — the proposal's claims no longer hold:\x1b[0m`);
+      log(`\n  \x1b[31mFAILED CHECKS, the proposal's claims no longer hold:\x1b[0m`);
       for (const f of failed) log(`    · ${f.label}: got ${f.actual}, documented ${f.documented}`);
     }
     log("");

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Submission hub — Reinventing routing · Montréal</title>
+<title>Submission hub: Reinventing routing · Montréal</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -79,7 +79,7 @@ a.art:hover{background:#faf9f4}
 <div class="masthead">
 <div class="kicker">⚜ AI Challenge · Reinventing the Citizen Experience · ALL IN 2026 × Ville de Montréal</div>
 <h1>Reinventing the routing</h1>
-<div class="h1sub">Resolve the asset, don't classify the photo — and prove it, figure by figure.</div>
+<div class="h1sub">Resolve the asset, don't classify the photo. And prove it, figure by figure.</div>
 <div class="dateline">Olotalk municipal vertical · submission <b>2026-07-24</b> · live presentations <b>Sep 16–17</b> · Olochat&nbsp;AI&nbsp;Inc.</div>
 </div>
 
@@ -87,21 +87,21 @@ a.art:hover{background:#faf9f4}
 <div class="nh">A note from us.</div>
 <p>We didn't start with a demo. We spent days inside Montréal's open 311 data, and the most useful thing we learned is that the obvious approach is the wrong one. Routing a report isn't about recognizing a pothole in a photo; it's about knowing <b>whose problem it is</b>. The City already answers that about 97% of the time, with rules you can recompute. So we built the version a juror can check.</p>
 <p>Everything here comes from real data, and every figure regenerates from the City's own API. We'd rather you verify us than take our word for it.</p>
-<div class="sig">— <b>The Olochat&nbsp;AI team</b> · Montréal</div>
+<div class="sig"><b>The Olochat&nbsp;AI team</b> · Montréal</div>
 </div>
 
 <p class="lead">The brief asks for AI that reads a photo and routes the request. We measured four years of Montréal's routing first, and routing turns out to be the easy part. The AI does the perception; a deterministic, citable resolver does the routing, defers to a human when the sources disagree, and never emits a department name, so it cannot misroute by hallucination.</p>
 
 <div class="figs">
 <div class="fig"><div class="v">~97%</div><div class="l">of routing reproduced with <b>no machine learning</b> (held-out)</div></div>
-<div class="fig red"><div class="v">~90%</div><div class="l">from geography alone — no photo, no text, no model</div></div>
-<div class="fig"><div class="v">3M+</div><div class="l">requests scanned in full — nothing sampled</div></div>
-<div class="fig"><div class="v">~82%</div><div class="l">of volume still arrives by phone — the real prize</div></div>
+<div class="fig red"><div class="v">~90%</div><div class="l">from geography alone: no photo, no text, no model</div></div>
+<div class="fig"><div class="v">3M+</div><div class="l">requests scanned in full: nothing sampled</div></div>
+<div class="fig"><div class="v">~82%</div><div class="l">of volume still arrives by phone: the real prize</div></div>
 </div>
 <div class="driftnote">Drift-proof forms: rates are stable; counts grow daily.</div>
 
 <div class="verify">
-<div class="vh">Don't take our word — verify.</div>
+<div class="vh">Don't take our word. Verify.</div>
 <p>Two dependency-free scripts replay every figure against the City's live API. The scorecard re-scores itself <b>every day</b>, and the public commit history is the proof-of-time.</p>
 <div class="cmd"><span class="c">node</span> shadow/montreal-challenge-verify.mjs&nbsp;&nbsp;<span style="color:#6b8299"># every figure → PASS / DRIFT / FAIL</span></div>
 <div class="cmd"><span class="c">node</span> shadow/shadow-run.mjs&nbsp;&nbsp;<span style="color:#6b8299"># regenerates the live scorecard</span></div>
@@ -131,9 +131,9 @@ a.art:hover{background:#faf9f4}
 
 <h2>The deliverables</h2>
 <div class="arts">
-<a class="art" href="demo.html"><span class="ico">🎬</span><span><span class="an">Live demo — 3 real scenarios</span><span class="ad">Routed, the shared-service catch (downtown traffic light → Rosemont), and redirected (Mont-Royal → not ours). Every case is a real 311 request. Bilingual — the source for the video.</span></span><span class="tag live">demo</span></a>
+<a class="art" href="demo.html"><span class="ico">🎬</span><span><span class="an">Live demo: 3 real scenarios</span><span class="ad">Routed, the shared-service catch (downtown traffic light → Rosemont), and redirected (Mont-Royal → not ours). Every case is a real 311 request. Bilingual. The source for the video.</span></span><span class="tag live">demo</span></a>
 <a class="art" href="proposal.html"><span class="ico">📄</span><span><span class="an">Technical proposal</span><span class="ad">Resolve the asset, derive the owner; the grounding guarantee; the jurisdiction join that doesn't exist; the two-tier privacy model.</span></span><span class="tag read">read</span></a>
-<a class="art" href="findings.html"><span class="ico">🔬</span><span><span class="an">Field notes &amp; dead ends</span><span class="ad">The fields that lie about their names, the walls we walked into, the API cookbook. The credibility receipt — proof a human did the work.</span></span><span class="tag read">read</span></a>
+<a class="art" href="findings.html"><span class="ico">🔬</span><span><span class="an">Field notes &amp; dead ends</span><span class="ad">The fields that lie about their names, the walls we walked into, the API cookbook. The credibility receipt: proof a human did the work.</span></span><span class="tag read">read</span></a>
 <a class="art" href="shadow/scorecard.en.html"><span class="ico">📊</span><span><span class="an">Live scorecard</span><span class="ad">The frozen policy, scored daily against the City's decisions: 97.27% held-out, with a hash anyone can recompute.</span></span><span class="tag live">live</span></a>
 </div>
 

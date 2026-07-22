@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Montréal routing shadow-run — a prospective, tamper-evident accuracy ledger.
+// Montréal routing shadow-run, a prospective, tamper-evident accuracy ledger.
 //
 // WHAT THIS IS
 // A deterministic routing policy, frozen and hashed on the City of Montréal's
@@ -8,7 +8,7 @@
 // timestamps the prediction. The scorecard is regenerated from the ledger and is
 // re-derivable by anyone against the live City API.
 //
-// THE INTEGRITY CLAIM — stated precisely, because a City data engineer will read it
+// THE INTEGRITY CLAIM, stated precisely, because a City data engineer will read it
 //   • The policy is a lookup table fit ONLY on requests created on/before the
 //     FREEZE_CUTOFF, then hashed (sha256). The hash is committed. The table cannot
 //     have been retrofitted to any later request, because those requests did not
@@ -21,13 +21,13 @@
 //     it to git is the proof-of-time: git history shows the prediction existed
 //     before any later reconciliation.
 //
-// WHAT THIS DOES NOT CLAIM — and must not, or it dies on stage
+// WHAT THIS DOES NOT CLAIM, and must not, or it dies on stage
 //   • It does NOT claim to predict a routing before the City makes it. The 311 open
 //     data publishes each request with its responsible unit already attached
 //     (verified 2026-07-21: 68,776/68,776 recent located requests arrive routed).
 //     The credibility here is "provably not retrofitted + independently
 //     recomputable", NOT "we beat the City to the answer".
-//   • It scores the ROUTING layer only — the "whose is it?" resolver. It does not
+//   • It scores the ROUTING layer only, the "whose is it?" resolver. It does not
 //     score photo/voice perception; there are no photos in the 311 record. The
 //     perception layer is demonstrated separately.
 //
@@ -56,7 +56,7 @@ const API = "https://donnees.montreal.ca/api/3/action";
 const R311 = "2cfa0e06-9be4-49a6-b7f1-ee9f2363a872"; // Requêtes 311, 2022 → present
 
 // The two dates that define the experiment. Changing FREEZE_CUTOFF changes the
-// policy hash by design — it is part of what the hash attests.
+// policy hash by design, it is part of what the hash attests.
 const FREEZE_CUTOFF = "2025-01-01"; // policy fit on requests created BEFORE this (2024 & earlier)
 const PROSPECTIVE_EPOCH = "2026-07-21"; // shadow run began; requests after this are "live"
 
@@ -95,7 +95,7 @@ async function sqlPaged(select, pageSize = 25000) {
 // spell the same borough differently ("Mercier-Hochelaga-Maisonneuve" vs
 // "MERCIER - HOCHELAGA-MAISONNEUVE"); this collapses both to one key. Verified
 // collision-free: 19 units map 1:1 onto the 19 boroughs, none onto a borough it
-// is not. Part of the hashed decision function — do not change without a rehash.
+// is not. Part of the hashed decision function, do not change without a rehash.
 function norm(s) {
   if (!s) return "";
   let x = s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toUpperCase().replace(/['.]/g, " ");
@@ -140,7 +140,7 @@ function fitPolicy(rows) {
   return { categories, fixedCount: fixed, categoryCount: perCat.size };
 }
 
-// The decision function that gets hashed — rules + provenance, no volatile counts.
+// The decision function that gets hashed, rules + provenance, no volatile counts.
 const decisionObject = (policy) => ({
   freezeCutoff: FREEZE_CUTOFF,
   geoMode: "predicted unit = geographic territory (ARRONDISSEMENT_GEO), reconciled by norm()",
@@ -153,7 +153,7 @@ async function loadOrBuildPolicy() {
     const rehash = sha256(canonical(decisionObject(saved.policy)));
     if (rehash !== saved.policyHash)
       throw new Error(`POLICY TAMPER: stored hash ${saved.policyHash} != recomputed ${rehash}. ` +
-        `The committed policy was altered without a rehash — refuse to score against it.`);
+        `The committed policy was altered without a rehash, refuse to score against it.`);
     return saved;
   }
   console.log(`  fitting policy on requests created before ${FREEZE_CUTOFF} (2024 & earlier) …`);
@@ -206,7 +206,7 @@ async function scoreWindow(saved, dateWhere, label, keepCells = false) {
   const cells = [];
   for (const r of rows) {
     const n = Number(r.n);
-    const predicted = predict(saved.policy, r.k, r.g); // pure — does not read r.u
+    const predicted = predict(saved.policy, r.k, r.g); // pure, does not read r.u
     const hit = norm(predicted) === norm(r.u);
     evaluated += n;
     if (hit) correct += n;
@@ -217,7 +217,7 @@ async function scoreWindow(saved, dateWhere, label, keepCells = false) {
 
 // ─── scorecard ──────────────────────────────────────────────────────────────────
 
-const pct = (x) => (x == null ? "—" : `${(x * 100).toFixed(2)}%`);
+const pct = (x) => (x == null ? "n/a" : `${(x * 100).toFixed(2)}%`);
 
 function renderHtml(card, lang) {
   const prosp = card.tiers.prospective;
@@ -225,13 +225,13 @@ function renderHtml(card, lang) {
   const fr = lang === "fr";
   const prospLine = prosp.evaluated
     ? `${pct(prosp.accuracy)} · ${prosp.correct.toLocaleString()} / ${prosp.evaluated.toLocaleString()} ${fr ? "requêtes" : "requests"}`
-    : (fr ? "en accumulation — 0 requête publiée depuis le gel jusqu'ici" : "accumulating — 0 requests published since the freeze so far");
+    : (fr ? "en accumulation, 0 requête publiée depuis le gel jusqu'ici" : "accumulating, 0 requests published since the freeze so far");
   const toggle = fr
     ? `<a href="scorecard.en.html">English</a> · <span style="font-weight:700;color:var(--text)">Français</span>`
     : `<span style="font-weight:700;color:var(--text)">English</span> · <a href="scorecard.html">Français</a>`;
   return `<!DOCTYPE html><html lang="${lang}"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>${fr ? "Montréal — tableau de bord de l'acheminement" : "Montréal routing shadow-run — live scorecard"}</title><style>
+<title>${fr ? "Montréal, tableau de bord de l'acheminement" : "Montréal routing shadow-run, live scorecard"}</title><style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#fbfbf8;--surface:#fff;--border:#e3e1d9;--soft:#eeece4;--text:#1a1a2e;--muted:#6b6b80;--mtl-red:#C8102E;
 --accent:#0d3b66;--dim:#eaf0f6;--green:#16a34a;--green-bg:#f0fdf4;--amber:#d97706;--amber-bg:#fffbeb;--mono:"SF Mono",Menlo,Consolas,monospace}
@@ -263,7 +263,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 </style></head><body><div class="wrap">
 <div style="font-size:12.5px;color:var(--muted);margin-bottom:16px">${toggle}</div>
 <div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> ${fr ? "Tableau de bord en direct · moteur d'acheminement de Montréal · Olotalk" : "Live scorecard · Montréal routing resolver · Olotalk"}</div>
-<h1>${fr ? "Shadow-run de l'acheminement — une politique figée, notée à découvert" : "Routing shadow-run — a frozen policy, scored in the open"}</h1>
+<h1>${fr ? "Shadow-run de l'acheminement, une politique figée, notée à découvert" : "Routing shadow-run, a frozen policy, scored in the open"}</h1>
 <div class="meta">${fr ? `Tableau généré le <b>${card.asOf}</b> · politique figée le <b>${card.frozenAt}</b> sur les requêtes créées avant ${card.freezeCutoff} (2024 et avant) · chaque chiffre ci-dessous est redérivable depuis l'API en direct de la Ville via <code>shadow-run.mjs</code>` : `Scorecard generated <b>${card.asOf}</b> · policy frozen <b>${card.frozenAt}</b> on requests created before ${card.freezeCutoff} (2024 &amp; earlier) · every number below re-derivable from the live City API via <code>shadow-run.mjs</code>`}</div>
 <div class="hero"><div class="herofig">${pct(back.accuracy)}</div>
 <div class="herolab">${fr ? `de l'acheminement de la Ville reproduit par une <b>politique à empreinte figée qu'elle n'a jamais servi à ajuster</b><br>rétro-test hors échantillon · ${back.correct.toLocaleString()} / ${back.evaluated.toLocaleString()} requêtes créées ${card.freezeCutoff} → ${card.prospectiveEpoch}` : `of the City's routing reproduced by a <b>hash-frozen policy it was never fit on</b><br>held-out backtest · ${back.correct.toLocaleString()} / ${back.evaluated.toLocaleString()} requests created ${card.freezeCutoff} → ${card.prospectiveEpoch}`}</div></div>
@@ -272,15 +272,15 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="card live"><div class="kl">${fr ? "Prospectif · en direct" : "Prospective · live"}</div><div class="kv" style="color:var(--accent)">${prosp.evaluated ? pct(prosp.accuracy) : "0"}</div><div class="kd">${prospLine}</div></div>
 </div>
 <h2>${fr ? "La politique figée" : "The frozen policy"}</h2>
-<p>${fr ? `Une table de correspondance ajustée sur <b>${card.trainRows.toLocaleString()}</b> requêtes créées avant ${card.freezeCutoff} (2024 et avant) — ${card.categoryCount} catégories, dont ${card.fixedCount} acheminées vers une unité de service partagé fixe, le reste par géographie. Son sha256, forgé au gel et inchangé depuis :` : `A lookup table fit on <b>${card.trainRows.toLocaleString()}</b> requests created before ${card.freezeCutoff} (2024 &amp; earlier) — ${card.categoryCount} categories, ${card.fixedCount} of them routed to a fixed shared-service unit, the rest by geography. Its sha256, minted at the freeze and unchanged since:`}</p>
+<p>${fr ? `Une table de correspondance ajustée sur <b>${card.trainRows.toLocaleString()}</b> requêtes créées avant ${card.freezeCutoff} (2024 et avant), ${card.categoryCount} catégories, dont ${card.fixedCount} acheminées vers une unité de service partagé fixe, le reste par géographie. Son sha256, forgé au gel et inchangé depuis :` : `A lookup table fit on <b>${card.trainRows.toLocaleString()}</b> requests created before ${card.freezeCutoff} (2024 &amp; earlier), ${card.categoryCount} categories, ${card.fixedCount} of them routed to a fixed shared-service unit, the rest by geography. Its sha256, minted at the freeze and unchanged since:`}</p>
 <div class="hash">${card.policyHash}</div>
 <div class="callout"><span class="lbl">${fr ? "Pourquoi vous pouvez croire ce chiffre sans nous croire" : "Why you can trust this number without trusting us"}</span>
-${fr ? "Une prédiction est une fonction déterministe de cette table figée et de la catégorie + du territoire géographique d'une requête — rien d'autre. Aucun poids de modèle, aucun paramètre libre, rien de caché. Recalculez n'importe quelle prédiction vous-même à partir des mêmes entrées publiques et vous obtenez le même résultat. La table a été hachée avant l'existence des requêtes testées; elle ne peut donc pas y avoir été ajustée. Chaque exécution quotidienne est consignée dans git; l'historique des commits est la preuve d'antériorité." : "A prediction is a deterministic function of this frozen table and a request's category + geographic territory — nothing else. There are no model weights, no free parameters, nothing hidden. Recompute any prediction yourself from the same public inputs and you get the same answer. The table was hashed before the tested requests existed, so it cannot have been fit to them. Each daily run is committed to git; the commit history is the proof-of-time."}</div>
+${fr ? "Une prédiction est une fonction déterministe de cette table figée et de la catégorie + du territoire géographique d'une requête, rien d'autre. Aucun poids de modèle, aucun paramètre libre, rien de caché. Recalculez n'importe quelle prédiction vous-même à partir des mêmes entrées publiques et vous obtenez le même résultat. La table a été hachée avant l'existence des requêtes testées; elle ne peut donc pas y avoir été ajustée. Chaque exécution quotidienne est consignée dans git; l'historique des commits est la preuve d'antériorité." : "A prediction is a deterministic function of this frozen table and a request's category + geographic territory, nothing else. There are no model weights, no free parameters, nothing hidden. Recompute any prediction yourself from the same public inputs and you get the same answer. The table was hashed before the tested requests existed, so it cannot have been fit to them. Each daily run is committed to git; the commit history is the proof-of-time."}</div>
 <div class="callout warn"><span class="lbl">${fr ? "Ce que ce tableau ne prétend pas" : "What this scorecard does not claim"}</span>
-${fr ? "Il ne prétend <b>pas</b> prédire un acheminement avant que la Ville ne le fasse — les données ouvertes 311 publient chaque requête déjà acheminée. La revendication est plus étroite et vérifiable : une politique non ajustée après coup, recalculable de façon indépendante, qui continue de reproduire l'acheminement de la Ville sur des requêtes qu'elle n'a jamais vues. Elle note uniquement le moteur d'acheminement, pas la perception photo/voix." : "It does <b>not</b> claim to predict a routing before the City makes it — the 311 open data publishes each request already routed. The claim is narrower and checkable: a provably-not-retrofitted policy, independently recomputable, that keeps reproducing the City's own routing on requests it never saw. It scores the routing resolver only, not photo/voice perception."}</div>
+${fr ? "Il ne prétend <b>pas</b> prédire un acheminement avant que la Ville ne le fasse, les données ouvertes 311 publient chaque requête déjà acheminée. La revendication est plus étroite et vérifiable : une politique non ajustée après coup, recalculable de façon indépendante, qui continue de reproduire l'acheminement de la Ville sur des requêtes qu'elle n'a jamais vues. Elle note uniquement le moteur d'acheminement, pas la perception photo/voix." : "It does <b>not</b> claim to predict a routing before the City makes it, the 311 open data publishes each request already routed. The claim is narrower and checkable: a provably-not-retrofitted policy, independently recomputable, that keeps reproducing the City's own routing on requests it never saw. It scores the routing resolver only, not photo/voice perception."}</div>
 <h2>${fr ? "Reproduisez-le" : "Reproduce it"}</h2>
-<p>${fr ? `<code>node shadow/shadow-run.mjs --as-of ${card.asOf}</code> — interroge l'API en direct de la Ville, redérive chaque chiffre, et échoue bruyamment si l'empreinte de la politique consignée ne correspond plus à ses règles.` : `<code>node shadow/shadow-run.mjs --as-of ${card.asOf}</code> — pulls the live City API, re-derives every figure, and fails loudly if the committed policy hash no longer matches its own rules.`}</p>
-<div class="foot">${fr ? "Source : Requêtes 311 (donnees.montreal.ca, CC-BY 4.0). Journal : <code>shadow/predictions/</code>. Cette page est régénérée à partir de <code>scorecard.json</code> à chaque exécution — ne pas modifier à la main." : "Source: Requêtes 311 (donnees.montreal.ca, CC-BY 4.0). Ledger: <code>shadow/predictions/</code>. This page is regenerated from <code>scorecard.json</code> on every run — do not hand-edit."}</div>
+<p>${fr ? `<code>node shadow/shadow-run.mjs --as-of ${card.asOf}</code>, interroge l'API en direct de la Ville, redérive chaque chiffre, et échoue bruyamment si l'empreinte de la politique consignée ne correspond plus à ses règles.` : `<code>node shadow/shadow-run.mjs --as-of ${card.asOf}</code>, pulls the live City API, re-derives every figure, and fails loudly if the committed policy hash no longer matches its own rules.`}</p>
+<div class="foot">${fr ? "Source : Requêtes 311 (donnees.montreal.ca, CC-BY 4.0). Journal : <code>shadow/predictions/</code>. Cette page est régénérée à partir de <code>scorecard.json</code> à chaque exécution, ne pas modifier à la main." : "Source: Requêtes 311 (donnees.montreal.ca, CC-BY 4.0). Ledger: <code>shadow/predictions/</code>. This page is regenerated from <code>scorecard.json</code> on every run, do not hand-edit."}</div>
 </div></body></html>\n`;
 }
 
@@ -305,7 +305,7 @@ ${fr ? "Il ne prétend <b>pas</b> prédire un acheminement avant que la Ville ne
     true
   );
 
-  // Ledger entry — the committable proof-of-time. Keeps the (small) prospective
+  // Ledger entry, the committable proof-of-time. Keeps the (small) prospective
   // cells verbatim + the backtest aggregate + the policy hash it was scored under.
   const ledgerEntry = {
     asOf: AS_OF,
@@ -345,9 +345,9 @@ ${fr ? "Il ne prétend <b>pas</b> prédire un acheminement avant que la Ville ne
 
   console.log(`\n  policy hash        ${saved.policyHash}`);
   console.log(`  held-out backtest  \x1b[32m${pct(heldOut.accuracy)}\x1b[0m  (${heldOut.correct.toLocaleString()} / ${heldOut.evaluated.toLocaleString()})`);
-  console.log(`  prospective live   ${prospective.evaluated ? `\x1b[36m${pct(prospective.accuracy)}\x1b[0m  (${prospective.correct.toLocaleString()} / ${prospective.evaluated.toLocaleString()})` : "\x1b[2m0 requests published since freeze — accumulates daily\x1b[0m"}`);
+  console.log(`  prospective live   ${prospective.evaluated ? `\x1b[36m${pct(prospective.accuracy)}\x1b[0m  (${prospective.correct.toLocaleString()} / ${prospective.evaluated.toLocaleString()})` : "\x1b[2m0 requests published since freeze, accumulates daily\x1b[0m"}`);
   console.log(`\n  wrote  predictions/${AS_OF}.json · scorecard.json · scorecard.html (fr) · scorecard.en.html · index.html`);
-  console.log(`  \x1b[2mcommit these now — the git timestamp is the ledger's proof-of-time.\x1b[0m\n`);
+  console.log(`  \x1b[2mcommit these now, the git timestamp is the ledger's proof-of-time.\x1b[0m\n`);
 })().catch((e) => {
   console.error(`\n\x1b[31mSHADOW-RUN ERROR\x1b[0m ${e.message}`);
   process.exit(1);

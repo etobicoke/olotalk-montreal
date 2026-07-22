@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Montréal open data — field notes, dead ends & traps</title>
+<title>Montréal open data: field notes, dead ends & traps</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--mtl-red:#C8102E;--bg:#fbfbf8;--surface:#fff;--border:#e3e1d9;--soft:#eeece4;--text:#1a1a2e;--muted:#6b6b80;
@@ -47,23 +47,23 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div style="font-size:12.5px;color:var(--muted);margin:-6px 0 16px"><b style="color:var(--text)">English</b> · <a href="findings.fr.html">Français</a></div>
 <header class="doc">
 <div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> Companion to the proposal · field notes · what the pitch omits</div>
-<h1>Montréal open data — field notes, dead ends, and traps</h1>
+<h1>Montréal open data: field notes, dead ends, and traps</h1>
 <div class="meta">Companion to <a href="proposal.html">proposal.html</a> · <b>2026-07-15</b> · the other half of the work: what cost the most to learn and appears nowhere in the pitch, so the next person doesn't rediscover it. Everything here is re-derivable via <code>shadow/montreal-challenge-verify.mjs</code>.</div>
 </header>
 
 <div class="callout c-find"><span class="lbl">Why this document exists</span>
-The proposal necessarily leads with what works; this is the complete record — including what didn't, so the next person (including us in September) doesn't walk into the same walls. Read this before touching Montréal's open data again.</div>
+The proposal necessarily leads with what works; this is the complete record, including what didn't, so the next person (including us in September) doesn't walk into the same walls. Read this before touching Montréal's open data again.</div>
 
 <h2><span class="n">1</span>Fields that do not mean what they are named</h2>
 <p>This is the whole document in one table. Every row cost us at least one wrong conclusion.</p>
 <table>
 <thead><tr><th>Field / dataset</th><th>Looks like</th><th>Actually is</th></tr></thead>
 <tbody>
-<tr><td><code>PROPRIETAIRE_REF</code> (voirie assets)</td><td>The asset's <b>owner</b>. Its dictionary permits <code>Ministère Transport Québec</code>, <code>Société Transport Montréal</code>, <code>Privé</code>.</td><td><b>The territory the asset sits in.</b> Those values appear on ~7 of 16,750 chaussée rows. <b>Autoroutes are attributed to boroughs</b> (Saint-Laurent ×121, Sud-Ouest ×68). Frozen at 2020-05-30. Useless for jurisdiction — actively dangerous.</td></tr>
-<tr><td><code>LOC_ERREUR_GDT</code></td><td>A location-<b>error</b> flag.</td><td><em>« Information sur la précision du positionnement avant l'obfuscation »</em> — <code>0</code> = located at the issue; <b><code>1</code> = located at the borough's BAM service counter.</b> Not an error; a "filed in person" marker. 62,008 rows.</td></tr>
-<tr><td><code>ARRONDISSEMENT</code></td><td>Where the issue is.</td><td><em>« Arrondissement attitré pour régler la requête »</em> — <b>the borough assigned to fix it.</b> Can never name a ville liée, because Montréal never assigns work to one.</td></tr>
-<tr><td><code>ARRONDISSEMENT_GEO</code></td><td>A near-duplicate of the above.</td><td><em>« Arrondissement (géographiquement parlant) »</em> — <b>the geographic one.</b> This is the column for any "where did it originate" question.</td></tr>
-<tr><td><code>PROVENANCE_TELEPHONE</code></td><td>A boolean: "arrived by phone."</td><td><em>« Nombre de requérants différents via téléphone »</em> — <b>a count of distinct requesters</b>, 0…14+. 200k+ requests have more than one. For channel share, use <code>PROVENANCE_ORIGINALE</code>.</td></tr>
+<tr><td><code>PROPRIETAIRE_REF</code> (voirie assets)</td><td>The asset's <b>owner</b>. Its dictionary permits <code>Ministère Transport Québec</code>, <code>Société Transport Montréal</code>, <code>Privé</code>.</td><td><b>The territory the asset sits in.</b> Those values appear on ~7 of 16,750 chaussée rows. <b>Autoroutes are attributed to boroughs</b> (Saint-Laurent ×121, Sud-Ouest ×68). Frozen at 2020-05-30. Useless for jurisdiction, actively dangerous.</td></tr>
+<tr><td><code>LOC_ERREUR_GDT</code></td><td>A location-<b>error</b> flag.</td><td><em>« Information sur la précision du positionnement avant l'obfuscation »</em>: <code>0</code> = located at the issue; <b><code>1</code> = located at the borough's BAM service counter.</b> Not an error; a "filed in person" marker. 62,008 rows.</td></tr>
+<tr><td><code>ARRONDISSEMENT</code></td><td>Where the issue is.</td><td><em>« Arrondissement attitré pour régler la requête »</em>: <b>the borough assigned to fix it.</b> Can never name a ville liée, because Montréal never assigns work to one.</td></tr>
+<tr><td><code>ARRONDISSEMENT_GEO</code></td><td>A near-duplicate of the above.</td><td><em>« Arrondissement (géographiquement parlant) »</em>: <b>the geographic one.</b> This is the column for any "where did it originate" question.</td></tr>
+<tr><td><code>PROVENANCE_TELEPHONE</code></td><td>A boolean: "arrived by phone."</td><td><em>« Nombre de requérants différents via téléphone »</em>: <b>a count of distinct requesters</b>, 0…14+. 200k+ requests have more than one. For channel share, use <code>PROVENANCE_ORIGINALE</code>.</td></tr>
 <tr><td><code>geobase-gestion-troncon</code></td><td>Road-segment <b>management</b> → jurisdiction.</td><td>An <b>update changelog</b> (segment IDs, dates, operation types). States: <em>« ne contient pas de l'information géospatiale »</em>.</td></tr>
 <tr><td><code>ACTI_NOM</code></td><td>The live taxonomy: ~993 categories.</td><td>~993 <b>all-time strings</b>, of which <b>252 are retired</b> with a leading <code>*</code> (<code>*Réclamation</code> → <code>Réclamation</code>, a clean rename), plus ~23 dup pairs. <b>513 live on 2026 requests.</b></td></tr>
 <tr><td><code>TYPE_LIEU_INTERV</code> null on 1.39M rows</td><td>A gap the City can't fill.</td><td><em>« les demandes d'information ne sont pas géoréférencées »</em>. The nulls are the <code>Information</code> rows. <b>On service requests it is populated on all but 7 of 1.6M.</b></td></tr>
@@ -77,7 +77,7 @@ The proposal necessarily leads with what works; this is the complete record — 
 <div class="callout c-warn"><span class="lbl">Lesson</span>When a string comparison produces a shocking number, treat it as a formatting bug until you have proven it is not.</div>
 
 <h3>The circular zero</h3>
-<p>Filtering pothole requests to villes liées on <code>ARRONDISSEMENT</code> returns <b>0</b> — which looks like a finding ("citizens never misreport across the boundary") and is actually a restatement of the column's definition. The right column, <code>ARRONDISSEMENT_GEO</code>, returns <b>311</b>: Mont-Royal 169, Westmount 91, and more. Westmount's most common 311 category is <code>Nid-de-poule</code>.</p>
+<p>Filtering pothole requests to villes liées on <code>ARRONDISSEMENT</code> returns <b>0</b>, which looks like a finding ("citizens never misreport across the boundary") and is actually a restatement of the column's definition. The right column, <code>ARRONDISSEMENT_GEO</code>, returns <b>311</b>: Mont-Royal 169, Westmount 91, and more. Westmount's most common 311 category is <code>Nid-de-poule</code>.</p>
 <div class="callout c-warn"><span class="lbl">Lesson</span>The correct number supported the argument <em>better</em> than the wrong one had. When a result is that convenient, scrutinise it harder.</div>
 
 <h3>The owner column that isn't</h3>
@@ -88,13 +88,13 @@ The proposal necessarily leads with what works; this is the complete record — 
 <p>This rule is not in the CKAN metadata. It is rendered on the dataset page only, in the section "Production des données":</p>
 <blockquote>« Pour respecter la confidentialité des requérants, cette position géographique est ensuite obfusquée: les requêtes associées à des adresses ou installations particulières sont <b>relocalisées au milieu du tronçon le plus près ayant une longueur de plus de 45 mètres</b>. »</blockquote>
 <div class="callout c-find"><span class="lbl">Two implications</span>
-<b>Architecturally:</b> the City's privacy team independently chose the tronçon as the atomic safe unit of location, the same unit jurisdiction attaches to. Privacy and routing want the same primitive. <b>Forensically:</b> it explains every coordinate anomaly — and we mis-diagnosed all of them before finding it.</div>
+<b>Architecturally:</b> the City's privacy team independently chose the tronçon as the atomic safe unit of location, the same unit jurisdiction attaches to. Privacy and routing want the same primitive. <b>Forensically:</b> it explains every coordinate anomaly, and we mis-diagnosed all of them before finding it.</div>
 <table>
 <thead><tr><th>Observation</th><th>Our wrong read</th><th>The truth</th></tr></thead>
 <tbody>
 <tr><td>19,024 distinct coords for 56,296 potholes</td><td>heavy obfuscation / grid snapping</td><td>~19k <b>tronçon midpoints</b>; many potholes per segment</td></tr>
 <tr><td>148 reports on one exact coordinate</td><td>a suspicious hotspot</td><td>148 potholes on one road segment over 4 years</td></tr>
-<tr><td>Two hot points ~2 m apart</td><td>duplicate geocodes</td><td>the <b>same segment's midpoint recomputed</b> after a géobase version bump — which is why <code>geobase-gestion-troncon</code> exists</td></tr>
+<tr><td>Two hot points ~2 m apart</td><td>duplicate geocodes</td><td>the <b>same segment's midpoint recomputed</b> after a géobase version bump, which is why <code>geobase-gestion-troncon</code> exists</td></tr>
 </tbody>
 </table>
 <p>Consequence for any eval: the published coordinates are segment midpoints. You cannot validate metre-precision asset resolution against 311 history. You can validate segment- and territory-level routing, which is the granularity jurisdiction lives at anyway. The 45 m threshold also skips short segments, so any accuracy measured through it is a floor.</p>
@@ -114,8 +114,8 @@ Fields: GET /datastore_search?resource_id=&lt;id&gt;&amp;limit=1   ← the real 
 <thead><tr><th>Resource</th><th>ID</th></tr></thead>
 <tbody>
 <tr><td>Requêtes 311 (2022 → present)</td><td><code>2cfa0e06-9be4-49a6-b7f1-ee9f2363a872</code></td></tr>
-<tr><td>Voirie — chaussée agrégée (C22)</td><td><code>b1519f66-b48d-4ab6-a79b-1830c6307775</code></td></tr>
-<tr><td>Voirie — liste de valeurs (dictionary)</td><td><code>d277acf9-2c0c-4eaf-9e02-8c03eef690ce</code></td></tr>
+<tr><td>Voirie, chaussée agrégée (C22)</td><td><code>b1519f66-b48d-4ab6-a79b-1830c6307775</code></td></tr>
+<tr><td>Voirie, liste de valeurs (dictionary)</td><td><code>d277acf9-2c0c-4eaf-9e02-8c03eef690ce</code></td></tr>
 </tbody>
 </table>
 <p>Gotchas, all hit for real:</p>
@@ -131,12 +131,12 @@ Fields: GET /datastore_search?resource_id=&lt;id&gt;&amp;limit=1   ← the real 
 <p>Do not present any of these as fact without checking first.</p>
 <ul>
 <li>Règlement 02-003 full text: we have only the City's paraphrase in the RAAV metadata. → Service du greffe.</li>
-<li>Banque d'information 311 — now VPN-restricted (403). Our taxonomy reconstruction is a proxy. → request access as a participant.</li>
-<li>RAAV's 33 <code>ARTERE=1</code> segments inside villes liées — found via the GPKG, not re-downloadable to confirm. Agrees with an independent 311 finding, so probably right.</li>
+<li>Banque d'information 311, now VPN-restricted (403). Our taxonomy reconstruction is a proxy. → request access as a participant.</li>
+<li>RAAV's 33 <code>ARTERE=1</code> segments inside villes liées, found via the GPKG, not re-downloadable to confirm. Agrees with an independent 311 finding, so probably right.</li>
 <li>PJCCI / CA25 / SSL as RTSS operators: one pass found them, a later sample returned only MTQ. Not disproven, not sampled.</li>
 <li>The <code>AREQ</code> zone in Hydro-Québec's pole KMZ: blank manager, no legend. Possibly the CSEM buried network. Unconfirmed.</li>
 <li>Québecor's bus-shelter contract status in 2026: sources are the 2012–13 announcements (runs to 2032).</li>
-<li>HQ open data is CC-BY-NC — a real constraint if commercialised.</li>
+<li>HQ open data is CC-BY-NC, a real constraint if commercialised.</li>
 </ul>
 
 <h2><span class="n">7</span>The process lesson</h2>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olotalk — Défi IA : réinventer l'expérience citoyenne (Ville de Montréal)</title>
+  <title>Olotalk · Défi IA : réinventer l'expérience citoyenne (Ville de Montréal)</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -67,7 +67,7 @@
     .vcard.path { border-top: 3px solid var(--accent); } .vcard.path .vh { color: var(--accent); }
     .vcard p { font-size: 12.5px; margin: 4px 0; }
 
-    /* HERO FIGURE — exactly one per document */
+    /* HERO FIGURE, exactly one per document */
     .heroblock { border: 1px solid var(--border); border-radius: 14px; background: linear-gradient(180deg,#fdfdff,#f5f5fa); box-shadow: var(--shadow); padding: 26px 24px; margin: 22px 0; text-align: center; }
     .herofig { font-size: 60px; font-weight: 700; letter-spacing: -.035em; line-height: 1; color: var(--accent); }
     .herolab { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
@@ -82,7 +82,7 @@
     .kpi .kd { font-size: 11px; color: var(--muted); margin-top: 3px; }
     .kpi.pos .kv { color: var(--green); }
 
-    /* meter — a single ratio against a limit */
+    /* meter, a single ratio against a limit */
     .meter { margin: 16px 0; }
     .meter .mrow { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
     .meter .mname { font-size: 13.5px; font-weight: 600; }
@@ -192,30 +192,30 @@ h1,h2{font-family:var(--serif);font-weight:600}
 
   <h2><span class="n">1</span>Nous avons mesuré le problème avant de concevoir une solution</h2>
 
-  <p>Chaque chiffre ici est calculé à partir des données publiées par la Ville, principalement les <b>Requêtes 311</b> (<code>donnees.montreal.ca/dataset/requete-311</code>, CC-BY 4.0), recoupées avec la <b>Base de données des actifs de voirie</b>, la <b>Géobase</b>, le <b>Réseau artériel administratif (RAAV)</b>, les <b>Limites administratives de l'agglomération</b> et le <b>Réseau routier — RTSS</b> du MTQ. L'avoir fait en premier a changé notre conception.</p>
+  <p>Chaque chiffre ici est calculé à partir des données publiées par la Ville, principalement les <b>Requêtes 311</b> (<code>donnees.montreal.ca/dataset/requete-311</code>, CC-BY 4.0), recoupées avec la <b>Base de données des actifs de voirie</b>, la <b>Géobase</b>, le <b>Réseau artériel administratif (RAAV)</b>, les <b>Limites administratives de l'agglomération</b> et le <b>Réseau routier (RTSS)</b> du MTQ. L'avoir fait en premier a changé notre conception.</p>
 
-  <h3>Fait 1 — le système de classification est vaste, et il évolue</h3>
+  <h3>Fait 1 : le système de classification est vaste, et il évolue</h3>
   <p>L'énoncé du défi propose des exemples (« nid-de-poule, déchets, graffiti »). <code>ACTI_NOM</code> contient <b>993 valeurs distinctes sur la période</b>, mais le chiffre utile est plus petit et plus révélateur. <b>252 sont retirées</b>, marquées d'un astérisque en préfixe (<code>*Réclamation</code> court jusqu'au 2025-10-22 ; <code>Réclamation</code> commence le 2025-10-23, un simple renommage). En excluant les retraits et le roulement, <b>513 catégories ont été utilisées sur des requêtes de service en 2026 seulement</b>.</p>
   <div class="callout c-find">
     <span class="lbl">Le roulement qu'un classificateur entraîné ne peut suivre</span>
     <p>Cinq cents, c'est encore deux ordres de grandeur au-delà d'un menu déroulant, mais le roulement est l'argument le plus tranchant. Un classificateur entraîné sur les étiquettes de 2022 émettrait <code>*Réclamation</code> aujourd'hui. La taxonomie est un document vivant que la Ville tient à jour, et non un ensemble d'étiquettes figé ; sa propre méthodologie prévient d'ailleurs que <em>« des arrondissements utilisent des catégories supplémentaires qui leur sont spécifiques »</em>, de sorte qu'il ne s'agit même pas d'une seule liste uniforme à l'échelle de la ville.</p>
   </div>
 
-  <h3>Fait 2 — la catégorie ne nomme pas le propriétaire</h3>
+  <h3>Fait 2 : la catégorie ne nomme pas le propriétaire</h3>
   <p><code>Nid-de-poule</code>, une seule catégorie comptant <b>55,916</b> requêtes de service, est traitée par <b>19 unités responsables distinctes</b>. <code>Collecte de déchets</code> en couvre 21, <code>Feux de circulation - Entretien</code> 21, <code>Occupation du domaine public</code> 20. Connaître la catégorie vous dit en quoi consiste le travail. <em>À qui</em> il revient est une autre question, à laquelle la catégorie ne répond pas.</p>
 
-  <h3>Fait 3 — l'acheminement n'est presque pas un problème d'IA</h3>
+  <h3>Fait 3 : l'acheminement n'est presque pas un problème d'IA</h3>
   <table>
     <thead><tr><th>Règle</th><th>Ce qu'elle utilise</th><th>Dans l'échantillon</th><th>Hors échantillon (2025–26)</th></tr></thead>
     <tbody>
       <tr>
-        <td><b>A</b> — le territoire géographique seul</td>
+        <td><b>A</b> : le territoire géographique seul</td>
         <td>un test d'appartenance</td>
         <td class="num">90.33%</td>
         <td class="num"><b>90.95%</b><br><span style="color:var(--muted);font-size:11px">516,486 / 567,859</span></td>
       </tr>
       <tr>
-        <td><b>B</b> — la règle A, plus un aiguillage par catégorie : <em>cette classe relève-t-elle de la géométrie, ou d'une unité fixe ?</em></td>
+        <td><b>B</b> : la règle A, plus un aiguillage par catégorie : <em>cette classe relève-t-elle de la géométrie, ou d'une unité fixe ?</em></td>
         <td>un test d'appartenance et une table de correspondance</td>
         <td class="num">97.55%</td>
         <td class="num"><b>97.27%</b><br><span style="color:var(--muted);font-size:11px">552,333 / 567,859</span></td>
@@ -338,10 +338,10 @@ h1,h2{font-family:var(--serif);font-weight:600}
   <table>
     <thead><tr><th>Classe d'actif dans le registre</th><th>Propriétaire donné par le registre</th><th>Lignes</th><th>Réellement possédé par</th></tr></thead>
     <tbody>
-      <tr><td><code>Bretelle</code> (bretelle d'autoroute)</td><td>Saint-Laurent</td><td class="num">61</td><td><span class="tag t-gap">MTQ — provincial</span></td></tr>
-      <tr><td><code>Autoroute</code></td><td>Saint-Laurent</td><td class="num">60</td><td><span class="tag t-gap">MTQ — provincial</span></td></tr>
-      <tr><td><code>Autoroute</code></td><td>Sud-Ouest</td><td class="num">35</td><td><span class="tag t-gap">MTQ — provincial</span></td></tr>
-      <tr><td><code>Autoroute</code></td><td>Côte-des-Neiges–NDG</td><td class="num">31</td><td><span class="tag t-gap">MTQ — provincial</span></td></tr>
+      <tr><td><code>Bretelle</code> (bretelle d'autoroute)</td><td>Saint-Laurent</td><td class="num">61</td><td><span class="tag t-gap">MTQ, provincial</span></td></tr>
+      <tr><td><code>Autoroute</code></td><td>Saint-Laurent</td><td class="num">60</td><td><span class="tag t-gap">MTQ, provincial</span></td></tr>
+      <tr><td><code>Autoroute</code></td><td>Sud-Ouest</td><td class="num">35</td><td><span class="tag t-gap">MTQ, provincial</span></td></tr>
+      <tr><td><code>Autoroute</code></td><td>Côte-des-Neiges–NDG</td><td class="num">31</td><td><span class="tag t-gap">MTQ, provincial</span></td></tr>
     </tbody>
   </table>
 
@@ -355,11 +355,11 @@ h1,h2{font-family:var(--serif);font-weight:600}
   <table>
     <thead><tr><th>Autorité</th><th>Ce à quoi elle répond</th><th>Millésime / réserve</th></tr></thead>
     <tbody>
-      <tr><td>MTQ <b>RTSS</b> (WFS en direct, CC-BY)</td><td>Réseau provincial — sa <em>portée</em> est la réponse ; présence ≈ pas à la Ville. Porte <code>gestion</code> et <code>entretien</code> séparément.</td><td><span class="tag t-have">En direct</span></td></tr>
+      <tr><td>MTQ <b>RTSS</b> (WFS en direct, CC-BY)</td><td>Réseau provincial, sa <em>portée</em> est la réponse ; présence ≈ pas à la Ville. Porte <code>gestion</code> et <code>entretien</code> séparément.</td><td><span class="tag t-have">En direct</span></td></tr>
       <tr><td><b>Limites administratives</b></td><td><code>TYPE</code> = <em>Arrondissement</em> ×19 vs <em>Ville liée</em> ×15</td><td><span class="tag t-have">À jour</span></td></tr>
       <tr><td><b>RAAV</b> <code>ARTERE</code></td><td>Règlement 02-003 : partage conseil central vs conseil d'arrondissement</td><td><span class="tag t-part">2023 · GPKG seulement · contient des erreurs d'indicateur</span></td></tr>
       <tr><td><b>Registre comportemental 311</b></td><td>Quatre années indiquant où le travail est réellement allé</td><td><span class="tag t-have">La base probante de la règle B</span></td></tr>
-      <tr><td>Voirie <code>PROPRIETAIRE_REF</code></td><td><b>Territoire, pas propriété</b> — ne pas utiliser pour la compétence</td><td><span class="tag t-gap">Figée 2020</span></td></tr>
+      <tr><td>Voirie <code>PROPRIETAIRE_REF</code></td><td><b>Territoire, pas propriété</b>. Ne pas utiliser pour la compétence</td><td><span class="tag t-gap">Figée 2020</span></td></tr>
     </tbody>
   </table>
 
@@ -442,7 +442,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     <thead><tr><th>Capacité</th><th>Statut</th></tr></thead>
     <tbody>
       <tr><td>Ingestion et repérage multilocataires sur un corpus vivant</td><td><span class="tag t-have">En production (bêta privée)</span></td></tr>
-      <tr><td>Plongements (embeddings) auto-hébergés — le corpus n'atteint jamais une API tierce</td><td><span class="tag t-have">En production</span></td></tr>
+      <tr><td>Plongements (embeddings) auto-hébergés : le corpus n'atteint jamais une API tierce</td><td><span class="tag t-have">En production</span></td></tr>
       <tr><td>Chaîne de vision : image → VLM → extraction structurée</td><td><span class="tag t-have">En production</span></td></tr>
       <tr><td>Génération ancrée avec citation et refus</td><td><span class="tag t-have">En production</span></td></tr>
       <tr><td>Boucle conversationnelle qui pose des questions de clarification</td><td><span class="tag t-have">En production</span></td></tr>
@@ -470,7 +470,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
   <figure class="chart">
     <h4>82% de chaque requête 311 arrive encore par téléphone</h4>
     <div class="csub">Répartition de 3.03M requêtes par canal de réception · Données ouvertes 311 de la Ville de Montréal</div>
-    <svg viewBox="0 0 700 178" width="100%" role="img" aria-label="311 channel mix — 82% by telephone" style="max-width:100%"><rect x="140" y="6" width="470.0" height="20" rx="3" fill="var(--accent)"/><text x="132" y="16.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Par téléphone</text><text x="617.0" y="16.5" dominant-baseline="middle" font-size="12" font-weight="700" fill="var(--accent)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">82.0%</text><rect x="140" y="40" width="32.7" height="20" rx="3" fill="#ccccd8"/><text x="132" y="50.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">En personne</text><text x="179.7" y="50.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5.7%</text><rect x="140" y="74" width="30.4" height="20" rx="3" fill="#ccccd8"/><text x="132" y="84.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Application mobile</text><text x="177.4" y="84.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5.3%</text><rect x="140" y="108" width="21.2" height="20" rx="3" fill="#ccccd8"/><text x="132" y="118.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Courriel</text><text x="168.2" y="118.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3.7%</text><rect x="140" y="142" width="17.2" height="20" rx="3" fill="#ccccd8"/><text x="132" y="152.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Formulaire web</text><text x="164.2" y="152.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3.0%</text></svg>
+    <svg viewBox="0 0 700 178" width="100%" role="img" aria-label="311 channel mix, 82% by telephone" style="max-width:100%"><rect x="140" y="6" width="470.0" height="20" rx="3" fill="var(--accent)"/><text x="132" y="16.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Par téléphone</text><text x="617.0" y="16.5" dominant-baseline="middle" font-size="12" font-weight="700" fill="var(--accent)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">82.0%</text><rect x="140" y="40" width="32.7" height="20" rx="3" fill="#ccccd8"/><text x="132" y="50.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">En personne</text><text x="179.7" y="50.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5.7%</text><rect x="140" y="74" width="30.4" height="20" rx="3" fill="#ccccd8"/><text x="132" y="84.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Application mobile</text><text x="177.4" y="84.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">5.3%</text><rect x="140" y="108" width="21.2" height="20" rx="3" fill="#ccccd8"/><text x="132" y="118.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Courriel</text><text x="168.2" y="118.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3.7%</text><rect x="140" y="142" width="17.2" height="20" rx="3" fill="#ccccd8"/><text x="132" y="152.5" text-anchor="end" dominant-baseline="middle" font-size="12" fill="var(--muted)" font-family="-apple-system,sans-serif">Formulaire web</text><text x="164.2" y="152.5" dominant-baseline="middle" font-size="12" font-weight="400" fill="var(--muted)" font-family="var(--mono),monospace" style="font-variant-numeric:tabular-nums">3.0%</text></svg>
     <figcaption>L'acheminement de la Ville est déjà exact ; cette exactitude coûte simplement un appel téléphonique, des millions de fois par année. La réception numérique est une erreur d'arrondi. Chaque signalement qui arrive déjà résolu redonne des minutes d'agent aux appelants qui ont véritablement besoin d'un humain.</figcaption>
   </figure>
 
@@ -479,7 +479,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
   <p class="hero">Les propres agents de Montréal font déjà cela bien. Ils ne devraient pas avoir à le faire 2.5 millions de fois au téléphone.</p>
 
   <div class="foot">
-    <b>Sources.</b> Requêtes 311 (CC-BY 4.0) · Base de données des actifs de voirie · Géobase · Réseau artériel administratif (RAAV) · Limites administratives de l'agglomération · MTQ Réseau routier — RTSS (CC-BY 4.0) · Hydro-Québec Parcs de poteaux (CC-BY-NC) · montreal.ca<br>
+    <b>Sources.</b> Requêtes 311 (CC-BY 4.0) · Base de données des actifs de voirie · Géobase · Réseau artériel administratif (RAAV) · Limites administratives de l'agglomération · MTQ Réseau routier (RTSS) (CC-BY 4.0) · Hydro-Québec Parcs de poteaux (CC-BY-NC) · montreal.ca<br>
     <b>Reproduction.</b> <code>node shadow/montreal-challenge-verify.mjs</code> redérive chaque chiffre ci-dessus à partir de l'API CKAN en direct et rapporte PASS/DRIFT/FAIL par rapport aux valeurs mesurées le 2026-07-15. Il s'exécute en <b>~23 secondes</b> et est sans dépendance : l'agrégation s'effectue <em>côté serveur dans le propre entrepôt de données de la Ville</em> (un <code>GROUP BY</code> réduit les 1,529,458 requêtes évaluées en 11,833 cellules comptées, sans perte pour cette question), de sorte que rien ici ne dépend de notre copie des données. N'importe qui, y compris la Ville, peut vérifier notre arithmétique par rapport à la source de référence. Source Markdown : <code>proposal.md</code> ; notes de terrain et impasses : <code>findings.html</code>.
   </div>
 
