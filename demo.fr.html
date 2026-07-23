@@ -71,6 +71,16 @@ body{border-top:3px solid var(--mtl-red)}
 :root{--serif:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif}
 body{background:#fbfbf8}
 h1,h2{font-family:var(--serif);font-weight:600}
+/* scénario interactif : le moteur dans le navigateur */
+.try-body{padding:16px 18px}
+.try-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin:12px 0 4px}
+.try-controls label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.try-controls input,.try-controls select{font:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:#fff;min-width:250px;color:var(--text)}
+.try-out{border:1px solid var(--border);border-radius:9px;background:#fbfbfd;padding:12px 14px;font-size:13.5px;margin:12px 0 2px}
+.try-hashrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.try-hash-out{font-family:var(--mono);font-size:11px;word-break:break-all;max-width:640px}
+.try-note{font-size:12px;color:var(--muted);margin:8px 0 0}
+.ok-green{color:var(--green);font-weight:700}.err-red{color:var(--red);font-weight:700}
 </style>
 </head>
 <body>
@@ -153,13 +163,34 @@ h1,h2{font-family:var(--serif);font-weight:600}
 </div>
 </div>
 
+<!-- SCÉNARIO 4 · interactif -->
+<div class="scn try" id="try">
+<div class="scn-head"><span class="scn-tag">Scénario 4 · à vous</span><span class="scn-title">Essayez le moteur vous-même — la politique figée, dans votre navigateur</span></div>
+<div class="try-body">
+<p style="margin-top:0">Cette page charge <code>shadow/policy.json</code> — la table de décision figée elle-même, celle dont l'empreinte est committée — et exécute la même fonction de décision que <code>shadow-run.mjs</code> : trois lignes, aucun modèle, aucun serveur. Choisissez une vraie catégorie 311 et un arrondissement; le moteur achemine et donne sa raison.</p>
+<div class="try-controls">
+<label>Catégorie 311<input id="try-cat" list="try-cats" placeholder="ex. Nid-de-poule" autocomplete="off"></label>
+<datalist id="try-cats"></datalist>
+<label>Arrondissement<select id="try-geo"></select></label>
+<button class="btn" id="try-run" type="button">Acheminer</button>
+</div>
+<div class="try-out" id="try-out" hidden></div>
+<div class="try-hashrow">
+<button class="btn ghost" id="try-hash" type="button">Recalculer l'empreinte SHA-256 de la politique dans ce navigateur</button>
+<span class="try-hash-out" id="try-hash-out"></span>
+</div>
+<p class="try-note" id="try-stats"></p>
+<p class="try-note">Le sélecteur couvre les 19 arrondissements. Pour une adresse en ville liée, voir le scénario 3 : le moteur redirige au lieu d'acheminer. Les libellés d'unité en majuscules sont ceux du registre de la Ville, reproduits tels quels.</p>
+</div>
+</div>
+
 <div class="foot">
 <b>À quel point est-ce réel ?</b> Les trois lieux et rues sont de vraies requêtes 311 (ou, pour Mont-Royal, une vraie rue de Ville de Mont-Royal), extraits en direct de <code>donnees.montreal.ca</code> (CC-BY 4.0 · © Ville de Montréal); les coordonnées affichées sont approximatives. L'acheminement montré est celui de la politique figée du moteur (empreinte <code>b1f81070…</code>), et il correspond aux décisions réelles enregistrées par la Ville. L'étape de perception (photo → actif + défaut) est présentée comme l'entrée. Dans le produit, elle utilise un modèle de vision auto-hébergé; ici, nous démontrons le moteur déterministe, la partie qui rend l'acheminement vérifiable. Reproduire l'acheminement : <code>node shadow/shadow-run.mjs</code>. Voir aussi le <a href="index.html">pôle de la soumission</a> et le <a href="shadow/scorecard.html">tableau de bord en direct</a>.
 </div>
 </div>
 <script>
 (function(){
-  var scns = Array.prototype.slice.call(document.querySelectorAll('.scn'));
+  var scns = Array.prototype.slice.call(document.querySelectorAll('.scn:not(.try)'));
   if(!scns.length) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fr = document.documentElement.lang === 'fr';
@@ -206,6 +237,79 @@ h1,h2{font-family:var(--serif);font-weight:600}
     scns.forEach(function(scn){ p = p.then(function(){ return run(scn); }).then(function(){ return new Promise(function(r){ setTimeout(r, reduce?0:350); }); }); });
   });
   if(location.hash === '#run'){ setTimeout(function(){ runAll.click(); }, 200); }
+})();
+</script>
+<script>
+// Scénario 4 : la politique figée, exécutée dans le navigateur du lecteur.
+// Mêmes fonctions que shadow-run.mjs : norm(), canonical(), predict(), sha256.
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  if(!$('try')) return;
+  var BOROUGHS = ["Ahuntsic-Cartierville","Anjou","Côte-des-Neiges–Notre-Dame-de-Grâce","Lachine","LaSalle","Le Plateau-Mont-Royal","Le Sud-Ouest","L'Île-Bizard–Sainte-Geneviève","Mercier–Hochelaga-Maisonneuve","Montréal-Nord","Outremont","Pierrefonds-Roxboro","Rivière-des-Prairies–Pointe-aux-Trembles","Rosemont–La Petite-Patrie","Saint-Laurent","Saint-Léonard","Verdun","Ville-Marie","Villeray–Saint-Michel–Parc-Extension"];
+  var saved = null, card = null;
+
+  function norm(s){ if(!s) return ""; var x = s.normalize("NFKD").replace(/[̀-ͯ]/g,"").toUpperCase().replace(/['.]/g," ");
+    var t = x.split(/[^A-Z0-9]+/).filter(Boolean).map(function(w){ return w==="STE"?"SAINTE":w==="ST"?"SAINT":w; });
+    if(t[0]==="LE") t = t.slice(1); return t.join(""); }
+  function canonical(x){ if(Array.isArray(x)) return "[" + x.map(canonical).join(",") + "]";
+    if(x && typeof x === "object") return "{" + Object.keys(x).sort().map(function(k){ return JSON.stringify(k) + ":" + canonical(x[k]); }).join(",") + "}";
+    return JSON.stringify(x); }
+  function predict(cats, category, geo){ var r = cats[category]; return r && r.mode === "fixed" ? r.unit : geo; }
+  function frPct(x){ return (x*100).toFixed(2).replace(".", ",") + " %"; }
+
+  var geoSel = $('try-geo');
+  BOROUGHS.forEach(function(b){ var o = document.createElement('option'); o.value = b; o.textContent = b; geoSel.appendChild(o); });
+  geoSel.value = "Le Plateau-Mont-Royal";
+
+  fetch('shadow/policy.json').then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){
+    saved = j;
+    var dl = $('try-cats'), cats = Object.keys(j.policy.categories).sort();
+    cats.forEach(function(c){ var o = document.createElement('option'); o.value = c; dl.appendChild(o); });
+    var stats = "Table figée le " + j.frozenAt + " · " + j.categoryCount + " catégories réelles du 311, dont " + j.fixedCount + " épinglées à une unité fixe (services partagés), le reste par géographie.";
+    $('try-stats').textContent = stats;
+    return fetch('shadow/scorecard.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(c){
+      if(c && c.tiers && c.tiers.heldOut && c.tiers.heldOut.accuracy != null){
+        card = c;
+        $('try-stats').textContent = stats + " Cette même table reproduit " + frPct(c.tiers.heldOut.accuracy) + " de l'acheminement réel de la Ville (hors échantillon, tableau de bord du " + c.asOf + ").";
+      }
+    });
+  }).catch(function(){
+    $('try-stats').innerHTML = '<span class="err-red">Impossible de charger <code>shadow/policy.json</code></span> — ouvrez cette page depuis le site publié pour essayer le moteur.';
+    $('try-run').disabled = true; $('try-hash').disabled = true;
+  });
+
+  $('try-run').addEventListener('click', function(){
+    if(!saved) return;
+    var cat = $('try-cat').value.trim(), geo = geoSel.value, out = $('try-out');
+    out.hidden = false;
+    if(!cat){ out.innerHTML = 'Choisissez d’abord une catégorie dans la liste.'; return; }
+    var rule = saved.policy.categories[cat];
+    if(!rule){ out.innerHTML = '« ' + cat + ' » n’est pas dans la table figée — choisissez une catégorie proposée par la liste (ce sont les vraies catégories du 311).'; return; }
+    var unit = predict(saved.policy.categories, cat, geo);
+    var naiveDiffers = rule.mode === "fixed" && norm(unit) !== norm(geo);
+    var chips = '';
+    if(naiveDiffers) chips += '<span class="chip no">Géographie naïve → ' + geo + '</span> ';
+    chips += '<span class="chip yes">Moteur → ' + unit + '</span>';
+    var why = rule.mode === "fixed"
+      ? 'Cette catégorie est <b>épinglée à une unité fixe</b> dans la table figée (service partagé) : elle part vers la même unité quel que soit l’arrondissement.'
+      : 'Cette catégorie est <b>acheminée par géographie</b> : l’arrondissement du lieu est l’unité responsable.';
+    out.innerHTML = '<span class="lbl" style="font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-right:6px">Décision</span>' + why + '<div class="verdict">' + chips + '</div>';
+  });
+
+  $('try-hash').addEventListener('click', function(){
+    if(!saved || !window.crypto || !crypto.subtle){ return; }
+    var el = $('try-hash-out'); el.textContent = '…';
+    var decision = { freezeCutoff: saved.freezeCutoff,
+      geoMode: "predicted unit = geographic territory (ARRONDISSEMENT_GEO), reconciled by norm()",
+      categories: saved.policy.categories };
+    var data = new TextEncoder().encode(canonical(decision));
+    crypto.subtle.digest("SHA-256", data).then(function(buf){
+      var hex = Array.prototype.map.call(new Uint8Array(buf), function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+      el.innerHTML = hex === saved.policyHash
+        ? '<span class="ok-green">✓ identique</span> — recalculée ici : ' + hex.slice(0,16) + '… = committée : ' + saved.policyHash.slice(0,16) + '… La table n’a pas bougé depuis son gel.'
+        : '<span class="err-red">✗ différente</span> — recalculée : ' + hex + ' vs committée : ' + saved.policyHash;
+    });
+  });
 })();
 </script>
 </body>

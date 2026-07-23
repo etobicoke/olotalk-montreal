@@ -75,6 +75,16 @@ body{border-top:3px solid var(--mtl-red)}
 :root{--serif:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif}
 body{background:#fbfbf8}
 h1,h2{font-family:var(--serif);font-weight:600}
+/* interactive scenario: the engine in the browser */
+.try-body{padding:16px 18px}
+.try-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin:12px 0 4px}
+.try-controls label{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.try-controls input,.try-controls select{font:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:#fff;min-width:250px;color:var(--text)}
+.try-out{border:1px solid var(--border);border-radius:9px;background:#fbfbfd;padding:12px 14px;font-size:13.5px;margin:12px 0 2px}
+.try-hashrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.try-hash-out{font-family:var(--mono);font-size:11px;word-break:break-all;max-width:640px}
+.try-note{font-size:12px;color:var(--muted);margin:8px 0 0}
+.ok-green{color:var(--green);font-weight:700}.err-red{color:var(--red);font-weight:700}
 </style>
 </head>
 <body>
@@ -157,13 +167,34 @@ h1,h2{font-family:var(--serif);font-weight:600}
 </div>
 </div>
 
+<!-- SCENARIO 4 · interactive -->
+<div class="scn try" id="try">
+<div class="scn-head"><span class="scn-tag">Scenario 4 · your turn</span><span class="scn-title">Try the engine yourself — the frozen policy, in your browser</span></div>
+<div class="try-body">
+<p style="margin-top:0">This page loads <code>shadow/policy.json</code> — the frozen decision table itself, the one whose hash is committed — and runs the same decision function as <code>shadow-run.mjs</code>: three lines, no model, no server. Pick a real 311 category and a borough; the engine routes it and states its reason.</p>
+<div class="try-controls">
+<label>311 category<input id="try-cat" list="try-cats" placeholder="e.g. Nid-de-poule" autocomplete="off"></label>
+<datalist id="try-cats"></datalist>
+<label>Borough<select id="try-geo"></select></label>
+<button class="btn" id="try-run" type="button">Route it</button>
+</div>
+<div class="try-out" id="try-out" hidden></div>
+<div class="try-hashrow">
+<button class="btn ghost" id="try-hash" type="button">Recompute the policy's SHA-256 hash in this browser</button>
+<span class="try-hash-out" id="try-hash-out"></span>
+</div>
+<p class="try-note" id="try-stats"></p>
+<p class="try-note">The selector covers the 19 boroughs. For an address in a linked city, see Scenario 3: the engine redirects instead of routing. Category names and upper-case unit labels are the City's own registry values, reproduced verbatim.</p>
+</div>
+</div>
+
 <div class="foot">
 <b>How real is this?</b> The three locations and streets are genuine 311 requests (or, for Mont-Royal, a real Town-of-Mount-Royal street), pulled live from <code>donnees.montreal.ca</code> (CC-BY 4.0 · © Ville de Montréal); the coordinates shown are approximate. The routing shown is the resolver's frozen policy (hash <code>b1f81070…</code>), and it matches the City's own recorded decisions. The perception step (photo → asset + defect) is shown as the input. In the product it runs a self-hosted vision model; here we demonstrate the deterministic resolver, the part that makes routing auditable. Reproduce the routing: <code>node shadow/shadow-run.mjs</code>. See also the <a href="index.en.html">submission hub</a> and the <a href="shadow/scorecard.en.html">live scorecard</a>.
 </div>
 </div>
 <script>
 (function(){
-  var scns = Array.prototype.slice.call(document.querySelectorAll('.scn'));
+  var scns = Array.prototype.slice.call(document.querySelectorAll('.scn:not(.try)'));
   if(!scns.length) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var fr = document.documentElement.lang === 'fr';
@@ -212,6 +243,77 @@ h1,h2{font-family:var(--serif);font-weight:600}
     scns.forEach(function(scn){ p = p.then(function(){ return run(scn); }).then(function(){ return new Promise(function(r){ setTimeout(r, reduce?0:350); }); }); });
   });
   if(location.hash === '#run'){ setTimeout(function(){ runAll.click(); }, 200); }
+})();
+</script>
+<script>
+// Scenario 4: the frozen policy, executed in the reader's browser.
+// Same functions as shadow-run.mjs: norm(), canonical(), predict(), sha256.
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  if(!$('try')) return;
+  var BOROUGHS = ["Ahuntsic-Cartierville","Anjou","Côte-des-Neiges–Notre-Dame-de-Grâce","Lachine","LaSalle","Le Plateau-Mont-Royal","Le Sud-Ouest","L'Île-Bizard–Sainte-Geneviève","Mercier–Hochelaga-Maisonneuve","Montréal-Nord","Outremont","Pierrefonds-Roxboro","Rivière-des-Prairies–Pointe-aux-Trembles","Rosemont–La Petite-Patrie","Saint-Laurent","Saint-Léonard","Verdun","Ville-Marie","Villeray–Saint-Michel–Parc-Extension"];
+  var saved = null;
+
+  function norm(s){ if(!s) return ""; var x = s.normalize("NFKD").replace(/[̀-ͯ]/g,"").toUpperCase().replace(/['.]/g," ");
+    var t = x.split(/[^A-Z0-9]+/).filter(Boolean).map(function(w){ return w==="STE"?"SAINTE":w==="ST"?"SAINT":w; });
+    if(t[0]==="LE") t = t.slice(1); return t.join(""); }
+  function canonical(x){ if(Array.isArray(x)) return "[" + x.map(canonical).join(",") + "]";
+    if(x && typeof x === "object") return "{" + Object.keys(x).sort().map(function(k){ return JSON.stringify(k) + ":" + canonical(x[k]); }).join(",") + "}";
+    return JSON.stringify(x); }
+  function predict(cats, category, geo){ var r = cats[category]; return r && r.mode === "fixed" ? r.unit : geo; }
+
+  var geoSel = $('try-geo');
+  BOROUGHS.forEach(function(b){ var o = document.createElement('option'); o.value = b; o.textContent = b; geoSel.appendChild(o); });
+  geoSel.value = "Le Plateau-Mont-Royal";
+
+  fetch('shadow/policy.json').then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){
+    saved = j;
+    var dl = $('try-cats'), cats = Object.keys(j.policy.categories).sort();
+    cats.forEach(function(c){ var o = document.createElement('option'); o.value = c; dl.appendChild(o); });
+    var stats = "Policy frozen " + j.frozenAt + " · " + j.categoryCount + " real 311 categories, " + j.fixedCount + " of them pinned to a fixed unit (shared services), the rest routed by geography.";
+    $('try-stats').textContent = stats;
+    return fetch('shadow/scorecard.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(c){
+      if(c && c.tiers && c.tiers.heldOut && c.tiers.heldOut.accuracy != null){
+        $('try-stats').textContent = stats + " This same table reproduces " + (c.tiers.heldOut.accuracy*100).toFixed(2) + "% of the City's actual routing (held-out, scorecard of " + c.asOf + ").";
+      }
+    });
+  }).catch(function(){
+    $('try-stats').innerHTML = '<span class="err-red">Could not load <code>shadow/policy.json</code></span> — open this page from the published site to try the engine.';
+    $('try-run').disabled = true; $('try-hash').disabled = true;
+  });
+
+  $('try-run').addEventListener('click', function(){
+    if(!saved) return;
+    var cat = $('try-cat').value.trim(), geo = geoSel.value, out = $('try-out');
+    out.hidden = false;
+    if(!cat){ out.innerHTML = 'Pick a category from the list first.'; return; }
+    var rule = saved.policy.categories[cat];
+    if(!rule){ out.innerHTML = '"' + cat + '" is not in the frozen table — pick one the list suggests (they are the City\'s real 311 categories).'; return; }
+    var unit = predict(saved.policy.categories, cat, geo);
+    var naiveDiffers = rule.mode === "fixed" && norm(unit) !== norm(geo);
+    var chips = '';
+    if(naiveDiffers) chips += '<span class="chip no">Naive geography → ' + geo + '</span> ';
+    chips += '<span class="chip yes">Engine → ' + unit + '</span>';
+    var why = rule.mode === "fixed"
+      ? 'This category is <b>pinned to a fixed unit</b> in the frozen table (a shared service): it goes to the same unit whatever the borough.'
+      : 'This category is <b>routed by geography</b>: the borough of the location is the responsible unit.';
+    out.innerHTML = '<span class="lbl" style="font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-right:6px">Decision</span>' + why + '<div class="verdict">' + chips + '</div>';
+  });
+
+  $('try-hash').addEventListener('click', function(){
+    if(!saved || !window.crypto || !crypto.subtle){ return; }
+    var el = $('try-hash-out'); el.textContent = '…';
+    var decision = { freezeCutoff: saved.freezeCutoff,
+      geoMode: "predicted unit = geographic territory (ARRONDISSEMENT_GEO), reconciled by norm()",
+      categories: saved.policy.categories };
+    var data = new TextEncoder().encode(canonical(decision));
+    crypto.subtle.digest("SHA-256", data).then(function(buf){
+      var hex = Array.prototype.map.call(new Uint8Array(buf), function(b){ return b.toString(16).padStart(2,"0"); }).join("");
+      el.innerHTML = hex === saved.policyHash
+        ? '<span class="ok-green">✓ match</span> — recomputed here: ' + hex.slice(0,16) + '… = committed: ' + saved.policyHash.slice(0,16) + '… The table has not moved since it was frozen.'
+        : '<span class="err-red">✗ mismatch</span> — recomputed: ' + hex + ' vs committed: ' + saved.policyHash;
+    });
+  });
 })();
 </script>
 </body>
