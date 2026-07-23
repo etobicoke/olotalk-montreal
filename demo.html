@@ -84,10 +84,10 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <header class="doc">
 <div class="eyebrow"><span style="color:var(--mtl-red)">&#9884;</span> Live demo · the deterministic resolver, on real requests</div>
 <h1>How the resolver identifies the asset, routes it with a reason it can cite, and redirects anything that isn't Montréal's to fix.</h1>
-<div class="meta">Every location below is a real request from the City's 311 open data, and the routing shown is the resolver's, which matches the City's own decision. The photo/voice step is the input; this page demonstrates the part that makes routing trustworthy: a deterministic, citable resolver that never guesses a department.</div>
+<div class="meta">Every location below is a real request from the City's 311 open data, and the routing shown is the resolver's, and it matches the City's own decision. The photo/voice step is the input; this page demonstrates the part that makes routing trustworthy: a deterministic, citable resolver that never guesses a department.</div>
 </header>
 
-<p class="lead">A citizen sends a photo and a few words. Perception turns that into an <b>asset + defect</b>. Then a deterministic resolver decides whose problem it is, and it can always say why, or say "not ours."</p>
+<p class="lead">A citizen sends a photo and a few words. Perception turns that into an <b>asset + defect</b>. Then a deterministic resolver decides whose problem it is, and can always say why, or say "not ours."</p>
 
 <div class="pipe">
 <div class="p ai"><div class="pn">01 · AI</div><div class="pt">Perceive</div><div class="pd">photo + voice → asset class + defect</div></div>
@@ -95,7 +95,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="p det"><div class="pn">03 · deterministic</div><div class="pt">Determine owner</div><div class="pd">borough · shared service · or a ville liée</div></div>
 <div class="p det"><div class="pn">04 · deterministic</div><div class="pt">Route or redirect</div><div class="pd">with a citable reason, never a hallucinated unit</div></div>
 </div>
-<p class="legend"><b class="ai">■ AI</b> does perception only. <b class="det">■ Deterministic</b> steps do the routing, so it is auditable and cannot invent a department.</p>
+<p class="legend"><b class="ai">■ AI</b> does perception only. <b class="det">■ Deterministic</b> steps do the routing, so the routing is auditable and cannot invent a department.</p>
 
 <!-- SCENARIO 1 -->
 <div class="scn">
@@ -125,7 +125,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="arr">→</div>
 <div class="stage decide ok"><div class="st-lbl">4 · Route</div><div class="st-body"><span class="big">Rosemont–La Petite-Patrie</span>island-wide signal unit</div></div>
 </div>
-<div class="reason"><span class="lbl">Reason</span>The City runs traffic signals as a shared service out of Rosemont–La Petite-Patrie, which handles <b>74.7%</b> of every signal report on the island, from 21 different territories. Naive geometry would send this downtown light to Ville-Marie and be wrong. The resolver knows it's a shared service.
+<div class="reason"><span class="lbl">Reason</span>The City runs traffic signals as a shared service out of Rosemont–La Petite-Patrie, which handles <b>74.7%</b> of all signal reports on the island, drawn from 21 different territories. Naive geometry would send this downtown light to Ville-Marie and be wrong. The resolver knows it's a shared service.
 <div class="verdict"><span class="chip no">Naive geometry → Ville-Marie</span><span class="chip yes">Resolver → Rosemont–La Petite-Patrie</span><span class="chip city">City's actual routing → Rosemont ✓</span></div></div>
 </div>
 

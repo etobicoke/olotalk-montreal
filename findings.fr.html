@@ -73,11 +73,11 @@ La proposition met nécessairement de l'avant ce qui fonctionne; voici le dossie
 <h2><span class="n">2</span>Impasses dans lesquelles nous nous sommes engagés</h2>
 
 <h3>Le 51% qui n'en était pas un</h3>
-<p>Comparer <code>ARRONDISSEMENT</code> à <code>ARRONDISSEMENT_GEO</code> par simple égalité de chaînes donne un <b>écart de 50.9%</b>. Il s'agit presque entièrement d'une question de formatage : <code>Mercier - Hochelaga-Maisonneuve</code> contre <code>Mercier-Hochelaga-Maisonneuve</code>. Une fois normalisé, l'écart réel est de <b>0.69%</b>, et même cela n'est pas un taux d'erreur, car les deux champs ne veulent pas dire la même chose (qui la règle contre où elle se situe).</p>
+<p>Comparer <code>ARRONDISSEMENT</code> à <code>ARRONDISSEMENT_GEO</code> par simple égalité de chaînes donne un <b>écart de 50.9%</b>. Il s'agit presque entièrement d'une question de formatage : <code>Mercier - Hochelaga-Maisonneuve</code> contre <code>Mercier-Hochelaga-Maisonneuve</code>. Une fois normalisé, l'écart réel est de <b>0.69%</b>, et même cela n'est pas un taux d'erreur, car les deux champs ne veulent pas dire la même chose (qui la règle, et non où elle se situe).</p>
 <div class="callout c-warn"><span class="lbl">Leçon</span>Quand une comparaison de chaînes produit un chiffre stupéfiant, traitez-le comme un bogue de formatage jusqu'à preuve du contraire.</div>
 
 <h3>Le zéro circulaire</h3>
-<p>Filtrer les requêtes de nids-de-poule vers les villes liées au moyen d'<code>ARRONDISSEMENT</code> renvoie <b>0</b>, ce qui a l'air d'un constat (« les citoyens ne se trompent jamais de côté de la frontière ») alors qu'il ne fait que reformuler la définition de la colonne. La bonne colonne, <code>ARRONDISSEMENT_GEO</code>, renvoie <b>311</b> : Mont-Royal 169, Westmount 91, et plus encore. À Westmount, la catégorie 311 la plus fréquente est <code>Nid-de-poule</code>.</p>
+<p>Filtrer les requêtes de nids-de-poule pour ne retenir que celles des villes liées au moyen d'<code>ARRONDISSEMENT</code> renvoie <b>0</b>, ce qui a l'air d'un constat (« les citoyens ne se trompent jamais de côté de la frontière ») alors qu'il ne fait que reformuler la définition de la colonne. La bonne colonne, <code>ARRONDISSEMENT_GEO</code>, renvoie <b>311</b> : Mont-Royal 169, Westmount 91, et plus encore. À Westmount, la catégorie 311 la plus fréquente est <code>Nid-de-poule</code>.</p>
 <div class="callout c-warn"><span class="lbl">Leçon</span>Le bon chiffre appuyait l'argument <em>mieux</em> que le mauvais. Quand un résultat fait à ce point notre affaire, examinez-le avec plus de soin.</div>
 
 <h3>La colonne de propriétaire qui n'en est pas une</h3>
@@ -97,7 +97,7 @@ La proposition met nécessairement de l'avant ce qui fonctionne; voici le dossie
 <tr><td>Deux points chauds à ~2 m l'un de l'autre</td><td>géocodes en double</td><td>le <b>milieu du même tronçon recalculé</b> après un changement de version de la géobase, voilà pourquoi <code>geobase-gestion-troncon</code> existe</td></tr>
 </tbody>
 </table>
-<p>Conséquence pour toute évaluation : les coordonnées publiées sont des milieux de tronçons. Vous ne pouvez pas valider une résolution d'actif à la précision du mètre en la confrontant à l'historique 311. Vous pouvez valider l'acheminement à l'échelle du tronçon et du territoire, soit précisément la granularité à laquelle se situe la compétence. Le seuil de 45 m écarte en outre les tronçons courts, de sorte que toute exactitude mesurée à travers lui constitue un plancher.</p>
+<p>Conséquence pour toute évaluation : les coordonnées publiées sont des milieux de tronçons. Vous ne pouvez pas valider une résolution d'actif à la précision du mètre en la confrontant à l'historique 311. Vous pouvez valider l'acheminement à l'échelle du tronçon et du territoire, soit précisément la granularité à laquelle se situe la compétence. Le seuil de 45 m écarte en outre les tronçons courts, de sorte que toute exactitude ainsi mesurée constitue un plancher.</p>
 
 <h2><span class="n">4</span>Facteurs de confusion que nous n'avons pu éliminer</h2>
 <ul>
@@ -121,7 +121,7 @@ Fields: GET /datastore_search?resource_id=&lt;id&gt;&amp;limit=1   ← the real 
 <p>Pièges, tous rencontrés pour de vrai :</p>
 <ul>
 <li>Les chemins <code>/download/</code> redirigent (302) vers Google Storage; dans un shell en bac à sable, la redirection inter-hôtes renvoie <code>RBAC: access denied</code> (19 octets). L'API elle-même fonctionne très bien; seuls les téléchargements de fichiers en bloc sont touchés.</li>
-<li>La <em>page</em> du jeu de données n'est pas récupérable par curl (délai dépassé). Le texte méthodologique exige une requête avec rendu; il ne se trouve pas dans l'API.</li>
+<li>La <em>page</em> du jeu de données n'est pas récupérable par curl (délai dépassé). Le texte méthodologique exige un rendu de la page; il ne se trouve pas dans l'API.</li>
 <li><code>COUNT(*) FILTER (WHERE …)</code> ne renvoie silencieusement rien sur certaines requêtes du datastore. Utilisez <code>SUM(CASE WHEN … THEN 1 ELSE 0 END)</code> ou des requêtes distinctes.</li>
 <li>La colonne est <code>PROPRIETAIRE_REF</code>, pas <code>PROPRIETAIRE</code>. Les noms des groupes d'attributs du dictionnaire sont littéralement les noms des colonnes.</li>
 <li>Paginez les requêtes groupées : le datastore plafonne le nombre de lignes par réponse.</li>

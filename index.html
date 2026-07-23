@@ -102,12 +102,12 @@ a.art:hover{background:#faf9f4}
 
 <div class="note">
 <div class="nh">Un mot de notre part.</div>
-<p>Nous n'avons pas commencé par une démo. Nous avons passé des jours à éplucher les données ouvertes 311 de Montréal, et la leçon la plus utile a été que l'approche évidente est la mauvaise : acheminer un signalement, ce n'est pas reconnaître un nid-de-poule sur une photo, c'est savoir <b>à qui revient le problème</b>. La Ville y répond déjà, environ 97 % du temps, avec des règles qu'on peut recalculer. Nous avons donc construit la version qu'un juré peut vérifier lui-même.</p>
-<p>Tout ce que vous verrez ici sort de vraies données, et chaque chiffre se régénère depuis l'API de la Ville. Nous préférons que vous nous vérifiiez plutôt que vous nous croyiez sur parole.</p>
+<p>Nous n'avons pas commencé par une démo. Nous avons passé des jours à éplucher les données ouvertes 311 de Montréal, et la leçon la plus utile, c'est que l'approche évidente est la mauvaise : acheminer un signalement, ce n'est pas reconnaître un nid-de-poule sur une photo, c'est savoir <b>à qui revient le problème</b>. La Ville y répond déjà, environ 97 % du temps, avec des règles qu'on peut recalculer. Nous avons donc construit la version qu'un juré peut vérifier lui-même.</p>
+<p>Tout ce que vous verrez ici sort de vraies données, et chaque chiffre se régénère depuis l'API de la Ville. Nous préférons que vous nous vérifiiez plutôt que de nous croire sur parole.</p>
 <div class="sig"><b>Ta'ji Gustave Nganso</b> · Fondateur, Olochat&nbsp;AI&nbsp;Inc.</div>
 </div>
 
-<p class="lead">Le défi demande une IA qui lit une photo et achemine la requête. Nous avons d'abord mesuré quatre ans d'acheminement montréalais, et l'acheminement <b>n'est pas</b> la partie difficile. L'IA fait la perception; un moteur déterministe et justifiable fait l'acheminement, s'abstient au profit d'un humain quand les sources se contredisent, et ne nomme jamais un service; il ne peut donc pas mal acheminer par hallucination.</p>
+<p class="lead">Le défi demande une IA qui lit une photo et achemine la requête. Nous avons d'abord mesuré quatre ans d'acheminement montréalais, et l'acheminement <b>n'est pas</b> le plus difficile. L'IA fait la perception; un moteur déterministe et justifiable fait l'acheminement, s'abstient au profit d'un humain quand les sources se contredisent, et ne nomme jamais un service; il ne peut donc pas mal acheminer par hallucination.</p>
 
 <div class="figs">
 <div class="fig"><div class="v">~97 %</div><div class="l">de l'acheminement reproduit <b>sans apprentissage automatique</b> (hors échantillon)</div></div>
@@ -115,11 +115,11 @@ a.art:hover{background:#faf9f4}
 <div class="fig"><div class="v">3&nbsp;M+</div><div class="l">signalements analysés en entier, aucun échantillonnage</div></div>
 <div class="fig"><div class="v">~82 %</div><div class="l">du volume arrive encore par téléphone : le vrai gain</div></div>
 </div>
-<div class="driftnote">Formes à l'épreuve de la dérive : les taux sont stables; les comptes augmentent chaque jour.</div>
+<div class="driftnote">Formes à l'épreuve de la dérive : les taux sont stables; les décomptes augmentent chaque jour.</div>
 
 <div class="verify">
 <div class="vh">Ne nous croyez pas, vérifiez.</div>
-<p>Deux scripts sans dépendance rejouent chaque chiffre contre l'API en direct de la Ville. Le tableau de bord se re-note <b>tout seul, chaque jour</b>, et l'historique public des commits en est la preuve d'antériorité.</p>
+<p>Deux scripts sans dépendance confrontent chaque chiffre à l'API en direct de la Ville. Le tableau de bord se re-note <b>tout seul, chaque jour</b>, et l'historique public des commits en est la preuve d'antériorité.</p>
 <div class="cmd"><span class="c">node</span> shadow/montreal-challenge-verify.mjs&nbsp;&nbsp;<span style="color:#6b8299"># chaque chiffre → RÉUSSITE / DÉRIVE / ÉCHEC</span></div>
 <div class="cmd"><span class="c">node</span> shadow/shadow-run.mjs&nbsp;&nbsp;<span style="color:#6b8299"># régénère le tableau de bord en direct</span></div>
 <a class="live" href="shadow/scorecard.html"><span class="dot"></span>Voir le tableau de bord en direct →</a>
@@ -151,7 +151,7 @@ a.art:hover{background:#faf9f4}
 <a class="art" href="demo.fr.html"><span class="ico">🎬</span><span><span class="an">Démo en direct : 3 scénarios réels</span><span class="ad">Acheminé, le piège du service partagé (feu au centre-ville → Rosemont), et redirigé (Mont-Royal → pas à nous). Chaque cas est une vraie requête 311. Bilingue. La source de la vidéo.</span></span><span class="tag live">démo</span></a>
 <a class="art" href="proposal.fr.html"><span class="ico">📄</span><span><span class="an">Mémoire technique</span><span class="ad">Résoudre l'actif, en déduire le propriétaire; la garantie d'ancrage; la jointure de compétence qui n'existe pas; le modèle de confidentialité à deux niveaux.</span></span><span class="tag read">lire</span></a>
 <a class="art" href="findings.fr.html"><span class="ico">🔬</span><span><span class="an">Notes de terrain &amp; impasses</span><span class="ad">Les champs qui mentent sur leur nom, les murs où nous avons foncé, le carnet d'API. Le reçu de crédibilité : la preuve qu'un humain a fait le travail.</span></span><span class="tag read">lire</span></a>
-<a class="art" href="shadow/scorecard.html"><span class="ico">📊</span><span><span class="an">Tableau de bord en direct</span><span class="ad">La politique figée, notée chaque jour contre les décisions de la Ville : 97,27 % hors échantillon, empreinte recalculable par quiconque.</span></span><span class="tag live">en direct</span></a>
+<a class="art" href="shadow/scorecard.html"><span class="ico">📊</span><span><span class="an">Tableau de bord en direct</span><span class="ad">La politique figée, notée chaque jour d'après les décisions de la Ville : 97,27 % hors échantillon, empreinte recalculable par quiconque.</span></span><span class="tag live">en direct</span></a>
 </div>
 
 <div class="foot">

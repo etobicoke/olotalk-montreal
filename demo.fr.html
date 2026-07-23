@@ -83,7 +83,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="meta">Chaque lieu ci-dessous provient d'une vraie requête des données ouvertes 311 de la Ville, et l'acheminement montré est celui du moteur, qui correspond à la décision réelle de la Ville. L'étape photo/voix est l'entrée; cette page démontre ce qui rend l'acheminement fiable : un moteur déterministe et justifiable qui ne devine jamais un service.</div>
 </header>
 
-<p class="lead">Un citoyen envoie une photo et quelques mots. La perception en tire un <b>actif + un défaut</b>. Puis un moteur déterministe décide à qui revient le problème, et il peut toujours dire pourquoi, ou dire « ce n'est pas à nous ».</p>
+<p class="lead">Un citoyen envoie une photo et quelques mots. La perception en tire un <b>actif + un défaut</b>. Puis un moteur déterministe décide à qui revient le problème, et il peut toujours en donner la raison, ou répondre « ce n'est pas à nous ».</p>
 
 <div class="pipe">
 <div class="p ai"><div class="pn">01 · IA</div><div class="pt">Percevoir</div><div class="pd">photo + voix → catégorie d'actif + défaut</div></div>
@@ -121,7 +121,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="arr">→</div>
 <div class="stage decide ok"><div class="st-lbl">4 · Acheminement</div><div class="st-body"><span class="big">Rosemont–La Petite-Patrie</span>unité des feux, à l'échelle de l'île</div></div>
 </div>
-<div class="reason"><span class="lbl">Raison</span>La Ville exploite les feux de circulation comme un service partagé depuis Rosemont–La Petite-Patrie, qui traite <b>74,7 %</b> de tous les signalements de feux de l'île, provenant de 21 territoires différents. La géographie naïve enverrait ce feu du centre-ville à Ville-Marie, à tort. Le moteur sait que c'est un service partagé.
+<div class="reason"><span class="lbl">Raison</span>La Ville exploite les feux de circulation comme un service partagé depuis Rosemont–La Petite-Patrie, qui traite <b>74,7 %</b> de tous les signalements de feux de l'île, provenant de 21 territoires différents. La géographie naïve enverrait à tort ce feu du centre-ville à Ville-Marie; le moteur, lui, sait qu'il s'agit d'un service partagé.
 <div class="verdict"><span class="chip no">Géographie naïve → Ville-Marie</span><span class="chip yes">Moteur → Rosemont–La Petite-Patrie</span><span class="chip city">Acheminement réel de la Ville → Rosemont ✓</span></div></div>
 </div>
 
@@ -137,7 +137,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="arr">→</div>
 <div class="stage decide re"><div class="st-lbl">4 · Redirection</div><div class="st-body"><span class="big">Ville de Mont-Royal</span>ce n'est pas à Montréal de le réparer</div></div>
 </div>
-<div class="reason"><span class="lbl">Raison</span>Les limites administratives de la Ville elle-même (Limites administratives, <code>TYPE = « Ville liée »</code>) situent cette adresse dans Ville de Mont-Royal, l'une des 15 municipalités reconstituées plutôt que l'un des 19 arrondissements de Montréal. Le 311 de Montréal n'a aucune compétence ici. La page sur les nids-de-poule de Montréal le confirme : les problèmes en ville liée vont à la ville liée. Un classificateur qui n'aurait vu que « nid-de-poule » aurait ouvert un bon de travail montréalais pour la rue d'une autre ville.
+<div class="reason"><span class="lbl">Raison</span>Les limites administratives de la Ville elle-même (Limites administratives, <code>TYPE = « Ville liée »</code>) situent cette adresse dans Ville de Mont-Royal, l'une des 15 municipalités reconstituées plutôt que l'un des 19 arrondissements de Montréal. Le 311 de Montréal n'a aucune compétence ici. La page sur les nids-de-poule de Montréal le confirme : les problèmes en ville liée reviennent à la ville liée. Un classificateur qui n'aurait vu que « nid-de-poule » aurait ouvert un bon de travail montréalais pour la rue d'une autre ville.
 <div class="verdict"><span class="chip yes">Moteur → redirection vers Ville de Mont-Royal</span><span class="chip city">Dans les données de la Ville, les requêtes de l'intérieur de Mont-Royal ne sont jamais assignées à la voirie d'un arrondissement ✓</span></div></div>
 <div class="enclave">
 <svg width="260" height="170" viewBox="0 0 260 170" role="img" aria-label="Schéma : l'enclave de Mont-Royal à l'intérieur de l'île de Montréal">
@@ -149,12 +149,12 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <circle cx="129" cy="83" r="5.5" fill="#dc2626" stroke="#fff" stroke-width="2"/>
 <text x="129" y="99" text-anchor="middle" font-family="monospace" font-size="8" fill="#b45309">le signalement</text>
 </svg>
-<div class="cap">Mont-Royal est une <b>enclave</b>, une municipalité distincte entièrement entourée de Montréal. L'épingle tombe à l'intérieur de sa limite, donc la réponse est « pas à nous » peu importe ce que montre la photo. La géographie seule ne réussit ceci que si elle connaît l'existence de l'enclave; un classificateur de catégories, jamais.</div>
+<div class="cap">Mont-Royal est une <b>enclave</b>, une municipalité distincte entièrement entourée de Montréal. L'épingle tombe à l'intérieur de sa limite, donc la réponse est « pas à nous », peu importe ce que montre la photo. La géographie seule n'y parvient que si elle connaît l'existence de l'enclave; un classificateur de catégories, jamais.</div>
 </div>
 </div>
 
 <div class="foot">
-<b>À quel point est-ce réel ?</b> Les trois lieux et rues sont de vraies requêtes 311 (ou, pour Mont-Royal, une vraie rue de Ville de Mont-Royal), extraits en direct de <code>donnees.montreal.ca</code> (CC-BY 4.0 · © Ville de Montréal); les coordonnées affichées sont approximatives. L'acheminement montré est celui de la politique figée du moteur (empreinte <code>b1f81070…</code>), et il correspond aux décisions réelles enregistrées par la Ville. L'étape de perception (photo → actif + défaut) est montrée comme l'entrée. Dans le produit, elle utilise un modèle de vision auto-hébergé; ici, nous démontrons le moteur déterministe, la partie qui rend l'acheminement vérifiable. Reproduire l'acheminement : <code>node shadow/shadow-run.mjs</code>. Voir aussi le <a href="index.html">pôle de la soumission</a> et le <a href="shadow/scorecard.html">tableau de bord en direct</a>.
+<b>À quel point est-ce réel ?</b> Les trois lieux et rues sont de vraies requêtes 311 (ou, pour Mont-Royal, une vraie rue de Ville de Mont-Royal), extraits en direct de <code>donnees.montreal.ca</code> (CC-BY 4.0 · © Ville de Montréal); les coordonnées affichées sont approximatives. L'acheminement montré est celui de la politique figée du moteur (empreinte <code>b1f81070…</code>), et il correspond aux décisions réelles enregistrées par la Ville. L'étape de perception (photo → actif + défaut) est présentée comme l'entrée. Dans le produit, elle utilise un modèle de vision auto-hébergé; ici, nous démontrons le moteur déterministe, la partie qui rend l'acheminement vérifiable. Reproduire l'acheminement : <code>node shadow/shadow-run.mjs</code>. Voir aussi le <a href="index.html">pôle de la soumission</a> et le <a href="shadow/scorecard.html">tableau de bord en direct</a>.
 </div>
 </div>
 <script>

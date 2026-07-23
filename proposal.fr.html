@@ -202,7 +202,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
   </div>
 
   <h3>Fait 2 : la catégorie ne nomme pas le propriétaire</h3>
-  <p><code>Nid-de-poule</code>, une seule catégorie comptant <b>55,916</b> requêtes de service, est traitée par <b>19 unités responsables distinctes</b>. <code>Collecte de déchets</code> en couvre 21, <code>Feux de circulation - Entretien</code> 21, <code>Occupation du domaine public</code> 20. Connaître la catégorie vous dit en quoi consiste le travail. <em>À qui</em> il revient est une autre question, à laquelle la catégorie ne répond pas.</p>
+  <p><code>Nid-de-poule</code>, une seule catégorie comptant <b>55,916</b> requêtes de service, est traitée par <b>19 unités responsables distinctes</b>. <code>Collecte de déchets</code> en couvre 21, <code>Feux de circulation - Entretien</code> 21, <code>Occupation du domaine public</code> 20. Connaître la catégorie indique en quoi consiste le travail. <em>À qui</em> il revient est une autre question, à laquelle la catégorie ne répond pas.</p>
 
   <h3>Fait 3 : l'acheminement n'est presque pas un problème d'IA</h3>
   <table>
@@ -298,7 +298,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     </div>
   </div>
 
-  <p>La résolution d'actif est une résolution d'entité contre un registre : du repérage sur un corpus, soit le système qu'Olotalk exploite déjà. Ce n'est pas un classificateur, et cette distinction est ce qui rend traitables à la fois la longue traîne et le roulement : on ne peut pas réentraîner un classificateur à 513 classes chaque fois qu'un arrondissement renomme une catégorie, mais un index de repérage sur le catalogue courant absorbe un renommage gratuitement.</p>
+  <p>La résolution d'actif est une résolution d'entité sur un registre : du repérage sur un corpus, soit le système qu'Olotalk exploite déjà. Ce n'est pas un classificateur, et cette distinction est ce qui rend traitables à la fois la longue traîne et le roulement : on ne peut pas réentraîner un classificateur à 513 classes chaque fois qu'un arrondissement renomme une catégorie, mais un index de repérage sur le catalogue courant absorbe un renommage gratuitement.</p>
 
   <h3>Le véritable rôle de l'IA</h3>
   <p>Le modèle fait exactement deux choses, et aucune n'est l'acheminement :</p>
@@ -309,7 +309,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
   <p>Tout ce qui suit en aval est une jointure déterministe.</p>
 
   <h3>Une seule question, uniquement quand elle change la réponse</h3>
-  <p>Nous ne présentons pas de formulaire. Quand la résolution est ambiguë <em>et</em> que l'ambiguïté change l'acheminement, le système pose exactement une question, <em>« Le nid-de-poule est-il dans la voie de circulation ou dans la voie cyclable ? »</em>, choisie parce que sa réponse fait basculer le service. Si la réponse ne change rien, nous ne demandons pas.</p>
+  <p>Nous ne présentons pas de formulaire. Quand la résolution est ambiguë <em>et</em> que l'ambiguïté change l'acheminement, le système pose exactement une question, <em>« Le nid-de-poule est-il dans la voie de circulation ou dans la voie cyclable ? »</em>, choisie parce que sa réponse fait basculer le service. Si la réponse ne change rien, nous ne posons pas la question.</p>
 
   <h2><span class="n">3</span>La garantie d'ancrage</h2>
 
@@ -319,14 +319,14 @@ h1,h2{font-family:var(--serif);font-weight:600}
   </div>
 
   <ul>
-    <li>L'acheminement est une jointure déterministe qui porte sa propre provenance. Il ne peut pas halluciner un service, car aucune étape générative n'est autorisée à en nommer un.</li>
+    <li>L'acheminement est assuré par un moteur déterministe — une jointure qui porte sa propre provenance. Il ne peut pas halluciner un service, car aucune étape générative n'est autorisée à en nommer un.</li>
     <li>Chaque décision d'acheminement porte une raison citable : ce tronçon, cette autorité, ce règlement. C'est une piste de vérification qu'une administration publique peut défendre.</li>
     <li>Le mode de défaillance est un simple « je n'ai pas pu résoudre ceci », que le système peut signaler et acheminer vers un humain. L'autre voie, avoir tort avec assurance, est le mode de défaillance d'un classificateur, celui qui coûte à la Ville un déplacement de camion vers un actif qu'elle ne possède pas.</li>
   </ul>
 
   <h2><span class="n">4</span>La réponse sur la compétence n'existe pas encore, et c'est là l'occasion</h2>
 
-  <p>La propre page de Montréal sur les nids-de-poule indique aux citoyens : <em>« Le nid-de-poule se trouve-t-il sur une autoroute ou une voie de desserte ? Communiquez avec le Ministère des Transports en composant le 511. »</em> La Ville demande au citoyen d'effectuer la détermination de la compétence.</p>
+  <p>La propre page de Montréal sur les nids-de-poule indique aux citoyens : <em>« Le nid-de-poule se trouve-t-il sur une autoroute ou une voie de desserte ? Communiquez avec le Ministère des Transports en composant le 511. »</em> La Ville demande au citoyen de déterminer lui-même la compétence.</p>
 
   <p>Nous avons d'abord supposé qu'il s'agissait d'une jointure de données inexploitée. Ce n'est pas le cas. Nous avons vérifié, et le constat a remodelé notre proposition.</p>
 
@@ -345,7 +345,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     </tbody>
   </table>
 
-  <p>Une jointure naïve sur le champ nommé « propriétaire » enverrait un nid-de-poule d'autoroute provinciale à une équipe d'arrondissement : le mauvais acheminement plein d'assurance que le §3 existe pour prévenir, dans le cas même où montreal.ca dit de composer le 511.</p>
+  <p>Une jointure naïve sur le champ nommé « propriétaire » enverrait un nid-de-poule d'autoroute provinciale à une équipe d'arrondissement : le mauvais acheminement plein d'assurance que le §3 vise justement à prévenir, dans le cas même où montreal.ca dit de composer le 511.</p>
 
   <div class="callout c-find">
     <span class="lbl">Les données de la Ville ne répondent pas non plus</span>
@@ -393,11 +393,11 @@ h1,h2{font-family:var(--serif);font-weight:600}
 
   <blockquote>« Pour respecter la confidentialité des requérants, cette position géographique est ensuite obfusquée: les requêtes associées à des adresses ou installations particulières sont relocalisées au milieu du tronçon le plus près ayant une longueur de plus de 45 mètres. »</blockquote>
 
-  <p>La Ville exploite deux paliers : localisation précise à l'interne, parce que c'est ainsi qu'une équipe est dépêchée ; généralisée au tronçon à la publication, parce que c'est la granularité qu'a bénie son analyse de confidentialité. Nous adoptons les deux mêmes paliers au lieu d'en inventer un troisième : précise pour la répartition, généralisée au tronçon pour la conservation, l'analytique et tout ce qui est publié.</p>
+  <p>La Ville exploite deux paliers : localisation précise à l'interne, parce que c'est ainsi qu'une équipe est dépêchée ; généralisée au tronçon à la publication, parce que c'est la granularité qu'a entérinée son analyse de confidentialité. Nous adoptons les deux mêmes paliers au lieu d'en inventer un troisième : précise pour la répartition, généralisée au tronçon pour la conservation, l'analytique et tout ce qui est publié.</p>
 
   <div class="callout c-warn">
     <span class="lbl">Ce que nous ne prétendons pas</span>
-    <p>Résoudre jusqu'à un actif précis est, pour certaines classes, plus identifiant que la granularité publiée par la Ville : un arbre de rue fait face à une seule maison. La conservation à l'échelle de l'actif est donc une posture qui doit être convenue avec le contentieux de la Ville en vertu de la <b>Loi 25</b>, par classe d'actif. Ce n'est pas quelque chose que nous pouvons affirmer en pointant la règle d'obfuscation. Ce que nous pouvons dire, c'est que Montréal a déjà fait le raisonnement sur la granularité de localisation comme levier de confidentialité, et a publié où elle a abouti. Nous partons de là au lieu de partir de zéro.</p>
+    <p>Résoudre jusqu'à un actif précis est, pour certaines classes, plus identifiant que la granularité publiée par la Ville : un arbre de rue fait face à une seule maison. La conservation à l'échelle de l'actif est donc une posture qui doit être convenue avec le contentieux de la Ville en vertu de la <b>Loi 25</b>, par classe d'actif. Ce n'est pas quelque chose que nous pouvons affirmer en invoquant la règle d'obfuscation. Ce que nous pouvons dire, c'est que Montréal a déjà fait le raisonnement sur la granularité de localisation comme levier de confidentialité, et a publié où elle a abouti. Nous partons de là au lieu de partir de zéro.</p>
   </div>
 
   <ul>
@@ -428,7 +428,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 
   <ul>
     <li><b>90.33% est un plancher.</b> Cette valeur a été mesurée <em>à travers</em> l'obfuscation à 45 mètres de la Ville, qui rabat les signalements au milieu des tronçons et saute les tronçons de moins de 45 m, injectant un bruit d'étiquetage que nous ne pouvons pas retirer. Le vrai GPS d'un téléphone fait strictement mieux.</li>
-    <li><b>La règle A obtient 0% sur les 2,417 requêtes provenant de villes liées</b> : elle prédit une unité qui n'existe pas. Négligeable pour le résultat phare (0.16%) mais un angle mort structurel dans exactement le parcours de compétence que nous vendons.</li>
+    <li><b>La règle A obtient 0% sur les 2,417 requêtes provenant de villes liées</b> : elle prédit une unité qui n'existe pas. Négligeable pour le résultat phare (0.16%) mais un angle mort structurel précisément dans le parcours de compétence que nous vendons.</li>
     <li><b>La propriété des poteaux n'est pas uniforme et nous ne pouvons pas la résoudre poteau par poteau.</b> Les données d'Hydro-Québec sont zonales (443 polygones) ; à Pierrefonds et à Dorval, le gestionnaire du parc de poteaux est Bell, pas HQ. Le portail ouvert de HQ est <b>CC-BY-NC</b>, une véritable contrainte pour un déploiement commercial.</li>
     <li><b>Les abribus n'ont de géodonnées nulle part.</b> Ceux de Québecor, dans le cadre d'un contrat qui courrait jusqu'en 2032, joignables au 514-ABRIBUS ; nous n'avons pas confirmé leur statut en 2026. Ce qui corrobore la lacune : <code>Abribus - Nettoyage</code> compte <b>exactement 1 enregistrement sur 3,034,731</b>. Nous acheminerions les abribus par catégorie, pas par géométrie.</li>
     <li><b>Nous n'avons pas lu le règlement 02-003</b>, seulement la paraphrase faisant autorité de la Ville dans les métadonnées du RAAV. Nous en ferions la demande auprès du Service du greffe.</li>
@@ -454,7 +454,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     </tbody>
   </table>
 
-  <p>Olotalk est en bêta privée. Notre réponse à « résultats démontrés » n'est pas un logo. C'est que nous avons mesuré ce problème contre 1.5 million de requêtes historiques de la Ville elle-même avant d'écrire une ligne de proposition, que nous avons réservé notre résultat phare hors échantillon, et que nous montrons les parties qui ne nous flattent pas, y compris la jointure que nous pensions fonctionnelle et qui ne l'est pas.</p>
+  <p>Olotalk est en bêta privée. Notre réponse à « résultats démontrés » n'est pas un logo. C'est que nous avons mesuré ce problème sur 1.5 million de requêtes historiques de la Ville elle-même avant d'écrire une ligne de proposition, que nous avons réservé notre résultat phare hors échantillon, et que nous montrons les parties qui ne nous flattent pas, y compris la jointure que nous pensions fonctionnelle et qui ne l'est pas.</p>
 
   <h2><span class="n">9</span>Pourquoi cela l'emporte pour la Ville, dans les chiffres de la Ville</h2>
 

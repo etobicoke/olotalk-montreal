@@ -318,9 +318,9 @@ h1,h2{font-family:var(--serif);font-weight:600}
   </div>
 
   <ul>
-    <li>Routing is a deterministic join that carries its own provenance. It cannot hallucinate a department, because no generative step is permitted to name one.</li>
+    <li>Routing is handled by a deterministic engine — a join that carries its own provenance. It cannot hallucinate a department, because no generative step is permitted to name one.</li>
     <li>Every routing decision carries a citable reason: this tronçon, this authority, this règlement. That is an audit trail a public administration can defend.</li>
-    <li>The failure mode is a plain "I could not resolve this," which the system can flag and route to a human. The alternative, confidently wrong, is the failure mode of a classifier, and the one that costs the City a truck roll to an asset it does not own.</li>
+    <li>The failure mode is a plain "I could not resolve this," which the system can flag and route to a human. The alternative, confidently wrong, is a classifier's failure mode — the one that costs the City a truck roll to an asset it does not own.</li>
   </ul>
 
   <h2><span class="n">4</span>The jurisdiction answer does not exist yet, and that is the opportunity</h2>
@@ -344,7 +344,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     </tbody>
   </table>
 
-  <p>A naive join on the field named "owner" would dispatch a provincial-highway pothole to a borough crew: the confident misroute §3 exists to prevent, in the exact case montreal.ca says to dial 511 about.</p>
+  <p>A naive join on the field named "owner" would dispatch a provincial-highway pothole to a borough crew: the confident misroute that §3 exists to prevent, in the exact case montreal.ca says to dial 511 about.</p>
 
   <div class="callout c-find">
     <span class="lbl">The City's own data can't answer either</span>
@@ -377,7 +377,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
       <tr><td><b>Total</b></td><td class="num"><b>311</b></td></tr>
     </tbody>
   </table>
-  <p>Citizens do not know where the boundary is; that is not a thing to expect of them. The City already has a bucket for the general case: <code>Organisme divers</code>, 47,578 requests, 47,577 of them logged as <code>Information</code> instead of as work. That is today's "belongs to someone else" path, 1.6% of all traffic, and it is our baseline to beat.</p>
+  <p>Citizens do not know where the boundary is, and it is not reasonable to expect them to. The City already has a bucket for the general case: <code>Organisme divers</code>, 47,578 requests, 47,577 of them logged as <code>Information</code> instead of as work. That is today's "belongs to someone else" path, 1.6% of all traffic, and it is our baseline to beat.</p>
 
   <h2><span class="n">5</span>Duplicates: the City already counts. Nobody groups.</h2>
 
@@ -385,7 +385,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 
   <div class="callout c-find">
     <span class="lbl">The gap is one level up</span>
-    <p>The count is per-request; nothing groups across requests to an asset. Four separate requests naming the same catch basin over a year remain four unrelated rows, because there is no asset identity to group them by. Resolve to the asset and the grouping is exact, with the same object, same defect, and same window, and no similarity threshold to tune. The City then gains a signal it cannot currently assemble: <em>"this asset has been the subject of four requests this year,"</em> where today it can only say <em>"this request had four callers."</em></p>
+    <p>The count is per-request; nothing groups across requests to an asset. Four separate requests naming the same catch basin over a year remain four unrelated rows, because there is no asset identity to group them by. Resolve to the asset and the grouping is exact — same object, same defect, same window — with no similarity threshold to tune. The City then gains a signal it cannot currently assemble: <em>"this asset has been the subject of four requests this year,"</em> where today it can only say <em>"this request had four callers."</em></p>
   </div>
 
   <h2><span class="n">6</span>Privacy: we mirror the City's own two-tier model</h2>
@@ -396,7 +396,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 
   <div class="callout c-warn">
     <span class="lbl">What we do not claim</span>
-    <p>Resolving to a specific asset is, for some classes, more identifying than the City's published granularity: a street tree fronts one house. Asset-level retention is therefore a posture that must be agreed with the City's counsel under <b>Law 25</b>, per asset class. It is not something we can assert by pointing at the obfuscation rule. What we can say is that Montréal has already done the reasoning about location granularity as the privacy lever, and published where it landed. We start there instead of from zero.</p>
+    <p>Resolving to a specific asset is, for some classes, more identifying than the City's published granularity: a street tree fronts one house. Asset-level retention is therefore a posture that must be agreed with the City's counsel under <b>Law 25</b>, per asset class. It is not something we can assert by pointing at the obfuscation rule. What we can say is that Montréal has already reasoned through location granularity as the privacy lever, and published where it landed. We start there instead of from zero.</p>
   </div>
 
   <ul>
@@ -453,7 +453,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     </tbody>
   </table>
 
-  <p>Olotalk is in private beta. Our answer to "demonstrated results" is not a logo. It is that we measured this problem against 1.5 million of the City's own historical requests before writing a line of proposal, held our headline out of sample, and are showing the parts that don't flatter us, including the join we expected to work and which does not.</p>
+  <p>Olotalk is in private beta. Our answer to "demonstrated results" is not a logo. It is that we measured this problem against 1.5 million of the City's own historical requests before writing a line of the proposal, held our headline out of sample, and are showing the parts that don't flatter us, including the join we expected to work and which does not.</p>
 
   <h2><span class="n">9</span>Why this wins for the City, in the City's numbers</h2>
 
