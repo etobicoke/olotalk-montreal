@@ -93,7 +93,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="meta">Chaque lieu ci-dessous provient d'une vraie requête des données ouvertes 311 de la Ville, et l'acheminement montré est celui du moteur, qui correspond à la décision réelle de la Ville. L'étape photo/voix est l'entrée; cette page démontre ce qui rend l'acheminement fiable : un moteur déterministe et justifiable qui ne devine jamais un service.</div>
 </header>
 
-<p class="lead">Un citoyen envoie une photo et quelques mots. La perception en tire un <b>actif + un défaut</b>. Puis un moteur déterministe décide à qui revient le problème, et il peut toujours en donner la raison, ou répondre « ce n'est pas à nous ».</p>
+<p class="lead">Un citoyen envoie une photo et quelques mots — dits ou tapés : à Montréal, plus de huit signalements sur dix arrivent encore par téléphone. La perception en tire un <b>actif + un défaut</b>, et la voix est transcrite puis supprimée. Puis un moteur déterministe décide à qui revient le problème, et il peut toujours en donner la raison, ou répondre « ce n'est pas à nous ».</p>
 
 <div class="pipe">
 <div class="p ai"><div class="pn">01 · IA</div><div class="pt">Percevoir</div><div class="pd">photo + voix → catégorie d'actif + défaut</div></div>
@@ -107,7 +107,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="scn">
 <div class="scn-head"><span class="scn-tag">Scénario 1 · acheminé</span><span class="scn-title">Nid-de-poule sur l'avenue des Pins</span><span class="scn-status st-ok">Acheminé</span></div>
 <div class="flow">
-<div class="stage"><div class="st-lbl">1 · Signalement</div><div class="st-body">📷 « gros nid-de-poule ici »<br>avenue des Pins<br><span class="coord">45,5085, −73,5800</span></div></div>
+<div class="stage"><div class="st-lbl">1 · Signalement</div><div class="st-body">📷 + 🎤 « gros nid-de-poule ici »<br>avenue des Pins<br><span class="coord">45,5085, −73,5800</span></div></div>
 <div class="arr">→</div>
 <div class="stage ai"><div class="st-lbl">2 · Perception · IA</div><div class="st-body">actif = <b>chaussée</b><br>défaut = <b>nid-de-poule</b></div></div>
 <div class="arr">→</div>
@@ -123,7 +123,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="scn">
 <div class="scn-head"><span class="scn-tag">Scénario 2 · acheminé · la subtilité</span><span class="scn-title">Feu de circulation défectueux sur la rue Sainte-Catherine (centre-ville)</span><span class="scn-status st-ok">Acheminé</span></div>
 <div class="flow">
-<div class="stage"><div class="st-lbl">1 · Signalement</div><div class="st-body">📷 « le feu est éteint »<br>rue Sainte-Catherine, Ville-Marie<br><span class="coord">45,4926, −73,5800</span></div></div>
+<div class="stage"><div class="st-lbl">1 · Signalement</div><div class="st-body">📷 + 🎤 « le feu est éteint »<br>rue Sainte-Catherine, Ville-Marie<br><span class="coord">45,4926, −73,5800</span></div></div>
 <div class="arr">→</div>
 <div class="stage ai"><div class="st-lbl">2 · Perception · IA</div><div class="st-body">actif = <b>feu de circulation</b><br>défaut = <b>panne</b></div></div>
 <div class="arr">→</div>
@@ -139,7 +139,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="scn">
 <div class="scn-head"><span class="scn-tag">Scénario 3 · pas à nous</span><span class="scn-title">Nid-de-poule sur le boulevard Graham, Mont-Royal</span><span class="scn-status st-re">Redirigé</span></div>
 <div class="flow">
-<div class="stage"><div class="st-lbl">1 · Signalement</div><div class="st-body">📷 « nid-de-poule sur ma rue »<br>boulevard Graham<br><span class="coord">45,5217, −73,6274</span></div></div>
+<div class="stage"><div class="st-lbl">1 · Signalement</div><div class="st-body">📷 + 🎤 « nid-de-poule sur ma rue »<br>boulevard Graham<br><span class="coord">45,5217, −73,6274</span></div></div>
 <div class="arr">→</div>
 <div class="stage ai"><div class="st-lbl">2 · Perception · IA</div><div class="st-body">actif = <b>chaussée</b><br>défaut = <b>nid-de-poule</b></div></div>
 <div class="arr">→</div>

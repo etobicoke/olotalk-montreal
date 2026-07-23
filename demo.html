@@ -97,7 +97,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="meta">Every location below is a real request from the City's 311 open data, and the routing shown is the resolver's, and it matches the City's own decision. The photo/voice step is the input; this page demonstrates the part that makes routing trustworthy: a deterministic, citable resolver that never guesses a department.</div>
 </header>
 
-<p class="lead">A citizen sends a photo and a few words. Perception turns that into an <b>asset + defect</b>. Then a deterministic resolver decides whose problem it is, and can always say why, or say "not ours."</p>
+<p class="lead">A citizen sends a photo and a few words, spoken or typed — in Montréal, more than eight reports in ten still arrive by phone. Perception turns that into an <b>asset + defect</b>, and the voice is transcribed, then deleted. Then a deterministic resolver decides whose problem it is, and can always say why, or say "not ours."</p>
 
 <div class="pipe">
 <div class="p ai"><div class="pn">01 · AI</div><div class="pt">Perceive</div><div class="pd">photo + voice → asset class + defect</div></div>
@@ -111,7 +111,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="scn">
 <div class="scn-head"><span class="scn-tag">Scenario 1 · routed</span><span class="scn-title">Pothole on avenue des Pins</span><span class="scn-status st-ok">Routed</span></div>
 <div class="flow">
-<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 “big pothole here”<br>avenue des Pins<br><span class="coord">45.5085, −73.5800</span></div></div>
+<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 + 🎤 “big pothole here”<br>avenue des Pins<br><span class="coord">45.5085, −73.5800</span></div></div>
 <div class="arr">→</div>
 <div class="stage ai"><div class="st-lbl">2 · Perceive · AI</div><div class="st-body">asset = <b>road surface</b><br>defect = <b>pothole</b></div></div>
 <div class="arr">→</div>
@@ -127,7 +127,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="scn">
 <div class="scn-head"><span class="scn-tag">Scenario 2 · routed · the catch</span><span class="scn-title">Broken traffic light on rue Sainte-Catherine (downtown)</span><span class="scn-status st-ok">Routed</span></div>
 <div class="flow">
-<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 “the light is out”<br>rue Sainte-Catherine, Ville-Marie<br><span class="coord">45.4926, −73.5800</span></div></div>
+<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 + 🎤 “the light is out”<br>rue Sainte-Catherine, Ville-Marie<br><span class="coord">45.4926, −73.5800</span></div></div>
 <div class="arr">→</div>
 <div class="stage ai"><div class="st-lbl">2 · Perceive · AI</div><div class="st-body">asset = <b>traffic signal</b><br>defect = <b>outage</b></div></div>
 <div class="arr">→</div>
@@ -143,7 +143,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="scn">
 <div class="scn-head"><span class="scn-tag">Scenario 3 · not ours</span><span class="scn-title">Pothole on boulevard Graham, Mont-Royal</span><span class="scn-status st-re">Redirected</span></div>
 <div class="flow">
-<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 “pothole on my street”<br>boulevard Graham<br><span class="coord">45.5217, −73.6274</span></div></div>
+<div class="stage"><div class="st-lbl">1 · Report</div><div class="st-body">📷 + 🎤 “pothole on my street”<br>boulevard Graham<br><span class="coord">45.5217, −73.6274</span></div></div>
 <div class="arr">→</div>
 <div class="stage ai"><div class="st-lbl">2 · Perceive · AI</div><div class="st-body">asset = <b>road surface</b><br>defect = <b>pothole</b></div></div>
 <div class="arr">→</div>
