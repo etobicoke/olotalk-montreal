@@ -266,6 +266,17 @@ h1,h2{font-family:var(--serif);font-weight:600}
   BOROUGHS.forEach(function(b){ var o = document.createElement('option'); o.value = b; o.textContent = b; geoSel.appendChild(o); });
   geoSel.value = "Le Plateau-Mont-Royal";
 
+  // A datalist only offers the full list again when the field is empty:
+  // on focus, clear it (remembering the value); on blur with no new pick, restore.
+  var catInput = $('try-cat');
+  catInput.addEventListener('focus', function(){
+    if(this.value){ this.dataset.prev = this.value; this.value = ''; }
+  });
+  catInput.addEventListener('blur', function(){
+    if(!this.value && this.dataset.prev) this.value = this.dataset.prev;
+    delete this.dataset.prev;
+  });
+
   fetch('shadow/policy.json').then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){
     saved = j;
     var dl = $('try-cats'), cats = Object.keys(j.policy.categories).sort();
