@@ -93,7 +93,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="meta">Chaque lieu ci-dessous provient d'une vraie requête des données ouvertes 311 de la Ville, et l'acheminement montré est celui du moteur, qui correspond à la décision réelle de la Ville. L'étape photo/voix est l'entrée; cette page démontre ce qui rend l'acheminement fiable : un moteur déterministe et justifiable qui ne devine jamais un service.</div>
 </header>
 
-<p class="lead">Un citoyen envoie une photo et quelques mots — dits ou tapés : à Montréal, plus de huit signalements sur dix arrivent encore par téléphone. La perception en tire un <b>actif + un défaut</b>, et la voix est transcrite puis supprimée. Puis un moteur déterministe décide à qui revient le problème, et il peut toujours en donner la raison, ou répondre « ce n'est pas à nous ».</p>
+<p class="lead">Un citoyen envoie une photo et quelques mots, dits ou tapés : à Montréal, plus de huit signalements sur dix arrivent encore par téléphone. La perception en tire un <b>actif + un défaut</b>, et la voix est transcrite puis supprimée. Puis un moteur déterministe décide à qui revient le problème, et il peut toujours en donner la raison, ou répondre « ce n'est pas à nous ».</p>
 
 <div class="pipe">
 <div class="p ai"><div class="pn">01 · IA</div><div class="pt">Percevoir</div><div class="pd">photo + voix → catégorie d'actif + défaut</div></div>
@@ -165,9 +165,9 @@ h1,h2{font-family:var(--serif);font-weight:600}
 
 <!-- SCÉNARIO 4 · interactif -->
 <div class="scn try" id="try">
-<div class="scn-head"><span class="scn-tag">Scénario 4 · à vous</span><span class="scn-title">Essayez le moteur vous-même — la politique figée, dans votre navigateur</span></div>
+<div class="scn-head"><span class="scn-tag">Scénario 4 · à vous</span><span class="scn-title">Essayez le moteur vous-même : la politique figée, dans votre navigateur</span></div>
 <div class="try-body">
-<p style="margin-top:0">Cette page charge <code>shadow/policy.json</code> — la table de décision figée elle-même, celle dont l'empreinte est committée — et exécute la même fonction de décision que <code>shadow-run.mjs</code> : trois lignes, aucun modèle, aucun serveur. Choisissez une vraie catégorie 311 et un arrondissement; le moteur achemine et donne sa raison.</p>
+<p style="margin-top:0">Cette page charge <code>shadow/policy.json</code> (la table de décision figée elle-même, celle dont l'empreinte est committée) et exécute la même fonction de décision que <code>shadow-run.mjs</code> : trois lignes, aucun modèle, aucun serveur. Choisissez une vraie catégorie 311 et un arrondissement; le moteur achemine et donne sa raison.</p>
 <div class="try-controls">
 <label>Catégorie 311<input id="try-cat" list="try-cats" placeholder="ex. Nid-de-poule" autocomplete="off"></label>
 <datalist id="try-cats"></datalist>
@@ -285,7 +285,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
       }
     });
   }).catch(function(){
-    $('try-stats').innerHTML = '<span class="err-red">Impossible de charger <code>shadow/policy.json</code></span> — ouvrez cette page depuis le site publié pour essayer le moteur.';
+    $('try-stats').innerHTML = '<span class="err-red">Impossible de charger <code>shadow/policy.json</code></span>. Ouvrez cette page depuis le site publié pour essayer le moteur.';
     $('try-run').disabled = true; $('try-hash').disabled = true;
   });
 
@@ -295,7 +295,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     out.hidden = false;
     if(!cat){ out.innerHTML = 'Choisissez d’abord une catégorie dans la liste.'; return; }
     var rule = saved.policy.categories[cat];
-    if(!rule){ out.innerHTML = '« ' + cat + ' » n’est pas dans la table figée — choisissez une catégorie proposée par la liste (ce sont les vraies catégories du 311).'; return; }
+    if(!rule){ out.innerHTML = '« ' + cat + ' » n’est pas dans la table figée : choisissez une catégorie proposée par la liste (ce sont les vraies catégories du 311).'; return; }
     var unit = predict(saved.policy.categories, cat, geo);
     var naiveDiffers = rule.mode === "fixed" && norm(unit) !== norm(geo);
     var chips = '';
@@ -317,8 +317,8 @@ h1,h2{font-family:var(--serif);font-weight:600}
     crypto.subtle.digest("SHA-256", data).then(function(buf){
       var hex = Array.prototype.map.call(new Uint8Array(buf), function(b){ return b.toString(16).padStart(2,"0"); }).join("");
       el.innerHTML = hex === saved.policyHash
-        ? '<span class="ok-green">✓ identique</span> — recalculée ici : ' + hex.slice(0,16) + '… = committée : ' + saved.policyHash.slice(0,16) + '… La table n’a pas bougé depuis son gel.'
-        : '<span class="err-red">✗ différente</span> — recalculée : ' + hex + ' vs committée : ' + saved.policyHash;
+        ? '<span class="ok-green">✓ identique</span>, recalculée ici : ' + hex.slice(0,16) + '… = committée : ' + saved.policyHash.slice(0,16) + '… La table n’a pas bougé depuis son gel.'
+        : '<span class="err-red">✗ différente</span>, recalculée : ' + hex + ' vs committée : ' + saved.policyHash;
     });
   });
 })();

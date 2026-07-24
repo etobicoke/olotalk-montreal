@@ -1,6 +1,6 @@
-# Olochat AI Inc. × Ville de Montréal, Défi IA / AI Challenge
+# Olochat AI Inc. × Ville de Montréal · Défi IA / AI Challenge
 
-**⚜ Réinventer l'expérience citoyenne · Reinventing the Citizen Experience, ALL IN 2026**
+**⚜ Réinventer l'expérience citoyenne · Reinventing the Citizen Experience · ALL IN 2026**
 
 [Français](#français) · [English](#english)
 
@@ -9,7 +9,7 @@
 <a name="français"></a>
 ## Français
 
-Site de soumission pour le **Défi IA, Réinventer l'expérience citoyenne** (Ville de
+Site de soumission pour le **Défi IA · Réinventer l'expérience citoyenne** (Ville de
 Montréal, ALL IN 2026). Chaque chiffre est calculé à partir des **données ouvertes 311
 de la Ville** et est reproductible de façon indépendante.
 
@@ -23,7 +23,7 @@ Le **tableau de bord en direct** (l'acheminement noté chaque jour contre les d�
 réelles de la Ville) et les **scripts reproductibles** vivent dans le dossier `shadow/`.
 
 La thèse en une ligne : acheminer un signalement citoyen est **reproductible à ~97 %**
-par un moteur déterministe et justifiable, l'IA fait la perception, l'acheminement
+par un moteur déterministe et justifiable : l'IA fait la perception, l'acheminement
 reste vérifiable et n'invente jamais de service.
 
 ---
@@ -31,18 +31,18 @@ reste vérifiable et n'invente jamais de service.
 <a name="english"></a>
 ## English
 
-The submission site for the **AI Challenge, Reinventing the Citizen Experience** (City
+The submission site for the **AI Challenge · Reinventing the Citizen Experience** (City
 of Montréal, ALL IN 2026). Every figure is computed from the City's **311 open data** and
 is independently reproducible.
 
-**▶ Start at the hub, [index.html](index.html)** (the landing page).
+**▶ Start at the hub: [index.html](index.html)** (the landing page).
 
 - **Live demo** (interactive, FR + EN): [demo.fr.html](demo.fr.html) · [demo.html](demo.html)
 - **Technical memo**: [proposal.html](proposal.html)
 - **Field notes & dead ends**: [findings.html](findings.html)
 
 The **live routing scorecard** and the **reproducible scripts** (`shadow-run.mjs`,
-`montreal-challenge-verify.mjs`) live in the `shadow/` folder, its public commit history
+`montreal-challenge-verify.mjs`) live in the `shadow/` folder; its public commit history
 is the tamper-evident ledger.
 
 The claim in one line: routing a citizen report is **~97% reproducible** with a

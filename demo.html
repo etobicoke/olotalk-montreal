@@ -97,7 +97,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
 <div class="meta">Every location below is a real request from the City's 311 open data, and the routing shown is the resolver's, and it matches the City's own decision. The photo/voice step is the input; this page demonstrates the part that makes routing trustworthy: a deterministic, citable resolver that never guesses a department.</div>
 </header>
 
-<p class="lead">A citizen sends a photo and a few words, spoken or typed — in Montréal, more than eight reports in ten still arrive by phone. Perception turns that into an <b>asset + defect</b>, and the voice is transcribed, then deleted. Then a deterministic resolver decides whose problem it is, and can always say why, or say "not ours."</p>
+<p class="lead">A citizen sends a photo and a few words, spoken or typed: in Montréal, more than eight reports in ten still arrive by phone. Perception turns that into an <b>asset + defect</b>, and the voice is transcribed, then deleted. Then a deterministic resolver decides whose problem it is, and can always say why, or say "not ours."</p>
 
 <div class="pipe">
 <div class="p ai"><div class="pn">01 · AI</div><div class="pt">Perceive</div><div class="pd">photo + voice → asset class + defect</div></div>
@@ -169,9 +169,9 @@ h1,h2{font-family:var(--serif);font-weight:600}
 
 <!-- SCENARIO 4 · interactive -->
 <div class="scn try" id="try">
-<div class="scn-head"><span class="scn-tag">Scenario 4 · your turn</span><span class="scn-title">Try the engine yourself — the frozen policy, in your browser</span></div>
+<div class="scn-head"><span class="scn-tag">Scenario 4 · your turn</span><span class="scn-title">Try the engine yourself: the frozen policy, in your browser</span></div>
 <div class="try-body">
-<p style="margin-top:0">This page loads <code>shadow/policy.json</code> — the frozen decision table itself, the one whose hash is committed — and runs the same decision function as <code>shadow-run.mjs</code>: three lines, no model, no server. Pick a real 311 category and a borough; the engine routes it and states its reason.</p>
+<p style="margin-top:0">This page loads <code>shadow/policy.json</code> (the frozen decision table itself, the one whose hash is committed) and runs the same decision function as <code>shadow-run.mjs</code>: three lines, no model, no server. Pick a real 311 category and a borough; the engine routes it and states its reason.</p>
 <div class="try-controls">
 <label>311 category<input id="try-cat" list="try-cats" placeholder="e.g. Nid-de-poule" autocomplete="off"></label>
 <datalist id="try-cats"></datalist>
@@ -289,7 +289,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
       }
     });
   }).catch(function(){
-    $('try-stats').innerHTML = '<span class="err-red">Could not load <code>shadow/policy.json</code></span> — open this page from the published site to try the engine.';
+    $('try-stats').innerHTML = '<span class="err-red">Could not load <code>shadow/policy.json</code></span>. Open this page from the published site to try the engine.';
     $('try-run').disabled = true; $('try-hash').disabled = true;
   });
 
@@ -299,7 +299,7 @@ h1,h2{font-family:var(--serif);font-weight:600}
     out.hidden = false;
     if(!cat){ out.innerHTML = 'Pick a category from the list first.'; return; }
     var rule = saved.policy.categories[cat];
-    if(!rule){ out.innerHTML = '"' + cat + '" is not in the frozen table — pick one the list suggests (they are the City\'s real 311 categories).'; return; }
+    if(!rule){ out.innerHTML = '"' + cat + '" is not in the frozen table: pick one the list suggests (they are the City\'s real 311 categories).'; return; }
     var unit = predict(saved.policy.categories, cat, geo);
     var naiveDiffers = rule.mode === "fixed" && norm(unit) !== norm(geo);
     var chips = '';
@@ -321,8 +321,8 @@ h1,h2{font-family:var(--serif);font-weight:600}
     crypto.subtle.digest("SHA-256", data).then(function(buf){
       var hex = Array.prototype.map.call(new Uint8Array(buf), function(b){ return b.toString(16).padStart(2,"0"); }).join("");
       el.innerHTML = hex === saved.policyHash
-        ? '<span class="ok-green">✓ match</span> — recomputed here: ' + hex.slice(0,16) + '… = committed: ' + saved.policyHash.slice(0,16) + '… The table has not moved since it was frozen.'
-        : '<span class="err-red">✗ mismatch</span> — recomputed: ' + hex + ' vs committed: ' + saved.policyHash;
+        ? '<span class="ok-green">✓ match</span>, recomputed here: ' + hex.slice(0,16) + '… = committed: ' + saved.policyHash.slice(0,16) + '… The table has not moved since it was frozen.'
+        : '<span class="err-red">✗ mismatch</span>, recomputed: ' + hex + ' vs committed: ' + saved.policyHash;
     });
   });
 })();
